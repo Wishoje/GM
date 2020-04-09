@@ -21,6 +21,7 @@ class App {
 		this.port = this.nuxt.options.server.port;
 		this.host = this.nuxt.options.server.host;
 
+		this.initializeMiddlewares();
 		this.initializeControllers(controllers);
 	}
 
@@ -69,7 +70,6 @@ class App {
 		this.initializeNuxtBuilder();
 
 		// after nuxt builder attach middlewares
-		this.initializeMiddlewares();
 		this.initializeErrorHandling();
 
 		// render app

@@ -23,10 +23,8 @@ class UsersContollers implements ControllerInterface {
 	}
 
 	private getUser = async (request: express.Request, response: express.Response) => {
-		console.log('aweffeafw');
-		response.send('aaaaaaaaaaa');
-		// const userData = await this.userRepository.find();
-		// response.send(userData);
+		const userData = await this.userRepository.find();
+		response.send(userData);
 	}
 
 	private createUser = async (request: express.Request, response: express.Response) => {
