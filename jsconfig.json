@@ -5,8 +5,9 @@
       "~/*": ["./*"],
       "@/*": ["./*"],
       "~~/*": ["./*"],
-      "@@/*": ["./*"]
-    }
+      "@@/*": ["./*"],
+    },
+    "experimentalDecorators": true
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
 }

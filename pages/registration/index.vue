@@ -31,7 +31,7 @@
                 Create Account
             </button>
             <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-                Forgot Password?
+                Forgot Password?1
             </a>
             </div>
         </form>
@@ -54,9 +54,11 @@
             }
         },
         methods: {
-             async submitForm() {
+            async submitForm() {
                 try {
-                    const result = await this.$axios.post('/api/users', { email: this.email, password: this.password });
+                    const result = await this.$axios.get('/api/users', { email: this.email, password: this.password });
+                    const util = require('util');
+		            console.log('AAAAAAAAAA' + util.inspect(result, false, null, true /* enable colors */));
                     if (result && result.data) {
                         this.$store.commit('SET_USER', result.data);
                     }
