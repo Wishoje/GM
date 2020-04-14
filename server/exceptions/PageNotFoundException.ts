@@ -1,9 +1,9 @@
 import HttpException from "./HttpException";
 
-class PostNotFoundException extends HttpException {
+class PageNotFoundException extends HttpException {
 	constructor(id: string) {
-	super(404, `Page Not Found`);
+		super(404, `Page Not Found`);
 	}
 }
 
-export default PostNotFoundException;
+export default PageNotFoundException;

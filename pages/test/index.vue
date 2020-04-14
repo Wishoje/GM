@@ -21,6 +21,11 @@
             </button>
             </div>
         </form>
+        Test AsyncData:
+        <ul>
+            <li v-for="user in allUsers" :key="user">{{ user.email }}</li>
+        </ul>
+        <div v-if="error">{{ error }}</div>
     </div>
 </template>
 
@@ -30,18 +35,28 @@
         data() {
             return {
                 email: '',
-                error: ''
+                error: '',
+                allUsers: null
             };
+        },
+        async asyncData({$axios, error}) {
+            try {
+                const result = await $axios.get('/api/users');
+                return {
+                    allUsers: result.data
+                }
+            } catch(err) {
+                error({ statusCode: 404, message: 'Page Not Found!' })
+            }
         },
         methods: {
              async submitForm() {
                 try {
-                    const result = await this.$axios.post('/api/test');
-                    console.log(result);
+                    const results = await this.$axios.get('/api/users');
+                    console.log(results);
                 } catch(err) {
                     this.email = '';
                     this.error = err;
-                    console.log('ccc' + this.error);
                 }
             }
         }
