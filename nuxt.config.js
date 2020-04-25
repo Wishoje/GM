@@ -22,9 +22,9 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: [
-    '~/assets/styles/main.scss'
-  ],
+  // css: [
+  //   '~/assets/styles/main.scss'
+  // ],
   /*
   ** Plugins to load before mounting the App
   */
@@ -33,7 +33,10 @@ module.exports = {
   /*
   ** Nuxt.js dev-modules
   */
-  buildModules: ['@nuxt/typescript-build'],
+  buildModules: [
+    '@nuxt/typescript-build',
+    '@nuxtjs/style-resources'
+  ],
   /*
   ** Nuxt.js modules
   */
@@ -43,6 +46,12 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/tailwindcss'
   ],
+  styleResources: {
+    scss: [
+      'assets/styles/main.scss',
+      'assets/styles/_variables.scss',
+    ]
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
