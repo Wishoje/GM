@@ -20,6 +20,10 @@ $ git clone https://github.com/Wishoje/GM.git
 # install dependencies
 $ npm install
 
+# docker mac fix
+$ docker pull postgres
+$ docker pull dpage/pgadmin4
+
 # run Docker Desktop
 $ docker-compose up
 
