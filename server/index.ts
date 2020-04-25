@@ -5,12 +5,11 @@ import App from './app';
 import * as config from './ormconfig';
 import UsersController from './controllers/UsersController';
 import UsersPostsController from './controllers/UsersPostsController';
+import CategoriesCotroller from './controllers/CategoriesController';
 
 (async () => {
 	try {
 		const connection = await createConnection(config);
-		const util = require('util');
-		console.log('AAAAAAAAAA' + util.inspect(connection, false, null, true /* enable colors */));
 		await connection.runMigrations();
 	} catch (error) {
 		console.log('Error while connecting to the database', error);
@@ -19,7 +18,8 @@ import UsersPostsController from './controllers/UsersPostsController';
 	const app = new App(
 		[
 			new UsersController(),
-			new UsersPostsController()
+			new UsersPostsController(),
+			new CategoriesCotroller()
 		],
 	);
 	app.start();

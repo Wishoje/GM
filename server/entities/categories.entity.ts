@@ -1,18 +1,15 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-class User {
+class Categories {
 	@PrimaryGeneratedColumn()
     public id: number;
     
-	@Column("varchar", { length: 255 })
-    public email: string;
-    
-    @Column()
+	@Column()
     public name: string;
 
-	@Column("text")
-	public password: string;
+    @Column("smallint")
+    public active: number;
 }
 
-export default User;
+export default Categories;
