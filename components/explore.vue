@@ -1,7 +1,7 @@
 <template>
-    <div class="c-explore">
+    <section class="c-explore">
         Explore & Find Your Sound
-    </div>
+    </section>
 </template>
 
 <script>
