@@ -1,7 +1,7 @@
 <template>
-    <div class="c-categories">
+    <section class="c-categories">
         Categories
-    </div>
+    </section>
 </template>
 
 <script>
