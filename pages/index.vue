@@ -1,11 +1,10 @@
 <template>
-    <div>
+    <main>
         <banner/>
         <explore/>
         <categories/>
         <lovedLists/>
-        Gamers Music
-    </div>
+    </main>
 </template>
 
 <script>
