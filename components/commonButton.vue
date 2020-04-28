@@ -1,5 +1,5 @@
 <template>
-	<button class="button">
+	<button class="c-button">
 		{{text}}
 	</button>
 </template>
@@ -14,9 +14,9 @@
 </script>
 
 <style lang="scss" scoped>
-	.button {
+	.c-button {
 		background-color: $primary-red;
-		color: black;
+		color: $primary-black;
 		text-align: center;
 		margin-top: 3rem;
 		padding: 1rem 2rem;

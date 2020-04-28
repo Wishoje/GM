@@ -4,7 +4,6 @@
         <explore/>
         <categories/>
         <lovedLists/>
-        <footer>Gamers Music</footer>
     </main>
 </template>
 
