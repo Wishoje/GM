@@ -1,7 +1,7 @@
 <template>
-    <section class="c-lovedLists">
+    <article class="c-lovedLists">
         Today's most loved list 
-    </section>
+    </article>
 </template>
 
 <script>

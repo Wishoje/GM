@@ -1,10 +1,9 @@
 <template>
     <main>
         <banner/>
-        <explore/>
         <categories/>
+        <explore/>
         <lovedLists/>
-        <footer>Gamers Music</footer>
     </main>
 </template>
 
