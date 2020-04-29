@@ -5,12 +5,12 @@
 		Go explore the most popular tags.</h3>
 		<section>
 			<ul>
-				<li v-for="category in computedLimit" :key="category.id">
+				<li v-for="category in computedLimit" :key="category.id" v-bind:style="{ 'background-image': `url('${category.image}')` }">
 					<a href="#">{{ category.name }}</a>
 				</li>
 			</ul>
-			<commonButton @click.native="limit = null" class="c-button" text="SEE MORE" v-if="limit" />
-			<commonButton @click.native="limit = 10" class="c-button" text="SEE LESS" v-else />
+			<commonButton @click.native="limit = null" text="SEE MORE" v-if="limit" />
+			<commonButton @click.native="limit = 10" text="SEE LESS" v-else />
 		</section>
 	</article>
 </template>
@@ -36,8 +36,7 @@
 			async getCategories() {
 				try {
 					const result = await this.$axios.$get('/api/categories');
-						console.log('result :', result);
-						return this.categories = result
+					return this.categories = result
 				} catch(error) {
 					console.log('Error :', error);
 				}
@@ -45,6 +44,11 @@
 		},
 		computed: {
 			computedLimit() {
+				(() => {
+					return this.categories = this.categories.sort( (a, b) => {
+						return a.sort - b.sort;
+					});
+				})();
 				return this.limit ? this.categories.slice(0, this.limit) : this.categories;
 			}
 		}
@@ -73,17 +77,17 @@
 					width: 100%;
 					height: 100%;
 					line-height: 10.5rem;
-					background-color: darkslategrey;
+					font-size: 1.8rem;
 					color: $primary-white;
 					&:hover {
-						background-color: rgba($color: $primary-black, $alpha: 0.9);
+						background-color: rgba($color: $primary-black, $alpha: 0.8);
 						color: $primary-red;
 					}
 				}
 			}
 		}
 
-		.c-button {
+		section {
 			margin-bottom: 3rem;
 		}
 	}

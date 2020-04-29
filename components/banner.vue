@@ -21,7 +21,7 @@
 <style lang="scss" scoped>
 	.c-banner {
 		height: 670px;
-		background-image: url('../assets/images/banner.jpg');
+		background-image: url('/images/banner.jpg');
 		color: $primary-white;
 		text-align: center;
 
