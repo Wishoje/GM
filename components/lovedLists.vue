@@ -13,8 +13,8 @@ export default {
 <style scoped lang="scss">
     .c-lovedLists {
         height: 350px;
-        background-color: white;
-        color: black;
+        background-color: $primary-white;
+        color: $primary-black;
         text-align: center;
     }
 </style>

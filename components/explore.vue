@@ -13,8 +13,8 @@ export default {
 <style scoped lang="scss">
     .c-explore {
         height: 200px;
-        background-color: red;
-        color: white;
+        background-color: $primary-red;
+        color: $primary-white;
         text-align: center;
     }
 </style>

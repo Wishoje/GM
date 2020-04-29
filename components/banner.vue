@@ -22,7 +22,7 @@
 	.c-banner {
 		height: 670px;
 		background-image: url('../assets/images/banner.jpg');
-		color: white;
+		color: $primary-white;
 		text-align: center;
 
 		h3 {

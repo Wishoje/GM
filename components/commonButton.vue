@@ -1,5 +1,5 @@
 <template>
-	<button class="commonButton">
+	<button class="c-button">
 		{{text}}
 	</button>
 </template>
@@ -10,19 +10,15 @@
 		props: {
 			text: String
 		}
-		// data() {
-		// 	return {
-		// 			text: 'Hello World'
-		// 	}
-		// }
 	}
 </script>
 
 <style lang="scss" scoped>
-	.commonButton {
+	.c-button {
 		background-color: $primary-red;
-		color: black;
+		color: $primary-black;
 		text-align: center;
+		margin-top: 3rem;
 		padding: 1rem 2rem;
 		border-radius: 0.2rem;
 	}
