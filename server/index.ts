@@ -7,6 +7,7 @@ import UsersController from './controllers/UsersController';
 import UsersPostsController from './controllers/UsersPostsController';
 import CategoriesCotroller from './controllers/CategoriesController';
 import AuthenticationController from './controllers/AuthenticationController';
+import validateEnv from './utils/validateEnv';
 
 (async () => {
 	try {
@@ -16,6 +17,9 @@ import AuthenticationController from './controllers/AuthenticationController';
 		console.log('Error while connecting to the database', error);
 		return error;
 	}
+
+	validateEnv();
+
 	const app = new App(
 		[
 			new UsersController(),

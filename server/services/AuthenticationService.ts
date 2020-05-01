@@ -18,12 +18,19 @@ class AuthenticationService {
 		if (userExist) {
 			throw new BadRequestException(`User with email ${userData.email} already exists`)
 		}
+		
 		const hashedPassword = await bcrypt.hash(userData.password, 10);
+		console.log(hashedPassword);
 		const user = this.userRepository.create({
 			email: userData.email,
 			name: userData.name,
 			password: hashedPassword,
 		});
+
+		if (user) {
+			await this.userRepository.save(user);
+		}
+
 		const tokenData = this.createToken(user);
 		const cookie = this.createCookie(tokenData);
 
@@ -35,6 +42,7 @@ class AuthenticationService {
 
 	public async logInService(loginData: LoginDto) {
 		const user = await this.userRepository.findOne({ email: loginData.email });
+		console.log(loginData);
 		let cookie = null;
 		if (user) {
 			const isPasswordMatching = await bcrypt.compare(loginData.password, user.password);

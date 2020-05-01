@@ -7,7 +7,7 @@ import LoginDto from '../models/User/LoginDto';
 import AuthenticationService from '../services/AuthenticationService';
 
 class AuthenticationController implements ControllerInterface {
-	public path = '/auth';
+	public path = '/api';
 	public router = express.Router();
 	public authenticationService = new AuthenticationService();
 
