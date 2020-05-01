@@ -1,5 +1,5 @@
 <template>
-	<button class="c-button">
+	<button class="c-button m-font-bold">
 		{{text}}
 	</button>
 </template>

@@ -1,10 +1,10 @@
 <template>
-    <main>
-        <banner/>
-        <explore/>
-        <categories/>
-        <lovedLists/>
-    </main>
+	<main>
+		<banner/>
+		<categories/>
+		<explore/>
+		<lovedLists/>
+	</main>
 </template>
 
 <script>
@@ -15,13 +15,13 @@ import categories from '../components/categories';
 import lovedLists from '../components/lovedLists';
 
 export default {
-    name: 'homePage',
-    components: {
-        banner,
-        explore,
-        categories,
-        lovedLists
-    }
+	name: 'homePage',
+	components: {
+		banner,
+		explore,
+		categories,
+		lovedLists
+	}
 }
 </script>
 
