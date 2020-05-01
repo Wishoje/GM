@@ -5,11 +5,17 @@ class Categories {
 	@PrimaryGeneratedColumn()
     public id: number;
     
-	@Column()
+	@Column({ type: "text", default: "" })
     public name: string;
 
-    @Column("smallint")
+    @Column({ type: "smallint", default: 0 })
     public active: number;
+
+    @Column({ type: "smallint", default: 0 })
+    public sort: number;
+
+    @Column({ type: "text", default: "" })
+    public image: string;
 }
 
 export default Categories;
