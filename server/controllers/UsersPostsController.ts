@@ -5,6 +5,7 @@ import ValidationMiddleware from '../middleware/ValidationMiddleware';
 import ControllerInterface from '../interfaces/ControllerInterface';
 import UserPostsDto from '../models/User/UserPostsDto';
 import UserPosts from '../entities/user_posts.entity';
+import AuthMiddleware from '../middleware/AuthMiddleware';
 
 class UsersContollers implements ControllerInterface {
 	public path = '/api/usersPosts';
@@ -16,9 +17,10 @@ class UsersContollers implements ControllerInterface {
 	}
 
 	public intializeRoutes() {
-		this.router.post(this.path, ValidationMiddleware(UserPostsDto), this.createUser);
 		this.router.get(this.path, this.getUser);
-		this.router.delete(`${this.path}/:id`, this.deleteUser);
+		this.router.all(`${this.path}/*`, AuthMiddleware)
+		.post(this.path, ValidationMiddleware(UserPostsDto), this.createUser)
+		.delete(`${this.path}/:id`, this.deleteUser);
 	}
 
 	private getUser = async (request: express.Request, response: express.Response) => {

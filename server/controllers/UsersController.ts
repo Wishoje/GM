@@ -5,7 +5,6 @@ import ValidationMiddleware from '../middleware/ValidationMiddleware';
 import ControllerInterface from '../interfaces/ControllerInterface';
 import UserDto from '../models/User/UserDto';
 import User from '../entities/user.entity';
-import UserIntefrace from '../interfaces/UserInterface';
 
 class UsersContollers implements ControllerInterface {
 	public path = '/api/users';

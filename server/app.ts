@@ -3,6 +3,7 @@ import { Nuxt, Builder } from 'nuxt';
 import * as bodyParser from 'body-parser';
 import errorMiddleware from './middleware/ErrorMiddleware';
 import ControllerInteface from './interfaces/ControllerInterface';
+import * as cookieParser from 'cookie-parser';
 const nuxtConfig = require('../nuxt.config.js');
 
 class App {
@@ -43,6 +44,7 @@ class App {
 	// after nuxt
 	private initializeMiddlewares() {
 		this.app.use(bodyParser.json());
+		this.app.use(cookieParser());
 	}
 
 	private initializeErrorHandling() {

@@ -6,6 +6,8 @@ import * as config from './ormconfig';
 import UsersController from './controllers/UsersController';
 import UsersPostsController from './controllers/UsersPostsController';
 import CategoriesCotroller from './controllers/CategoriesController';
+import AuthenticationController from './controllers/AuthenticationController';
+import validateEnv from './utils/validateEnv';
 
 (async () => {
 	try {
@@ -15,11 +17,15 @@ import CategoriesCotroller from './controllers/CategoriesController';
 		console.log('Error while connecting to the database', error);
 		return error;
 	}
+
+	validateEnv();
+
 	const app = new App(
 		[
 			new UsersController(),
 			new UsersPostsController(),
-			new CategoriesCotroller()
+			new CategoriesCotroller(),
+			new AuthenticationController()
 		],
 	);
 	app.start();
