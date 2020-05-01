@@ -6,12 +6,14 @@ import AuthTokenDataInterface from '../interfaces/AuthTokenDataInterface';
 import UserDto from '../models/User/UserDto';
 import UserIntefrace from '../interfaces/UserInterface';
 import User from '../entities/user.entity';
+import LoginDto from '../models/User/LoginDto';
 import { getRepository } from 'typeorm';
+import UnathorizedException from '../exceptions/UnathorizedException';
 
 class AuthenticationService {
 	private userRepository = getRepository(User);
 
-	public async register(userData: UserDto) {
+	public async registerService(userData: UserDto) {
 		const userExist = await this.userRepository.findOne({ email: userData.email });
 		if (userExist) {
 			throw new BadRequestException(`User with email ${userData.email} already exists`)
@@ -29,6 +31,26 @@ class AuthenticationService {
 			cookie,
 			user,
 		};
+	}
+
+	public async logInService(loginData: LoginDto) {
+		const user = await this.userRepository.findOne({ email: loginData.email });
+		let cookie = null;
+		if (user) {
+			const isPasswordMatching = await bcrypt.compare(loginData.password, user.password);
+			if (isPasswordMatching) {
+				cookie = this.createToken(user);
+			} else {
+				throw new UnathorizedException('Wrong Credentials');
+			}
+		} else {
+			throw new UnathorizedException('Wrong Credentials');
+		}
+
+		return {
+			cookie,
+			user,
+		}; 
 	}
 
 	public createCookie(tokenData: AuthTokenDataInterface) {

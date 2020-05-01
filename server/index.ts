@@ -6,6 +6,7 @@ import * as config from './ormconfig';
 import UsersController from './controllers/UsersController';
 import UsersPostsController from './controllers/UsersPostsController';
 import CategoriesCotroller from './controllers/CategoriesController';
+import AuthenticationController from './controllers/AuthenticationController';
 
 (async () => {
 	try {
@@ -19,7 +20,8 @@ import CategoriesCotroller from './controllers/CategoriesController';
 		[
 			new UsersController(),
 			new UsersPostsController(),
-			new CategoriesCotroller()
+			new CategoriesCotroller(),
+			new AuthenticationController()
 		],
 	);
 	app.start();
