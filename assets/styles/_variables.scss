@@ -2,3 +2,30 @@ $primary-red: #f01f28;
 $primary-black: #000;
 $primary-white: #fff;
 $primary-purple: #6e31a2;
+
+$mq-mobile: 'screen and (max-width: 760px)';
+$mq-mobile-mini: 'screen and (max-width: 374px)';
+// should not need mobile-wide often. but it's to work with 6/7/8 Plus sized devices
+$mq-mobile-wide: 'screen and (min-width: 410px) and (max-width: 549px)';
+$mq-mobile-landscape: 'screen and (min-width: 550px) and (max-width: 760px)';
+$mq-mobile-portrait: 'screen and (max-width: 549px)';
+$mq-tablet: 'screen and (min-width: 761px) and (max-width: 1279px)';
+$mq-tablet-large: 'screen and (min-width: 1025px) and (max-width: 1279px)';
+$mq-tablet-portrait: 'screen and (min-width: 761px) and (max-width: 999px)';
+$mq-desktop: 'screen and (min-width: 1280px)';
+$mq-desktop-responsive: 'screen and (min-width: 1280px) and (max-width: 1440px)';
+$mq-desktop-large: 'screen and (min-width: 1921px)';
+
+// nice to haves...
+$mq-not-mobile: 'screen and (min-width: 761px)';
+$mq-not-mobile-mini: 'screen and (min-width: 375px)';
+$mq-not-desktop: 'screen and (max-width: 1279px)';
+$mq-not-desktop-large: 'screen and (max-width: 1440px)';
+// only target Internet Explorer 10+
+$mq-ie-only: 'all and (-ms-high-contrast: none), (-ms-high-contrast: active)';
+
+/* how to use them? put the desired style inside media query like:
+@media #{$mq-desktop} { 
+    .c-test: width: 80% 
+}
+*/
