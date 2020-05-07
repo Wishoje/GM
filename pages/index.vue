@@ -1,5 +1,6 @@
 <template>
 	<main>
+		<AppModal />
 		<banner/>
 		<categories/>
 		<explore/>
@@ -13,6 +14,7 @@ import banner from '../components/banner';
 import explore from '../components/explore';
 import categories from '../components/categories';
 import lovedLists from '../components/lovedLists';
+import AppModal from '../components/AppModal';
 
 export default {
 	name: 'homePage',
@@ -20,7 +22,8 @@ export default {
 		banner,
 		explore,
 		categories,
-		lovedLists
+		lovedLists,
+		AppModal
 	}
 }
 </script>
