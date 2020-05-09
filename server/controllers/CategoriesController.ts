@@ -25,7 +25,7 @@ class CategoriesController implements ControllerInterface {
 				await this.categoriesServices.insertCategories();
 			}
 			const categoriesData = await this.categoriesRepository.find({ active: 1 });
-			console.log(categoriesData);
+			// console.log(categoriesData);
 			response.send(categoriesData);
 		} catch(err) {
             throw new Error(err)
