@@ -1,17 +1,27 @@
-export const state = () => ({
-  user: null
-})
+import cookie from 'cookie';
+import {setAuthToken, resetAuthToken} from '~/utils/auth';
 
-export const mutations = {
-  SET_USER(state, user) {
-    state.user = user
-  }
-}
+export const state = () => ({})
+
+export const mutations = {}
 
 export const actions = {
-  nuxtServerInit({ commit }, { req }) {
-    if (req.session && req.session.user) {
-      commit('SET_USER', req.session.user)
-    }
-  }
+	nuxtServerInit ({dispatch}, context) {
+		return new Promise((resolve, reject) => {
+			const cookies = cookie.parse(context.req.headers.cookie || '');
+			if (cookies.hasOwnProperty('x-access-token')) {
+				setAuthToken(cookies['x-access-token']);
+				dispatch('auth/fetch').then(result => {
+					resolve(true);
+				}).catch(error => {
+					console.log('Provided token is invalid:', error)  ;                    
+					resetAuthToken();
+					resolve(false);
+				})
+			} else {
+				resetAuthToken();
+				resolve(false);
+			}
+		})
+	}
 }

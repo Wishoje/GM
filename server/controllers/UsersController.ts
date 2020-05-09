@@ -5,6 +5,7 @@ import ValidationMiddleware from '../middleware/ValidationMiddleware';
 import ControllerInterface from '../interfaces/ControllerInterface';
 import UserDto from '../models/User/UserDto';
 import User from '../entities/user.entity';
+import AuthMiddleware from '../middleware/AuthMiddleware';
 
 class UsersContollers implements ControllerInterface {
 	public path = '/api/users';
@@ -17,7 +18,7 @@ class UsersContollers implements ControllerInterface {
 
 	public intializeRoutes() {
 		this.router.post(this.path, ValidationMiddleware(UserDto), this.createUser);
-		this.router.get(this.path, this.getUser);
+		this.router.get(this.path, AuthMiddleware, this.getUser);
 		this.router.delete(`${this.path}/:id`, this.deleteUser);
 	}
 
