@@ -1,22 +1,20 @@
-import { NextFunction, Response } from 'express';
+import { NextFunction, Response, Request } from 'express';
 import * as jwt from 'jsonwebtoken';
 import UnathorizedException from '../exceptions/UnathorizedException';
 import DataStoredInTokenInterface from '../interfaces/DataStoredInTokenInterface';
-import RequestWithUserInterface from '../interfaces/RequestWithUserInterface';
 import { getRepository } from 'typeorm';
 import User from '../entities/user.entity';
 
-async function authMiddleware(request: RequestWithUserInterface, response: Response, next: NextFunction) {
-	const cookies = request.cookies;
+async function authMiddleware(request: Request, response: Response, next: NextFunction) {
+	const token = request.cookies['x-access-token'];
 	const userRepository = getRepository(User);
-	if (cookies && cookies.Authorization) {
+	if (token) {
 		const secret = process.env.JWT_SECRET;
 		try {
-			const verificationResponse = jwt.verify(cookies.Authorization, secret) as DataStoredInTokenInterface;
+			const verificationResponse = jwt.verify(token, secret) as DataStoredInTokenInterface;
 			const id = verificationResponse._id;
 			const user = await userRepository.findOne(id);
 		if (user) {
-			request.user = user;
 			next();
 		} else {
 			next(new UnathorizedException('Please check your credentials'));

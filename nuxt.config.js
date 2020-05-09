@@ -29,6 +29,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/api/init.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -51,6 +52,9 @@ module.exports = {
       'assets/styles/main.scss',
       'assets/styles/_variables.scss',
     ]
+  },
+  router: {
+    middleware: ['auth']
   },
   /*
   ** Axios module configuration

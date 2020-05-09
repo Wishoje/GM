@@ -1,6 +1,6 @@
 <template>
     <div class="w-full max-w-xs">
-        <form @submit.prevent="submitForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form v-if="!user" @submit.prevent="submitForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div>
                 Login
             </div>
@@ -35,6 +35,7 @@
             </a>
             </div>
         </form>
+        {{ user }}
     </div>
 </template>
 
@@ -49,22 +50,21 @@
             };
         },
         computed: {
-            users() { 
-                return this.$store.state.user;
+            user() { 
+                return this.$store.state.auth.user;
             }
         },
         methods: {
              async submitForm() {
                 try {
-                    const result = await this.$axios.post('/api/users/login', { email: this.email, password: this.password });
-                    if (result && result.data) {
-                        this.$store.commit('SET_USER', result.data);
-                    }
+                    await this.$store.dispatch('auth/login', {
+                        email: this.email,
+                        password: this.password
+                    })
                 } catch(err) {
                     this.email = '';
                     this.password = '';
                     this.error = err;
-                    console.log('ccc' + this.error);
                 }
             }
         }
