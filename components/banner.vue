@@ -1,32 +1,37 @@
 <template>
 	<article class="c-banner">
-		<h2>SHARE YOUR <br />FAVORITE PLAYLISTS!</h2>
-		<h3>Join the gamers community where the music<br>
-		lead you to the another level.</h3>
-		<commonButton text="JOIN" />
+		<h2>Explore Our Musical World</h2>
+		<h3>Find your favorite playlist</h3>
+
+		<div class="search-box">
+		<input class="search-text" name="" placeholder="Search for game, platform or genre">
+		<input type="submit" name="" value="">
+		</div>
+
 	</article>
 </template>
 
 <script>
-	import commonButton from './commonButton';
+	/* import commonButton from './commonButton';
 
 	export default {
 		name: 'banner',
 		components: {
 			commonButton
 		}
-	}
+	} */ 
 </script>
 
 <style lang="scss" scoped>
 	.c-banner {
-		height: 670px;
+		padding-top:2.1rem;
+		padding-bottom:2.5rem;
 		background-image: url('/images/banner.jpg');
 		color: $primary-white;
 		text-align: center;
 
 		h3 {
-			margin-bottom: 3rem;
+			margin-bottom: 1rem;
 		}
 	}
 </style>

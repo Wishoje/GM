@@ -4,17 +4,32 @@ html, body {
 
 h2 {
 	font-size: 4rem;
-	padding-top: 12.5rem;
-	line-height: 4.2rem;
+	padding-top: 4.188 rem;
+	padding-bottom:2.5rem;
+	line-height: 3.313 rem;
 	font-weight: 500;
 }
 
 h3 {
-	padding-top: 2.25rem;
+	
 	font-size: 1.5rem;
 	font-weight: bold;
 }
 
 .m-font-bold {
 	font-weight: bold;
+}
+
+.search-box{
+	text-align: center;
+	justify-content: space-between;
+}
+.search-box .search-text{
+	background:white;
+	border-radius: 0.2rem;
+	color:black;
+	padding:1.5rem 12.563rem;
+	width:70%;
+
+
 }
