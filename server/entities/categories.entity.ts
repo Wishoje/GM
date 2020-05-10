@@ -16,6 +16,9 @@ class Categories {
 
     @Column({ type: "text", default: "" })
     public image: string;
+
+    @Column({ type: "smallint", default: 0 })
+    public type: number;
 }
 
 export default Categories;

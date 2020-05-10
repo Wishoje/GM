@@ -6,6 +6,17 @@
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                    NickName
+                </label>
+                <input 
+                    v-model="name"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="name"
+                    type="text"
+                    placeholder="name">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
                     Email
                 </label>
                 <input 
@@ -45,6 +56,7 @@
             return {
                 email: '',
                 password: '',
+                name: '',
                 error: ''
             };
         },
@@ -54,19 +66,19 @@
             }
         },
         methods: {
-            async submitForm() {
+             async submitForm() {
                 try {
-                    const result = await this.$axios.get('/api/users', { email: this.email, password: this.password });
-                    const util = require('util');
-		            console.log('AAAAAAAAAA' + util.inspect(result, false, null, true /* enable colors */));
-                    if (result && result.data) {
-                        this.$store.commit('SET_USER', result.data);
-                    }
+                    const result = await this.$store.dispatch('auth/register', {
+                        email: this.email,
+                        password: this.password,
+                        name: this.name
+                    });
+                    console.log(result);
                 } catch(err) {
                     this.email = '';
                     this.password = '';
                     this.error = err;
-                    console.log('ccc' + this.error);
+                    console.log('Error')
                 }
             }
         }

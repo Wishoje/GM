@@ -34,6 +34,7 @@
                 Forgot Password?
             </a>
             </div>
+            {{ user }}
         </form>
         {{ user }}
     </div>
@@ -57,14 +58,16 @@
         methods: {
              async submitForm() {
                 try {
-                    await this.$store.dispatch('auth/login', {
+                    const result = await this.$store.dispatch('auth/login', {
                         email: this.email,
                         password: this.password
-                    })
+                    });
+                    console.log(result);
                 } catch(err) {
                     this.email = '';
                     this.password = '';
                     this.error = err;
+                    console.log('Error')
                 }
             }
         }
