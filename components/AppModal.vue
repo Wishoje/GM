@@ -54,7 +54,7 @@
         this.component = componentName;
       },
     },
-    created() {
+    mounted() {
       const escapeHandler = (e) => {
         if (e.key === `Escape` && this.visible) {
           this.hideModal();
