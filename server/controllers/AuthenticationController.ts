@@ -63,7 +63,7 @@ class AuthenticationController implements ControllerInterface {
 
 	private getMe = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
 		try {
-			const user = await this.userRepository.findOne({ email: request.body.email });
+			const user = await this.userRepository.findOne({ email: response.locals.user.email });
 			response.send({ user });
 		} catch (error) {
 			next(error);
