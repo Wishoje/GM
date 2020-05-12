@@ -12,7 +12,13 @@ class User {
     public name: string;
 
 	@Column("text")
-	public password: string;
+    public password: string;
+    
+    @Column({ type: "int", default: 0 })
+    public followers: number;
+
+    @Column({ type: "int", default: 0 })
+    public playlists: number;
 }
 
 export default User;

@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <navigation />
-    <nuxt />
-  </div>
+	<div>
+		<navigation />
+		<nuxt />
+	</div>
 </template>
 
 
@@ -10,7 +10,6 @@
 	import navigation from '../components/navigation';
 
 	export default {
-		name: 'banner',
 		components: {
 			navigation
 		}

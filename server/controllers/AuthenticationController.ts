@@ -5,11 +5,14 @@ import ValidationMiddleware from '../middleware/ValidationMiddleware';
 import UserDto from '../models/User/UserDto';
 import LoginDto from '../models/User/LoginDto';
 import AuthenticationService from '../services/AuthenticationService';
+import AuthMiddleware from '../middleware/AuthMiddleware';
+import User from '../entities/user.entity';
 
 class AuthenticationController implements ControllerInterface {
 	public path = '/api';
 	public router = express.Router();
 	public authenticationService = new AuthenticationService();
+	private userRepository = getRepository(User);
 
 	constructor() {
 		this.initializeRoutes();
@@ -19,17 +22,18 @@ class AuthenticationController implements ControllerInterface {
 		this.router.post(`${this.path}/register`, ValidationMiddleware(UserDto), this.registration);
 		this.router.post(`${this.path}/login`, ValidationMiddleware(LoginDto), this.logIn);
 		this.router.post(`${this.path}/logout`, this.logOut);
+		this.router.get(`${this.path}/me`, AuthMiddleware, this.getMe);
+
 	}
 
 	private registration = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
 		const userData: UserDto = request.body;
 		try {
 			const {
-			  	cookie,
-			  	user,
+				userAuth,
+			  	user
 			} = await this.authenticationService.registerService(userData);
-				response.setHeader('Set-Cookie', [cookie]);
-				response.send(user);
+				response.send({ user, userAuth });
     		} catch (error) {
       			next(error);
 		}
@@ -39,11 +43,10 @@ class AuthenticationController implements ControllerInterface {
 		const logInData: LoginDto = request.body;
 		try {
 			const {
-			  	cookie,
-			  	user,
+				userAuth,
+			  	user
 			} = await this.authenticationService.logInService(logInData);
-				response.setHeader('Set-Cookie', [cookie]);
-				response.send(user);
+				response.send({ user, userAuth });
     		} catch (error) {
       			next(error);
 		}
@@ -53,6 +56,15 @@ class AuthenticationController implements ControllerInterface {
 		try {
 			response.setHeader('Set-Cookie', ['Authorization=;Max-age=0']);
 			response.send(200);
+		} catch (error) {
+			next(error);
+		}
+	}
+
+	private getMe = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+		try {
+			const user = await this.userRepository.findOne({ email: response.locals.user.email });
+			response.send({ user });
 		} catch (error) {
 			next(error);
 		}

@@ -1,16 +1,20 @@
 <template>
 	<article class="c-categories">
-		<h2>MOST POPULAR <br />CATEGORIES</h2>
-		<h3>Listen, share and connect your musical world.<br>
-		Go explore the most popular tags.</h3>
+		<div v-if="!isCategoryPage">
+			<h2>MOST POPULAR <br />CATEGORIES</h2>
+			<h3>Listen, share and connect your musical world.<br>
+			Go explore the most popular tags.</h3>
+		</div>
 		<section>
 			<ul>
 				<li v-for="category in computedLimit" :key="category.id" v-bind:style="{ 'background-image': `url('${category.image}')` }">
 					<a href="#">{{ category.name }}</a>
 				</li>
 			</ul>
-			<commonButton @click.native="limit = null" text="SEE MORE" v-if="limit" />
-			<commonButton @click.native="limit = 10" text="SEE LESS" v-else />
+			<div v-if="!isCategoryPage">
+				<commonButton @click.native="limit = null" text="SEE MORE" v-if="limit" />
+				<commonButton @click.native="limit = 10" text="SEE LESS" v-else />
+			</div>
 		</section>
 	</article>
 </template>
@@ -23,10 +27,19 @@
 		components: {
 			commonButton
 		},
+		props: {
+			isCategoryPage: {
+				type: Boolean,
+				default: false
+			},
+			limit: {
+				type: Number,
+				default: 10
+			}
+		},
 		data() {
 			return {
-					categories: [],
-					limit: 10
+				categories: []
 			};
 		},
 		mounted() {
@@ -44,11 +57,9 @@
 		},
 		computed: {
 			computedLimit() {
-				(() => {
-					return this.categories = this.categories.sort( (a, b) => {
-						return a.sort - b.sort;
-					});
-				})();
+				this.categories = this.categories.sort( (a, b) => {
+					return a.sort - b.sort;
+				});
 				return this.limit ? this.categories.slice(0, this.limit) : this.categories;
 			}
 		}

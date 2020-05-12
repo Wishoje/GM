@@ -4,9 +4,21 @@
 			Logo
 		</div>
 		<ul class="c-links">
-			<li> <a class="c-cat-link" href="#"><button><span>Categories</span></button></a></li>
-			<li> <a class="c-login-link" href="#"><button><span>Login</span></button></a></li>
-			<li> <a class="c-join-link" href="#"><button><span>JOIN</span></button></a></li>
+			<li>
+				<nuxt-link class="c-cat-link" to="/categories"><span>Categories</span></nuxt-link>
+			</li>
+			<li v-if="!$store.state.auth.user">
+				<nuxt-link class="c-login-link" to="/login"><span>Login</span></nuxt-link>
+			</li>
+			<li v-if="!$store.state.auth.user">
+				<nuxt-link class="c-join-link" to="/registration"><span>JOIN</span></nuxt-link>
+			</li>
+			<li v-if="$store.state.auth.user">
+				<nuxt-link class="c-login-link" to="/account"><span>Profile</span></nuxt-link>
+			</li>
+			<li v-if="$store.state.auth.user">
+				<nuxt-link class="c-login-link" to="/"><span>Logout</span></nuxt-link>
+			</li>
 		</ul>
 	</nav>
 </template>
