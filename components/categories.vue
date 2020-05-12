@@ -102,4 +102,12 @@
 			margin-bottom: 3rem;
 		}
 	}
+	
+	@media #{$mq-desktop-large} { 
+		.c-categories {
+			ul {
+				width: 60%;
+			}
+		}
+	}
 </style>
