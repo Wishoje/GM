@@ -3,9 +3,8 @@
 		<h2>Explore Our Musical World</h2>
 		<h3>Find your favorite playlist</h3>
 
-		<div class="search-box">
-            <input class="search-text" placeholder="Search for game, platform or genre">
-            <input type="submit">
+		<div class="c-search-box">
+            <input class="c-search-text" placeholder="Search for game, platform or genre">
 		</div>
 	</article>
 </template>
@@ -24,5 +23,18 @@
 		h3 {
 			margin-bottom: 1rem;
 		}
-	}
+    }
+    
+    .c-search-box{
+        width: 40%;
+        margin: 0 auto;
+    }
+
+    .c-search-box .c-search-text{
+        background:white;
+        border-radius: 0.2rem;
+        color:black;
+        padding:1.5rem 12.563rem;
+        width:70%;
+    }
 </style>

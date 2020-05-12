@@ -1,7 +1,7 @@
 <template>
 	<nav>
 		<div class="c-logo">
-			Logo
+			<nuxt-link to="/">Logo</nuxt-link>
 		</div>
 		<ul class="c-links">
 			<li>
