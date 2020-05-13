@@ -30,7 +30,7 @@
 
 <style lang="scss" scoped>
 	.c-banner {
-		height: 670px;
+		padding: 30px 0;
 		background-image: url('/images/banner.jpg');
 		color: $primary-white;
 		text-align: center;
