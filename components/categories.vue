@@ -48,7 +48,7 @@
 		methods: {
 			async getCategories() {
 				try {
-					const result = await this.$axios.$get('/api/categories');
+					const result = await this.$axios.$get('/api/categories/games');
 					return this.categories = result
 				} catch(error) {
 					console.log('Error :', error);
