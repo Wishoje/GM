@@ -2,7 +2,7 @@
 	<main>
 		<AppModal />
 		<banner/>
-		<categories/>
+		<categories :categoriesURL="'/api/categories/games'" />
 		<explore/>
 		<lovedLists/>
 	</main>

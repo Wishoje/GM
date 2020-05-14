@@ -22,6 +22,12 @@
 <script>
 	import commonButton from './commonButton';
 
+	/**
+	 * Categories component
+	 * @param {boolean} isCategoryPage - Set to true for category page to show titles and show more/less button.
+	 * @param {string} categoriesURL - Api url endpoint to get different categories (games, genre, platform).
+	 * @param {number} limit - Show specific number of categories.
+	 */
 	export default {
 		name: 'categories',
 		components: {
@@ -31,6 +37,10 @@
 			isCategoryPage: {
 				type: Boolean,
 				default: false
+			},
+			categoriesURL: {
+				type: String,
+				default: 10
 			},
 			limit: {
 				type: Number,
@@ -48,8 +58,8 @@
 		methods: {
 			async getCategories() {
 				try {
-					const result = await this.$axios.$get('/api/categories/games');
-					return this.categories = result
+					const result = await this.$axios.$get(this.categoriesURL);
+					return this.categories = result;
 				} catch(error) {
 					console.log('Error :', error);
 				}
