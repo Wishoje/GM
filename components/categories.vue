@@ -40,7 +40,7 @@
 			},
 			categoriesURL: {
 				type: String,
-				default: 10
+				default: ''
 			},
 			limit: {
 				type: Number,
