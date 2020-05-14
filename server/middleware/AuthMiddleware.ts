@@ -14,8 +14,6 @@ async function authMiddleware(request: Request, response: Response, next: NextFu
 			const verificationResponse = jwt.verify(token, secret) as DataStoredInTokenInterface;
 			const id = verificationResponse._id;
 			const user = await userRepository.findOne(id);
-			const util = require('util');
-			console.log('User' + util.inspect(user, false, null, true /* enable colors */));
 		if (user) {
 			response.locals.user = user;
 			next();

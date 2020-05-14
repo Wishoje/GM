@@ -1,7 +1,18 @@
 <template>
     <div>
         <h1>Profile Page</h1>
-        {{ user }}
+        <div>
+            <span>Name: {{ user.name }}</span>
+        </div>
+        <div>
+            <span>Email: {{ user.email }}</span>
+        </div>
+        <div>
+            <span>Followers: {{ user.followers }}</span>
+        </div>
+        <div>
+            <span>Playlists: {{ user.playlists }}</span>
+        </div>
     </div>
 </template>
 

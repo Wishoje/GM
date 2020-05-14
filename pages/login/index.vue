@@ -33,10 +33,9 @@
             <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
                 Forgot Password?
             </a>
-            </div>
-            {{ user }}
+            </div><br><br>
+            <div v-if="error">{{ error }}</div>
         </form>
-        {{ user }}
     </div>
 </template>
 
@@ -62,12 +61,10 @@
                         email: this.email,
                         password: this.password
                     });
-                    console.log(result);
                 } catch(err) {
                     this.email = '';
                     this.password = '';
-                    this.error = err;
-                    console.log('Error')
+                    this.error = 'Username Or Password is incorrect';
                 }
             }
         }
