@@ -44,7 +44,8 @@
             <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
                 Forgot Password?1
             </a>
-            </div>
+            </div><br><br>
+            <div v-if="error">{{ error }}</div>
         </form>
     </div>
 </template>
@@ -73,12 +74,10 @@
                         password: this.password,
                         name: this.name
                     });
-                    console.log(result);
                 } catch(err) {
                     this.email = '';
                     this.password = '';
-                    this.error = err;
-                    console.log('Error')
+                    this.error = 'Something went wrong please try again';
                 }
             }
         }

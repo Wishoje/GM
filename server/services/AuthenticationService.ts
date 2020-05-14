@@ -39,7 +39,7 @@ class AuthenticationService {
 	}
 
 	public async logInService(loginData: LoginDto) {
-		const user = await this.userRepository.findOne({ email: loginData.email });
+		const user = await this.getUserByEmail(loginData.email);
 		let userAuth = null;
 		if (user) {
 			const isPasswordMatching = await bcrypt.compare(loginData.password, user.password);
@@ -68,6 +68,17 @@ class AuthenticationService {
 		return {
 			token: jwt.sign(dataStoredInToken, secret),
 		};
+	}
+
+	public async getUserByEmail(email: string): Promise<any> {
+		try {
+			const user = await this.userRepository.createQueryBuilder("user")
+				.addSelect('name').addSelect('email').addSelect('followers').addSelect('playlists')
+				.where("user.email = :email", {email: email}).getOne();
+			return user;
+        } catch(err) {
+            throw new Error(err)
+        }
 	}
 }
 
