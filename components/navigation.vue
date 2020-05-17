@@ -13,6 +13,9 @@
 			<li v-if="!$store.state.auth.user">
 				<nuxt-link class="c-join-link" to="/registration"><span>JOIN</span></nuxt-link>
 			</li>
+			<li>
+				<nuxt-link class="c-login-link" to="/upload"><span>Upload</span></nuxt-link>
+			</li>
 			<li v-if="$store.state.auth.user">
 				<nuxt-link class="c-login-link" to="/account"><span>Profile</span></nuxt-link>
 			</li>

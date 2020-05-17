@@ -5,7 +5,7 @@ import Categories from '../entities/categories.entity';
 class CategoriesServices {
 	private categoriesRepository = getRepository(Categories);
 
-	public insertCategories = async () => {
+	public async insertCategories() {
         try {
             await this.categoriesRepository.query(`
                 INSERT INTO 

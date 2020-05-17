@@ -19,6 +19,12 @@ class User {
 
     @Column({ type: "int", default: 0 })
     public playlists: number;
+
+    @Column({ type: "bytea", default: '' })
+    public image: string;
+
+    @Column({ type: "varchar", default: '' })
+    public login_type: string;
 }
 
 export default User;

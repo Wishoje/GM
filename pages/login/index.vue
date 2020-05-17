@@ -27,13 +27,17 @@
                     placeholder="******">
             </div>
             <div class="flex items-center justify-between">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                Sign In
-            </button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Sign In
+                </button>
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" 
+                    v-if="googleReady" @click="googleSubmit" :loading="googleLoading" :disabled="googleLoading">
+                    Log in with Google
+                </button>
+            </div>
             <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
                 Forgot Password?
-            </a>
-            </div><br><br>
+            </a><br>
             <div v-if="error">{{ error }}</div>
         </form>
     </div>
@@ -46,8 +50,35 @@
             return {
                 email: '',
                 password: '',
-                error: ''
+                error: '',
+                googleLoading: false,
+                googleReady: false,
+                clientId: process.env.NUXT_ENV_GOOGLE_CLIENT_ID
             };
+        },
+        mounted() {
+            window.gapiOnLoadCallback = () => {
+                window.gapi.load('auth2', () => {
+                    window.google_auth2 = window.gapi.auth2.init({
+                        client_id: this.clientId,
+                        fetch_basic_profile: false,
+                        scope: 'profile email'
+                    });
+                });
+                this.googleReady = true
+            };
+            const installGoogleSdkScript = (d, s, id) => {
+                if (d.getElementById(id)) {
+                    this.google_sdk_initialized = true;
+                    return;
+                };
+                let fjs = d.getElementsByTagName(s)[0];
+                let js = d.createElement(s);
+                js.id = id;
+                js.src = 'https://apis.google.com/js/platform.js?onload=gapiOnLoadCallback';
+                fjs.parentNode.insertBefore(js, fjs)
+            };
+            installGoogleSdkScript(document, 'script', 'google-jssdk');
         },
         computed: {
             user() { 
@@ -55,7 +86,7 @@
             }
         },
         methods: {
-             async submitForm() {
+            async submitForm() {
                 try {
                     const result = await this.$store.dispatch('auth/login', {
                         email: this.email,
@@ -65,6 +96,25 @@
                     this.email = '';
                     this.password = '';
                     this.error = 'Username Or Password is incorrect';
+                }
+            },
+            async googleSubmit () {
+               try {
+                    if (!this.googleReady) {
+                        return;
+                    }
+                    this.googleLoading = true;
+                    const user = await window.google_auth2.signIn();
+                    if (user) {
+                        const api = await this.$store.dispatch('auth/google', {token: user.tc.access_token});
+                        if (api) {
+                            console.log('API ' + util.inspect(api, false, null, true /* enable colors */));
+                            this.googleLoading = false;
+                            this.$router.push('/account');
+                        }
+                    }
+                } catch (err) {
+                    this.error = 'Something went wrong please try again';
                 }
             }
         }
