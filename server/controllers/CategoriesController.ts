@@ -20,7 +20,7 @@ class CategoriesController implements ControllerInterface {
 		this.router.get([`${this.path}`, `${this.path}/games`, `${this.path}/platform`, `${this.path}/genre` ,`${this.path}/streamer` ], this.getCategories);
 	}
 
-	private getCategories = async (request: express.Request, response: express.Response) => {
+	private async getCategories(request: express.Request, response: express.Response) {
 		try {
 			const checkData = await this.categoriesRepository.find();
 			let categoryType = 1;

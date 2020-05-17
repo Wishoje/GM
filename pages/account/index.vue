@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <h1>Profile Page</h1>
+    <div class="c-profile-wrapper">
         <div>
             <span>Name: {{ user.name }}</span>
         </div>
@@ -20,7 +19,7 @@
     export default {
         name: 'account',
         computed: {
-            user() { 
+            user() {
                 return this.$store.state.auth.user;
             }
         },
@@ -28,9 +27,13 @@
             if (!store.state.auth.user) {
                 return redirect('/registration');
             }
-        },
+        }
     }
 </script>
 
 <style lang="scss" scoped>
+    .c-profile-wrapper {
+        background: linear-gradient(red 40%, transparent 40%) no-repeat;
+        min-height: 800px;
+    }
 </style>

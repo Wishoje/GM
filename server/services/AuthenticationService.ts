@@ -14,28 +14,34 @@ class AuthenticationService {
 	private userRepository = getRepository(User);
 
 	public async registerService(userData: UserDto) {
-		const userExist = await this.userRepository.findOne({ email: userData.email });
-		if (userExist) {
-			throw new BadRequestException(`User with email ${userData.email} already exists`)
+		try {
+			const userExist = await this.userRepository.findOne({ email: userData.email });
+			if (userExist) {
+				throw new BadRequestException(`User with email ${userData.email} already exists`);
+			}
+			
+			const hashedPassword = await bcrypt.hash(userData.password, 10);
+			const user = this.userRepository.create({
+				email: userData.email,
+				name: userData.name,
+				password: hashedPassword,
+				login_type: userData.loginType,
+				image: userData.image
+			});
+
+			if (user) {
+				await this.userRepository.save(user);
+			}
+
+			const userAuth = this.createToken(user);
+
+			return {
+				userAuth,
+				user
+			};
+		} catch(err) {
+			throw new BadRequestException(`Something went wrong please try again`);
 		}
-		
-		const hashedPassword = await bcrypt.hash(userData.password, 10);
-		const user = this.userRepository.create({
-			email: userData.email,
-			name: userData.name,
-			password: hashedPassword,
-		});
-
-		if (user) {
-			await this.userRepository.save(user);
-		}
-
-		const userAuth = this.createToken(user);
-
-		return {
-			userAuth,
-			user
-		};
 	}
 
 	public async logInService(loginData: LoginDto) {
@@ -77,7 +83,7 @@ class AuthenticationService {
 				.where("user.email = :email", {email: email}).getOne();
 			return user;
         } catch(err) {
-            throw new Error(err)
+            throw new Error(err);
         }
 	}
 }
