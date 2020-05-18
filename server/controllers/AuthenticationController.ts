@@ -73,7 +73,6 @@ class AuthenticationController implements ControllerInterface {
 			if (getUser && getUser.data) {
 				const verifyUser = await this.authenticationService.getUserByEmail(getUser.data.emailAddresses[0].value);
 				if (!verifyUser) {
-
 					const regData: UserDto = {
 						name: getUser.data.names[0].displayName,
 						email: getUser.data.emailAddresses[0].value,

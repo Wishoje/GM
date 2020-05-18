@@ -33,7 +33,7 @@ export const actions = {
 		if (result) {
 			commit('SET_USER', result.user);
 			setAuthToken(result.userAuth.token);
-			cookies.set('x-access-token', result.userAuth.token, { expires: 30 });
+			cookies.set('x-access-token', result.userAuth.token, { expires: 365 });
 		}
 	},
 	async register({commit}, data) {
@@ -41,7 +41,7 @@ export const actions = {
 		if (result) {
 			commit('SET_USER', result.user);
 			setAuthToken(result.userAuth.token);
-			cookies.set('x-access-token', result.userAuth.token, { expires: 30 });
+			cookies.set('x-access-token', result.userAuth.token, { expires: 365 });
 		}
 	},
 	async reset({commit}) {

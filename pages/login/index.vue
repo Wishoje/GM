@@ -108,7 +108,6 @@
                     if (user) {
                         const api = await this.$store.dispatch('auth/google', {token: user.tc.access_token});
                         if (api) {
-                            console.log('API ' + util.inspect(api, false, null, true /* enable colors */));
                             this.googleLoading = false;
                             this.$router.push('/account');
                         }
