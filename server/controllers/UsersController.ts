@@ -22,19 +22,20 @@ class UsersContollers implements ControllerInterface {
 		this.router.delete(`${this.path}/:id`, this.deleteUser);
 	}
 
-	private async getUser(request: express.Request, response: express.Response) {
+	private getUser = async (request: express.Request, response: express.Response) => {
+
 		const userData = await this.userRepository.find();
 		response.send(userData);
 	}
 
-	private async createUser(request: express.Request, response: express.Response) {
+	private createUser = async (request: express.Request, response: express.Response) => {
 		const postData: UserDto = request.body;
 		const newUser = this.userRepository.create(postData);
 		await this.userRepository.save(newUser);
 		response.send(newUser);
 	}
 
-	private async deleteUser(request: express.Request, response: express.Response, next: express.NextFunction) {
+	private deleteUser = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
 		const id = request.params.id;
 		const deleteResponse = await this.userRepository.delete(id);
 		if (deleteResponse.raw[1]) {
