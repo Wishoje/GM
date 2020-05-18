@@ -44,81 +44,41 @@
 </template>
 
 <script>
-    export default {
-        name: 'login',
-        data() {
-            return {
-                email: '',
-                password: '',
-                error: '',
-                googleLoading: false,
-                googleReady: false,
-                clientId: process.env.NUXT_ENV_GOOGLE_CLIENT_ID
-            };
-        },
-        mounted() {
-            window.gapiOnLoadCallback = () => {
-                window.gapi.load('auth2', () => {
-                    window.google_auth2 = window.gapi.auth2.init({
-                        client_id: this.clientId,
-                        fetch_basic_profile: false,
-                        scope: 'profile email'
-                    });
+import AuthenticationMixin from '../../mixins/authentication-mixin';
+export default {
+    name: 'login',
+    mixins: [
+        AuthenticationMixin
+    ],
+    data() {
+        return {
+            email: '',
+            password: '',
+            error: ''
+        };
+    },
+    computed: {
+        user() { 
+            return this.$store.state.auth.user;
+        }
+    },
+    methods: {
+        async submitForm() {
+            try {
+                const result = await this.$store.dispatch('auth/login', {
+                    email: this.email,
+                    password: this.password
                 });
-                this.googleReady = true
-            };
-            const installGoogleSdkScript = (d, s, id) => {
-                if (d.getElementById(id)) {
-                    this.google_sdk_initialized = true;
-                    return;
-                };
-                let fjs = d.getElementsByTagName(s)[0];
-                let js = d.createElement(s);
-                js.id = id;
-                js.src = 'https://apis.google.com/js/platform.js?onload=gapiOnLoadCallback';
-                fjs.parentNode.insertBefore(js, fjs)
-            };
-            installGoogleSdkScript(document, 'script', 'google-jssdk');
-        },
-        computed: {
-            user() { 
-                return this.$store.state.auth.user;
-            }
-        },
-        methods: {
-            async submitForm() {
-                try {
-                    const result = await this.$store.dispatch('auth/login', {
-                        email: this.email,
-                        password: this.password
-                    });
-                } catch(err) {
-                    this.email = '';
-                    this.password = '';
-                    this.error = 'Username Or Password is incorrect';
-                }
-            },
-            async googleSubmit () {
-               try {
-                    if (!this.googleReady) {
-                        return;
-                    }
-                    this.googleLoading = true;
-                    const user = await window.google_auth2.signIn();
-                    if (user) {
-                        const api = await this.$store.dispatch('auth/google', {token: user.tc.access_token});
-                        if (api) {
-                            console.log('API ' + util.inspect(api, false, null, true /* enable colors */));
-                            this.googleLoading = false;
-                            this.$router.push('/account');
-                        }
-                    }
-                } catch (err) {
-                    this.error = 'Something went wrong please try again';
-                }
+                console.log('AAAAAAAAAAAA');
+                this.router.push('/account');
+            } catch(err) {
+                this.email = '';
+                this.password = '';
+                this.error = 'Username Or Password is incorrect';
             }
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>
