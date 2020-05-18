@@ -24,7 +24,7 @@ class AuthenticationController implements ControllerInterface {
 		this.router.post(`${this.path}/google`, this.googleAuth);
 	}
 
-	private async registration (request: express.Request, response: express.Response, next: express.NextFunction) {
+	private registration = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
 		const userData: UserDto = request.body;
 		try {
 			const {
@@ -37,7 +37,7 @@ class AuthenticationController implements ControllerInterface {
 		}
 	}
 
-	private async logIn(request: express.Request, response: express.Response, next: express.NextFunction) {
+	private logIn = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
 		const logInData: LoginDto = request.body;
 		try {
 			const {
@@ -50,7 +50,7 @@ class AuthenticationController implements ControllerInterface {
 		}
 	}
 
-	private async getMe(request: express.Request, response: express.Response, next: express.NextFunction) {
+	private getMe = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
 		try {
 			const user = await this.authenticationService.getUserByEmail(response.locals.user.email);
 			response.send({ user });
@@ -59,7 +59,7 @@ class AuthenticationController implements ControllerInterface {
 		}
 	}
 
-	private async googleAuth(request: express.Request, response: express.Response, next: express.NextFunction) {
+	private googleAuth = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
 		try {
 			const OAuth2 = google.auth.OAuth2;
 			const oauth2Client = new OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_SECRET_ID, 'http://localhost:3000/account');

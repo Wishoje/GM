@@ -31,13 +31,17 @@ export const actions = {
 	async login({commit}, data) {
 		const result = await this.$axios.$post('/api/login', data);
 		if (result) {
-			this.setCookie(data);
+			commit('SET_USER', result.user);
+			setAuthToken(result.userAuth.token);
+			cookies.set('x-access-token', result.userAuth.token, { expires: 30 });
 		}
 	},
 	async register({commit}, data) {
 		const result = await this.$axios.$post('/api/register', data);
 		if (result) {
-			this.setCookie(data);
+			commit('SET_USER', result.user);
+			setAuthToken(result.userAuth.token);
+			cookies.set('x-access-token', result.userAuth.token, { expires: 30 });
 		}
 	},
 	async reset({commit}) {
@@ -48,12 +52,9 @@ export const actions = {
 	async google({commit}, data) {
 		const result = await this.$axios.$post('/api/google', data);
 		if (result) {
-			this.setCookie(data);
+			commit('SET_USER', result.user);
+			setAuthToken(result.userAuth.token);
+			cookies.set('x-access-token', result.userAuth.token, { expires: 30 });
 		}
 	},
-	setCookie(data) {
-		commit('SET_USER', data.user);
-		setAuthToken(data.userAuth.token);
-		cookies.set('x-access-token', data.userAuth.token, { expires: 365 });
-	}
 }
