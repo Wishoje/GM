@@ -21,11 +21,10 @@
 		},
 		data() {
 			return {
-					categories: [],
-					limit: 10
+				categories: [],
+				limit: 10
 			};
-		},
-		
+		}
 	}
 	
 </script>
@@ -39,8 +38,8 @@
 	}
 
 	c-heading {
-			margin: 0;
-			margin-top:0.4rem;
-		}
+		margin: 0;
+		margin-top:0.4rem;
+	}
 	
 </style>
