@@ -35,7 +35,7 @@
 		background-image: url('/images/banner.jpg');
 		color: $primary-white;
 		text-align: center;
-		height:14rem;
+		padding: 20px 0;
 	}
 
 	c-heading {

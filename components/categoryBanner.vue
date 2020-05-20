@@ -23,7 +23,6 @@
 		background-image: url('/images/banner.jpg');
 		color: $primary-white;
 		text-align: center;
-
     }
     
     .c-search-box {
@@ -35,7 +34,7 @@
         background:white;
         border-radius: 0.2rem;
         color:black;
-        padding: 1.2rem 0 1.2rem 2rem;
+        padding: 1rem 0 1rem 2rem;
 		width:70%;
 	}
 

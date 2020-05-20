@@ -44,13 +44,13 @@
 </script>
 
 <style lang="scss" scoped>
-
 	.navbar{
-		position:fixed;
-		width:100%;
+		position: fixed;
+		width: 100%;
+		top: 0;
+		overflow: hidden;
 	}
 	nav {
-	
 		font-family: Arial;
 		font-size: 1rem;
 		background-color: $primary-black;
@@ -58,7 +58,6 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 0.7rem 9.6rem;
-
 	}
 
 	.c-links li {
@@ -113,6 +112,5 @@
 		background-clip: border-box;
 		padding:0.4rem 5.8125rem;
 		border-radius: 0.2rem; 
-	
 	}
 </style>
