@@ -20,7 +20,7 @@ class User {
     @Column({ type: "int", default: 0 })
     public playlists: number;
 
-    @Column({ type: "bytea", default: '' })
+    @Column({ type: "text", default: '' })
     public image: string;
 
     @Column({ type: "varchar", default: '' })
