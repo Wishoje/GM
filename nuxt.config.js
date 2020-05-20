@@ -51,7 +51,7 @@ module.exports = {
     scss: [
       'assets/styles/main.scss',
       'assets/styles/_variables.scss',
-      'assets/styles/form.scss',
+      'assets/styles/form.scss'
     ]
   },
   router: {

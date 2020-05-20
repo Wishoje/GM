@@ -33,22 +33,21 @@ export default {
     methods: {
         async googleSubmit () {
             try {
-                 if (!this.googleReady) {
-                     return;
-                 }
-                 this.googleLoading = true;
-                 const user = await window.google_auth2.signIn();
-                 if (user) {
-                     const api = await this.$store.dispatch('auth/google', {token: user.tc.access_token});
-                     if (api) {
-                         console.log('API ' + util.inspect(api, false, null, true /* enable colors */));
-                         this.googleLoading = false;
-                         this.$router.push('/account');
-                     }
-                 }
-             } catch (err) {
-                 this.error = 'Something went wrong please try again';
-             }
+                if (!this.googleReady) {
+                    return;
+                }
+                this.googleLoading = true;
+                const user = await window.google_auth2.signIn();
+                if (user) {
+                    const api = await this.$store.dispatch('auth/google', {token: user.wc.access_token ||  user.tc.access_token});
+                    if (api) {
+                        this.googleLoading = false;
+                        this.$router.push('/account');
+                    }
+                }
+            } catch (err) {
+                this.error = 'Something went wrong please try again';
+            }
          }
     }
 }

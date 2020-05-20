@@ -55,8 +55,7 @@ export default {
             genre: '',
             streamer: '',
             twitch: ''
-        } 
-dock
+        }
     },
     computed: {
         user() {
