@@ -1,8 +1,9 @@
 <template>
-	<nav>
+	<nav class="navbar">
 		<div class="c-logo">
 			<nuxt-link to="/">Logo</nuxt-link>
 		</div>
+
 		<ul class="c-links">
 			<li>
 				<nuxt-link class="c-cat-link" to="/categories"><span>Categories</span></nuxt-link>
@@ -43,6 +44,12 @@
 </script>
 
 <style lang="scss" scoped>
+	.navbar{
+		position: fixed;
+		width: 100%;
+		top: 0;
+		overflow: hidden;
+	}
 	nav {
 		font-family: Arial;
 		font-size: 1rem;
@@ -50,7 +57,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 1.6875rem 9.6rem;
+		padding: 0.7rem 9.6rem;
 	}
 
 	.c-links li {
@@ -103,7 +110,7 @@
 		justify-content:flex-start;
 		background-color: $primary-red;
 		background-clip: border-box;
-		padding:0.8125rem 5.8125rem;
+		padding:0.4rem 5.8125rem;
 		border-radius: 0.2rem; 
 	}
 </style>

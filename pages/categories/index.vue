@@ -1,11 +1,11 @@
 <template>
 	<main>
 		<categoryBanner />
-		<h3>Explore playlists by game</h3>
+		<h2>Explore playlists by game</h2>
 		<categories :isCategoryPage="true" :limit="20" :categoriesURL="'/api/categories/games'" />
-		<h3>Explore playlists by platform</h3>
+		<h2>Explore playlists by platform</h2>
 		<categories :isCategoryPage="true" :limit="5" :categoriesURL="'/api/categories/platform'" />
-		<h3>Explore playlists by genre</h3>
+		<h2>Explore playlists by genre</h2>
 		<categories :isCategoryPage="true" :limit="20" :categoriesURL="'/api/categories/genre'" />
 	</main>
 </template>
@@ -25,8 +25,5 @@ export default {
 </script>
 
 <style>
-	h3 {
-		text-align: center;
-    margin-top: 5rem;
-	}
+	
 </style>
