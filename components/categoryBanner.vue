@@ -20,9 +20,6 @@
 		color: $primary-white;
 		text-align: center;
 
-		h3 {
-			margin-bottom: 1rem;
-		}
     }
     
     .c-search-box{

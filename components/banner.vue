@@ -25,18 +25,22 @@
 					limit: 10
 			};
 		},
+		
 	}
+	
 </script>
 
 <style lang="scss" scoped>
 	.c-banner {
-		padding: 30px 0;
 		background-image: url('/images/banner.jpg');
 		color: $primary-white;
 		text-align: center;
-
-		h3 {
-			margin-bottom: 3rem;
-		}
+		height:14rem;
 	}
+
+	c-heading {
+			margin: 0;
+			margin-top:0.4rem;
+		}
+	
 </style>
