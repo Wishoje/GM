@@ -38,51 +38,62 @@
                     placeholder="******">
             </div>
             <div class="flex items-center justify-between">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                Create Account
-            </button>
-            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-                Forgot Password?1
-            </a>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Create Account
+                </button>
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" 
+                    v-if="googleReady" @click="googleSubmit" :loading="googleLoading" :disabled="googleLoading">
+                    Register with Google
+                </button>
             </div>
+            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                Forgot Password
+            </a>
+            <br>
+            <div v-if="error">{{ error }}</div>
         </form>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'registration',
-        data() {
-            return {
-                email: '',
-                password: '',
-                name: '',
-                error: ''
-            };
-        },
-        computed: {
-            users() { 
-                return this.$store.state.user;
-            }
-        },
-        methods: {
-             async submitForm() {
-                try {
-                    const result = await this.$store.dispatch('auth/register', {
-                        email: this.email,
-                        password: this.password,
-                        name: this.name
-                    });
-                    console.log(result);
-                } catch(err) {
-                    this.email = '';
-                    this.password = '';
-                    this.error = err;
-                    console.log('Error')
+import AuthenticationMixin from '../../mixins/authentication-mixin';
+export default {
+    name: 'registration',
+    mixins: [
+        AuthenticationMixin
+    ],
+    data() {
+        return {
+            email: '',
+            password: '',
+            name: '',
+            error: ''
+        };
+    },
+    computed: {
+        users() { 
+            return this.$store.state.user;
+        }
+    },
+    methods: {
+        async submitForm() {
+            try {
+                const result = await this.$store.dispatch('auth/register', {
+                    email: this.email,
+                    password: this.password,
+                    name: this.name
+                });
+                if (result) {
+                    this.router.push('/account');
                 }
+            } catch(err) {
+                this.email = '';
+                this.password = '';
+                this.error = 'Something went wrong please try again';
             }
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>

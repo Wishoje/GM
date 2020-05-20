@@ -16,14 +16,16 @@ class AuthenticationService {
 	public async registerService(userData: UserDto) {
 		const userExist = await this.userRepository.findOne({ email: userData.email });
 		if (userExist) {
-			throw new BadRequestException(`User with email ${userData.email} already exists`)
+			throw new BadRequestException(`User with email ${userData.email} already exists`);
 		}
-		
+
 		const hashedPassword = await bcrypt.hash(userData.password, 10);
 		const user = this.userRepository.create({
 			email: userData.email,
 			name: userData.name,
 			password: hashedPassword,
+			login_type: userData.loginType || 'internal',
+			image: userData.image || ''
 		});
 
 		if (user) {
@@ -39,7 +41,7 @@ class AuthenticationService {
 	}
 
 	public async logInService(loginData: LoginDto) {
-		const user = await this.userRepository.findOne({ email: loginData.email });
+		const user = await this.getUserByEmail(loginData.email);
 		let userAuth = null;
 		if (user) {
 			const isPasswordMatching = await bcrypt.compare(loginData.password, user.password);
@@ -68,6 +70,17 @@ class AuthenticationService {
 		return {
 			token: jwt.sign(dataStoredInToken, secret),
 		};
+	}
+
+	public async getUserByEmail(email: string) {
+		try {
+			const user = await this.userRepository.createQueryBuilder("user")
+				.addSelect('name').addSelect('email').addSelect('followers').addSelect('playlists')
+				.where("user.email = :email", {email: email}).getOne();
+			return user;
+        } catch(err) {
+            throw new Error(err);
+        } 
 	}
 }
 

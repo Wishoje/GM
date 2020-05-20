@@ -14,11 +14,14 @@
 			<li v-if="!$store.state.auth.user">
 				<nuxt-link class="c-join-link" to="/registration"><span>JOIN</span></nuxt-link>
 			</li>
+			<li>
+				<nuxt-link class="c-login-link" to="/upload"><span>Upload</span></nuxt-link>
+			</li>
 			<li v-if="$store.state.auth.user">
 				<nuxt-link class="c-login-link" to="/account"><span>Profile</span></nuxt-link>
 			</li>
 			<li v-if="$store.state.auth.user">
-				<nuxt-link class="c-login-link" to="/"><span>Logout</span></nuxt-link>
+				<a @click="logout" class="c-login-link"><span>Logout</span></a>
 			</li>
 		</ul>
 	</nav>
@@ -29,14 +32,14 @@
 		name: 'navigation',
         methods: {
             async logout() {
-                try { 
-                    const result = await this.$axios.post('/api/logout');
-                    this.$store.commit('SET_USER', null);
+                try {
+					await this.$store.dispatch('auth/reset');
+					this.$router.go();
                 } catch(err) {
                     throw new Error(err);
                 }
             }
-        }
+		}
     }
 </script>
 

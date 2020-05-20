@@ -1,0 +1,143 @@
+.c-form {
+    margin: 0 auto;
+    position: relative;
+}
+
+.c-form-input {
+    margin-bottom: 20px;
+    position: relative;
+    text-align: left;
+}
+
+.c-form-label {
+    display: block;
+    text-transform: uppercase;
+}
+
+// "inner label"
+.c-form-label-in {
+    width: 100%;
+    line-height: 1.3;
+    text-transform: none;
+    position: absolute;
+    top: 1.15em;
+    padding: 0 30px;
+    transition: all .1s ease .1s;
+    display: flex;
+
+    > span::first-letter {
+        text-transform: uppercase;
+    }
+}
+.label-is-up + .c-form-label-in,
+:focus + .c-form-label-in {
+    padding: 0 20px/2;
+    top: 5px;
+    transition-delay: 0s;
+}
+:-webkit-autofill + .c-form-label-in {
+    padding: 0 20px/2;
+    top: 5px;
+}
+
+.c-form-error {
+    color: $primary-red;
+    padding-top: 2px;
+    &::first-letter {
+        text-transform: capitalize;
+    }
+}
+.c-form-checkbox-error {
+    color: $primary-red;
+    &::first-letter {
+        text-transform: capitalize;
+    }
+}
+
+.c-form-error + .c-form-label-in,
+.c-form__input-error + .c-form-label-in {
+    color: $primary-red;
+}
+
+.c-form__input {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ffe6e6;
+    border-radius: 0;
+    appearance: none;
+
+    &.has-label-in {
+        padding: 18px 20px 4px;
+    }
+}
+
+.c-form__input {
+    &:focus {
+        border-color: #ffe6e6;
+        outline: none;
+    }
+}
+
+.c-form__input-error {
+    border-color: $primary-red;
+    &:focus {
+        border-color:  $primary-red;
+    }
+}
+
+.c-invisible-input {
+    opacity: 0;
+    position: absolute;
+}
+
+.c-checkbox-hide {
+    display: inline-block;
+    border: 1px solid #ffe6e6;
+    background-color: $primary-red;
+    width: 15px;
+    height: 15px;
+    line-height: 1em;
+    margin-right: 5px;
+    text-align: center;
+    position: relative;
+    vertical-align: middle;
+    flex-shrink: 0;
+
+    &:before {
+        content: '';
+        display: block;
+        opacity: 0;
+        font-size: .75em;
+    }
+    &:hover {
+        border-color: $primary-red;
+        background-color: #ffe6e6;
+    }
+}
+
+.c-checkbox--center {
+    display: flex;
+    align-items: center;
+    .c-checkbox-hide {
+        margin-right: 20px;
+    }
+}
+
+// no-javascript custom checkbox.
+.is-checked .c-checkbox-hide,
+input:checked + .c-checkbox-hide {
+    background-color: #ffe6e6;
+    border-color: #ffe6e6;
+    color: $primary-white;
+    &:before {
+        opacity: 1;
+    }
+    &:hover {
+        background-color: #ffe6e6;
+    }
+}
+
+// custom focus style
+input:focus + .is-focus {
+    outline: 2px solid #ffe6e6;
+}

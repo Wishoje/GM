@@ -20,7 +20,6 @@ export const mutations = {
 export const actions = {
 	async fetch ({commit}) {
 		const result = await this.$axios.$get('/api/me');
-		console.log(result);
 		if (result) {
 			commit('SET_USER', result.user);
 		} else {
@@ -31,28 +30,31 @@ export const actions = {
 	},
 	async login({commit}, data) {
 		const result = await this.$axios.$post('/api/login', data);
-		console.log(result);
 		if (result) {
 			commit('SET_USER', result.user);
 			setAuthToken(result.userAuth.token);
-			cookies.set('x-access-token', result.userAuth.token, {expires: 30});
+			cookies.set('x-access-token', result.userAuth.token, { expires: 30 });
 		}
 	},
 	async register({commit}, data) {
 		const result = await this.$axios.$post('/api/register', data);
-		console.log('register ' + result);
 		if (result) {
 			commit('SET_USER', result.user);
 			setAuthToken(result.userAuth.token);
-			cookies.set('x-access-token', result.userAuth.token, {expires: 30});
+			cookies.set('x-access-token', result.userAuth.token, { expires: 30 });
 		}
 	},
-	async reset({commit}, data) {
-		const result = await this.$axios.$post('/api/logout', data);
+	async reset({commit}) {
+		commit('RESET_USER');
+		resetAuthToken();
+		cookies.remove('x-access-token');
+	},
+	async google({commit}, data) {
+		const result = await this.$axios.$post('/api/google', data);
 		if (result) {
-			commit('RESET_USER');
-			resetAuthToken();
-			cookies.remove('x-access-token');
+			commit('SET_USER', result.user);
+			setAuthToken(result.userAuth.token);
+			cookies.set('x-access-token', result.userAuth.token, { expires: 30 });
 		}
-	}
+	},
 }

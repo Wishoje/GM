@@ -4,12 +4,16 @@
 		<h3>Find your favorite playlist</h3>
 
 		<div class="c-search-box">
-            <input class="c-search-text" placeholder="Search for game, platform or genre">
+            <input class="c-search-text" placeholder='Search for game, platform or genre' onblur="this.placeholder='Search for game, platform or genre'" onfocus="this.placeholder=''">
 		</div>
 	</article>
 </template>
 
 <script>
+	export default {
+		name: 'categoryBanner'
+	}
+		
 </script>
 
 <style lang="scss" scoped>
@@ -22,16 +26,29 @@
 
     }
     
-    .c-search-box{
+    .c-search-box {
         width: 40%;
         margin: 0 auto;
     }
 
-    .c-search-box .c-search-text{
+    .c-search-text {
         background:white;
         border-radius: 0.2rem;
         color:black;
-        padding:1.5rem 12.563rem;
-        width:70%;
-    }
+        padding: 1.2rem 0 1.2rem 2rem;
+		width:70%;
+	}
+
+	input::placeholder {
+		text-align: center;
+	}
+
+	input:focus {
+		color: #ff0000;
+		padding-left: 10rem;
+		@media #{$mq-desktop-large} { 
+			padding-left: 15rem;
+		}
+	}
+	
 </style>

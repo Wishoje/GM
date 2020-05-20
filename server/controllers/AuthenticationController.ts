@@ -6,13 +6,12 @@ import UserDto from '../models/User/UserDto';
 import LoginDto from '../models/User/LoginDto';
 import AuthenticationService from '../services/AuthenticationService';
 import AuthMiddleware from '../middleware/AuthMiddleware';
-import User from '../entities/user.entity';
+import { google } from 'googleapis';
 
 class AuthenticationController implements ControllerInterface {
 	public path = '/api';
 	public router = express.Router();
 	public authenticationService = new AuthenticationService();
-	private userRepository = getRepository(User);
 
 	constructor() {
 		this.initializeRoutes();
@@ -21,9 +20,8 @@ class AuthenticationController implements ControllerInterface {
 	private initializeRoutes() {
 		this.router.post(`${this.path}/register`, ValidationMiddleware(UserDto), this.registration);
 		this.router.post(`${this.path}/login`, ValidationMiddleware(LoginDto), this.logIn);
-		this.router.post(`${this.path}/logout`, this.logOut);
 		this.router.get(`${this.path}/me`, AuthMiddleware, this.getMe);
-
+		this.router.post(`${this.path}/google`, this.googleAuth);
 	}
 
 	private registration = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
@@ -52,19 +50,51 @@ class AuthenticationController implements ControllerInterface {
 		}
 	}
 
-	private logOut = (request: express.Request, response: express.Response, next: express.NextFunction) => {
+	private getMe = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
 		try {
-			response.setHeader('Set-Cookie', ['Authorization=;Max-age=0']);
-			response.send(200);
+			const user = await this.authenticationService.getUserByEmail(response.locals.user.email);
+			response.send({ user });
 		} catch (error) {
 			next(error);
 		}
 	}
 
-	private getMe = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+	private googleAuth = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
 		try {
-			const user = await this.userRepository.findOne({ email: response.locals.user.email });
-			response.send({ user });
+			const OAuth2 = google.auth.OAuth2;
+			const oauth2Client = new OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_SECRET_ID, 'http://localhost:3000/account');
+			const getPeople = google.people('v1');
+
+			oauth2Client.setCredentials({
+				access_token: request.body.token
+			});
+
+			const getUser = await getPeople.people.get({resourceName: "people/me", personFields: "names,emailAddresses,photos", auth: oauth2Client});
+			if (getUser && getUser.data) {
+				const verifyUser = await this.authenticationService.getUserByEmail(getUser.data.emailAddresses[0].value);
+				if (!verifyUser) {
+
+					const regData: UserDto = {
+						name: getUser.data.names[0].displayName,
+						email: getUser.data.emailAddresses[0].value,
+						password: '',
+						loginType: 'google',
+						image: getUser.data.photos[0].url,
+					};
+					const {
+						userAuth,
+						user
+					} = await this.authenticationService.registerService(regData);
+					response.send({ user, userAuth });
+				} else {
+					const logData: LoginDto = { email: getUser.data.emailAddresses[0].value, password: '' };
+					const {
+						userAuth,
+						user
+					} = await this.authenticationService.logInService(logData);
+					response.send({ user, userAuth });
+				}
+			}
 		} catch (error) {
 			next(error);
 		}

@@ -9,6 +9,10 @@ class UserDto {
 
 	@IsString()
 	public password: string;
+
+	public loginType?: string;
+
+	public image?: string;
 }
 
 export default UserDto;

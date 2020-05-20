@@ -27,51 +27,58 @@
                     placeholder="******">
             </div>
             <div class="flex items-center justify-between">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                Sign In
-            </button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Sign In
+                </button>
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" 
+                    v-if="googleReady" @click="googleSubmit" :loading="googleLoading" :disabled="googleLoading">
+                    Log in with Google
+                </button>
+            </div>
             <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
                 Forgot Password?
-            </a>
-            </div>
-            {{ user }}
+            </a><br>
+            <div v-if="error">{{ error }}</div>
         </form>
-        {{ user }}
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'login',
-        data() {
-            return {
-                email: '',
-                password: '',
-                error: ''
-            };
-        },
-        computed: {
-            user() { 
-                return this.$store.state.auth.user;
-            }
-        },
-        methods: {
-             async submitForm() {
-                try {
-                    const result = await this.$store.dispatch('auth/login', {
-                        email: this.email,
-                        password: this.password
-                    });
-                    console.log(result);
-                } catch(err) {
-                    this.email = '';
-                    this.password = '';
-                    this.error = err;
-                    console.log('Error')
-                }
+import AuthenticationMixin from '../../mixins/authentication-mixin';
+export default {
+    name: 'login',
+    mixins: [
+        AuthenticationMixin
+    ],
+    data() {
+        return {
+            email: '',
+            password: '',
+            error: ''
+        };
+    },
+    computed: {
+        user() { 
+            return this.$store.state.auth.user;
+        }
+    },
+    methods: {
+        async submitForm() {
+            try {
+                const result = await this.$store.dispatch('auth/login', {
+                    email: this.email,
+                    password: this.password
+                });
+                console.log('AAAAAAAAAAAA');
+                this.router.push('/account');
+            } catch(err) {
+                this.email = '';
+                this.password = '';
+                this.error = 'Username Or Password is incorrect';
             }
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>
