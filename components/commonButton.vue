@@ -18,7 +18,7 @@
 		background-color: $primary-red;
 		color: $primary-black;
 		text-align: center;
-		padding: 1rem 2rem;
+		padding: 0.5rem 4rem;
 		border-radius: 0.2rem;
 		margin-top:0.2rem;
 	}

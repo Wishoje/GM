@@ -11,9 +11,10 @@ h2 {
 }
 
 h3 {
-	font-size: 1rem;
+	font-size: 1.5rem;
 	margin-top: 20px;
 	text-align: center;
+	font-weight: bold;
 }
 
 .m-font-bold {
@@ -22,4 +23,7 @@ h3 {
 
 .m-flex-display {
 	display: flex;
+}
+.m-rounded {
+	border-radius: 0.5rem;
 }

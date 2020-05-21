@@ -18,8 +18,7 @@
 
 <style lang="scss" scoped>
 	.c-banner {
-		padding-top: 2.1rem;
-		padding-bottom: 2.5rem;
+		padding: 90px 0;
 		background-image: url('/images/banner.jpg');
 		color: $primary-white;
 		text-align: center;

@@ -12,8 +12,7 @@
 				<nuxt-link class="c-login-link" to="/login"><span>Login</span></nuxt-link>
 			</li>
 			<li v-if="!$store.state.auth.user">
-				<nuxt-link class="c-join-link" to="/registration"><span>JOIN</span></nuxt-link>
-			</li>
+				<commonButton class="c-join-link" @click.native="showModal('ModalRegister')" text="JOIN" />
 			<li>
 				<nuxt-link class="c-login-link" to="/upload"><span>Upload</span></nuxt-link>
 			</li>
@@ -28,23 +27,30 @@
 </template>
 
 <script>
+	import { mapMutations } from 'vuex';
+	import commonButton from './commonButton';
+
 	export default {
 		name: 'navigation',
-        methods: {
-            async logout() {
-                try {
+		components: {
+			commonButton
+		},
+		methods: {
+			...mapMutations('modal', ['showModal']),
+			async logout() {
+				try {
 					await this.$store.dispatch('auth/reset');
 					this.$router.go();
-                } catch(err) {
-                    throw new Error(err);
-                }
-            }
+				} catch(err) {
+					throw new Error(err);
+				}
+			}
 		}
-    }
+  }
 </script>
 
 <style lang="scss" scoped>
-	.navbar{
+	.navbar {
 		position: fixed;
 		width: 100%;
 		top: 0;
@@ -70,23 +76,18 @@
 		padding: 1.3125rem;
 	}
 
-	.c-cat-link:hover span{
-		color: $primary-red;
-		font-weight: bold;
-		text-decoration: underline;
+	.c-cat-link:hover span {
+		color: #ff797f;
 	}
 
 	.c-login-link {
 		transition: all 0.3s ease 0s;
 		color: $primary-white;
 		padding: 0.5625rem;
-
 	}
 
-	.c-login-link:hover span{
-		color: $primary-white;
-		font-weight:bold;
-		text-decoration:underline;
+	.c-login-link:hover span {
+		color: #ff797f;
 	}
 
 	.c-join-link {
@@ -99,7 +100,7 @@
 		background-clip: border-box;
 	}
 
-	.c-join-link:hover span{
+	.c-join-link:hover span {
 		color:black;
 		font-weight:bold;
 		text-decoration:underline;

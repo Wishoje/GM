@@ -15,7 +15,7 @@ export default {
                     scope: 'profile email'
                 });
             });
-            this.googleReady = true
+            this.googleReady = true;
         };
         const installGoogleSdkScript = (d, s, id) => {
             if (d.getElementById(id)) {
@@ -33,11 +33,15 @@ export default {
     methods: {
         async googleSubmit () {
             try {
+                console.log('!this.googleReady :', !this.googleReady);
                 if (!this.googleReady) {
                     return;
                 }
                 this.googleLoading = true;
                 const user = await window.google_auth2.signIn();
+
+                console.log("auth-mixin / user: ", user);
+
                 if (user) {
                     const api = await this.$store.dispatch('auth/google', {token: user.wc.access_token ||  user.tc.access_token});
                     if (api) {
@@ -46,6 +50,7 @@ export default {
                     }
                 }
             } catch (err) {
+                console.log('auth-mixin / err: ', err);
                 this.error = 'Something went wrong please try again';
             }
          }

@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<AppModal />
 		<navigation />
 		<nuxt />
 	</div>
@@ -7,10 +8,12 @@
 
 
 <script>
+	import AppModal from '../components/AppModal';
 	import navigation from '../components/navigation';
 
 	export default {
 		components: {
+			AppModal,
 			navigation
 		}
 	}
