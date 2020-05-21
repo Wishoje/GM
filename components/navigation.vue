@@ -12,7 +12,7 @@
 				<nuxt-link class="c-login-link" to="/login"><span>Login</span></nuxt-link>
 			</li>
 			<li v-if="!$store.state.auth.user">
-				<nuxt-link class="c-join-link" to="/registration"><span>JOIN</span></nuxt-link>
+				<commonButton @click.native="showModal('ModalRegister')" text="JOIN" />
 			</li>
 			<li>
 				<nuxt-link class="c-login-link" to="/upload"><span>Upload</span></nuxt-link>
@@ -28,19 +28,26 @@
 </template>
 
 <script>
+	import { mapMutations } from 'vuex';
+	import commonButton from './commonButton';
+
 	export default {
 		name: 'navigation',
-        methods: {
-            async logout() {
-                try {
+		components: {
+			commonButton
+		},
+		methods: {
+			...mapMutations('modal', ['showModal']),
+			async logout() {
+				try {
 					await this.$store.dispatch('auth/reset');
 					this.$router.go();
-                } catch(err) {
-                    throw new Error(err);
-                }
-            }
+				} catch(err) {
+					throw new Error(err);
+				}
+			}
 		}
-    }
+  }
 </script>
 
 <style lang="scss" scoped>

@@ -47,8 +47,8 @@
     },
     watch: {
       modalComponent(componentName) {
+console.log('  modalComponent(componentName) :', componentName );
         if (!componentName) return;
-
         Vue.component(componentName, () => import(`./modal/${componentName}`));
 
         this.component = componentName;
@@ -97,7 +97,6 @@
     }
 
     &__innerContent {
-      max-width: 16em;
       padding: 2em;
       background: #fff;
     }
