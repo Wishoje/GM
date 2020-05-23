@@ -3,7 +3,7 @@
 		<h2>SHARE YOUR <br />FAVORITE PLAYLISTS!</h2>
 		<h3>Join the gamers community where the music<br>
 		lead you to the another level.</h3>
-		<commonButton @click.native="showModal('ModalLogin')" text="JOIN" />
+		<commonButton @click.native="showModal('ModalRegister')" text="JOIN" />
 	</article>
 </template>
 

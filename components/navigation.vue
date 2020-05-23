@@ -9,7 +9,7 @@
 				<nuxt-link class="c-cat-link" to="/categories"><span>Categories</span></nuxt-link>
 			</li>
 			<li v-if="!$store.state.auth.user">
-				<nuxt-link class="c-login-link" to="/login"><span>Login</span></nuxt-link>
+				<button class="c-login-link" @click="showModal('ModalLogin')">Login</button>
 			</li>
 			<li v-if="!$store.state.auth.user">
 				<commonButton class="c-join-link" @click.native="showModal('ModalRegister')" text="JOIN" />

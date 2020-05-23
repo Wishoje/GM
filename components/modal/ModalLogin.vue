@@ -16,15 +16,23 @@
 
 			<div>
 				<button class="c-modalLogin__login m-rounded" type="submit">
-					Login
+					LOG IN
 				</button>
-				<div class="g-signin2" data-longtitle="true" v-if="googleReady" @click="googleSubmit" :loading="googleLoading" :disabled="googleLoading">
+				<div id="c-customGoogleBtn"
+					class="customGPlusSignIn m-rounded"
+					v-if="googleReady"
+					@click="googleSubmit"
+					:loading="googleLoading"
+					:disabled="googleLoading">
+					<span class="icon"></span>
+      				<span class="buttonText">Log in with Google</span>
 				</div>
 			</div>
 
-			<a href="#">
-				Forgot Password?
-			</a><br>
+		<div class="c-modalLogin__smallPrint">New to GamersMusic? You can <a href="#">sign up here.</a>
+			<br>
+			Forgot your password? <a href="#">Reset it here.</a><br>
+		</div>
 			<div v-if="error">{{ error }}</div>
 		</form>
 	</div>
@@ -33,8 +41,15 @@
 <script>
 import { mapMutations } from 'vuex';
 import AuthenticationMixin from '../../mixins/authentication-mixin';
+
 export default {
 	name: `ModalLogin`,
+	props: {
+		isLoginModal: {
+			type: Boolean,
+			default: true
+		}
+	},
 	mixins: [
 		AuthenticationMixin
 	],
@@ -89,6 +104,12 @@ export default {
 
 		&__login {
 			background-color: $primary-blue;
+			width: 100%;
+			margin-bottom: 2rem;
+
+			&:hover {
+				background-color: $primary-blue-dark;
+			}
 		}
 
 		&__google {
@@ -120,6 +141,49 @@ export default {
 				font-weight: bold;
 				color: $primary-blue;
 			}
+		}
+
+		&__smallPrint {
+			text-align: center;
+			font-size: 0.9rem;
+		}
+	}
+
+	#c-customGoogleBtn {
+		display: inline-block;
+		color: #444;
+		width: 100%;
+		border: thin solid #888;
+		box-shadow: 1px 1px 1px grey;
+		white-space: nowrap;
+		margin-bottom: 2rem;
+
+		&:hover {
+			cursor: pointer;
+			border: thin solid #666;
+		}
+
+		span.label {
+			font-family: serif;
+			font-weight: normal;
+		}
+		span.icon {
+			background: url('https://developers-dot-devsite-v2-prod.appspot.com/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+			display: inline-block;
+			vertical-align: middle;
+			width: 42px;
+			height: 42px;
+			background-clip: white;
+		}
+		span.buttonText {
+			position: relative;
+			width: 100%;
+			display: inline-block;
+			vertical-align: middle;
+			text-align: center;
+			padding-right: 69px;
+			font-size: 14px;
+			font-family: 'Roboto', sans-serif;
 		}
 	}
 </style>
