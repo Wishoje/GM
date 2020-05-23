@@ -13,7 +13,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	.c-button {
 		background-color: $primary-red;
 		color: $primary-black;

@@ -24,6 +24,7 @@
     padding: 0 30px;
     transition: all .1s ease .1s;
     display: flex;
+    color: $primary-label;
 
     > span::first-letter {
         text-transform: uppercase;
@@ -62,18 +63,18 @@
 .c-form__input {
     width: 100%;
     padding: 20px;
-    border: 1px solid #ffe6e6;
+    border: 1px solid $primary-border;
     border-radius: 0;
     appearance: none;
 
     &.has-label-in {
-        padding: 18px 20px 4px;
+        padding: 24px 20px 4px;
     }
 }
 
 .c-form__input {
     &:focus {
-        border-color: #ffe6e6;
+        border-color: $primary-border;
         outline: none;
     }
 }
@@ -92,8 +93,7 @@
 
 .c-checkbox-hide {
     display: inline-block;
-    border: 1px solid #ffe6e6;
-    background-color: $primary-red;
+    border: 1px solid $primary-border;
     width: 15px;
     height: 15px;
     line-height: 1em;
@@ -111,7 +111,7 @@
     }
     &:hover {
         border-color: $primary-red;
-        background-color: #ffe6e6;
+        background-color: $primary-border;
     }
 }
 
@@ -126,18 +126,18 @@
 // no-javascript custom checkbox.
 .is-checked .c-checkbox-hide,
 input:checked + .c-checkbox-hide {
-    background-color: #ffe6e6;
-    border-color: #ffe6e6;
+    background-color: $primary-border;
+    border-color: $primary-border;
     color: $primary-white;
     &:before {
         opacity: 1;
     }
     &:hover {
-        background-color: #ffe6e6;
+        background-color: $primary-border;
     }
 }
 
 // custom focus style
 input:focus + .is-focus {
-    outline: 2px solid #ffe6e6;
+    outline: 2px solid $primary-border;
 }

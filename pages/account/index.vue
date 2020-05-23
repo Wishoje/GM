@@ -67,7 +67,7 @@ export default {
         margin: 0 auto;
     }
     .c-profile-links {
-        border-bottom: 1px solid #ffe6e6;
+        border-bottom: 1px solid $primary-border;
         padding: 5px 200px;
         li {
             padding-right: 10px;
