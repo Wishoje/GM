@@ -5,6 +5,7 @@ export const state = () => ({
 
 export const mutations = {
   showModal(state, componentName) {
+    console.log('1' + componentName);
     state.modalVisible = true;
     state.modalComponent = componentName;
     console.log('showModal store / state.modalComponent:', state.modalComponent);
