@@ -3,7 +3,7 @@
         <div class="c-profile-wrapper-info m-flex-display">
             <div class="c-profile-image">
                 <img v-if="user.image" :src="user.image" :title="user.name"/>
-                <img src="../../assets/Kajce.jpg">
+                <img v-else src="../../assets/Kajce.jpg">
             </div>
             <div class="c-profile-info">
                 <span class="c-profile-info-name">{{ user.name }}</span><br>
