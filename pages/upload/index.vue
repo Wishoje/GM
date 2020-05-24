@@ -1,49 +1,53 @@
 <template>
-    <div class="c-upload-wrapper m-flex-display">
-        <div class="c-options c-upload-header">
-            <h3 v-if="!user">How to Upload Your Favorite Playlist</h3>
-            <h3 v-else>Upload your Playlist From Your Favorite Music App</h3>
-        </div>
-        <div class="c-upload-form" v-if="user">
-            <form>
-                <form-inputs type="text" field="playlist" :required="true" v-model="playlist">
-                    Playlist Link:
-                </form-inputs>
+	<div>
+		<div class="c-upload-wrapper m-flex-display">
+			<div class="c-options c-upload-header">
+				<h3 v-if="!user">How to Upload Your Favorite Playlist</h3>
+				<h3 v-else>Upload your Playlist From Your Favorite Music App</h3>
+			</div>
+			<div class="c-upload-form" v-if="user">
+				<form>
+					<form-inputs type="text" field="playlist" :required="true" v-model="playlist">
+						Playlist Link:
+					</form-inputs>
 
-                <div class="c-options">
-                    <multiselect v-model="game" tag-placeholder="Add this as a New Game" placeholder="Search For Your Favorite Games Or Add " label="name" track-by="id" :options="gameList" :multiple="true" :taggable="true" @tag="addGameTag"></multiselect>
-                </div>
+					<div class="c-options">
+						<multiselect v-model="game" tag-placeholder="Add this as a New Game" placeholder="Search For Your Favorite Games Or Add " label="name" track-by="id" :options="gameList" :multiple="true" :taggable="true" @tag="addGameTag"></multiselect>
+					</div>
 
-                <div class="c-options">
-                    <multiselect v-model="musicApp" :custom-label="addPlatformTag" placeholder="Search For Platform Name Or Add" label="name" track-by="id" :options="platformList"></multiselect>
-                </div>
+					<div class="c-options">
+						<multiselect v-model="musicApp" :custom-label="addPlatformTag" placeholder="Search For Platform Name Or Add" label="name" track-by="id" :options="platformList"></multiselect>
+					</div>
 
-                <div class="c-options">
-                    <multiselect v-model="genre" tag-placeholder="Add This as a New Genre" placeholder="Search For Most Popular Genres on Your Playlist Or Add" label="name" track-by="id" :options="genreList" :multiple="true" :taggable="true" @tag="addGenreTag"></multiselect>
-                </div>
+					<div class="c-options">
+						<multiselect v-model="genre" tag-placeholder="Add This as a New Genre" placeholder="Search For Most Popular Genres on Your Playlist Or Add" label="name" track-by="id" :options="genreList" :multiple="true" :taggable="true" @tag="addGenreTag"></multiselect>
+					</div>
 
-                <checkbox field="streamer" v-model="streamer">Streamer</checkbox>
+					<form-inputs class="c-options" type="text" field="twitch" v-model="twitch">
+						Twitch Account:
+					</form-inputs>
 
-                <form-inputs class="c-options" v-if="streamer" type="text" field="twitch" v-model="twitch">
-                    Twitch Account:
-                </form-inputs>
+					<form-inputs class="c-options" type="text" field="mixer"  v-model="mixer">
+						Mixer Account:
+					</form-inputs>
 
-                <form-inputs class="c-options" v-if="streamer" type="text" field="mixer"  v-model="mixer">
-                    Mixer Account:
-                </form-inputs>
+					<checkbox field="streamer" v-model="streamer">Streamer</checkbox>
 
-                <div class="c-options">
-                    <commonButton text="AWESOME" />
-                </div>
-            </form>
-        </div>
-        <div class="c-upload-how-to">
-            <div class="c-upload-playlist-link">How To Find Playlist Link From Your Favorite Music App:</div>
-            <div v-for="platform in platformList" :key="platform.id">
-                <commonButton @click.native="showModal(`${platform.name}`)" class="c-upload-ul c-button-modify" :text="`${platform.name}`"></commonButton>
-            </div>
-        </div>
-    </div>
+					<div class="c-options">
+						<commonButton text="AWESOME" />
+					</div>
+				</form>
+			</div>
+			<div class="c-upload-how-to">
+				<div class="c-upload-playlist-link">How To Find Playlist Link From Your Favorite Music App:</div>
+				<div v-for="platform in platformList" :key="platform.id">
+					<commonButton @click.native="showModal(`${platform.name}`)" class="c-upload-ul c-button-modify" :text="`${platform.name}`"></commonButton>
+				</div>
+			</div>
+		</div>
+		<div class="c-upload-divider"></div>
+		<carousel/>
+	</div>
 </template>
 
 <script>
@@ -53,6 +57,7 @@ import Checkbox from '../../components/ui/Checkbox';
 import Multiselect from 'vue-multiselect';
 import VTooltip from 'v-tooltip';
 import { mapMutations } from 'vuex';
+import Carousel from '../../components/ui/Carousel';
 
 export default {
     name: 'account',
@@ -60,7 +65,8 @@ export default {
         FormInputs,
         commonButton,
         Checkbox,
-		Multiselect
+		Multiselect,
+		Carousel
     },
     head () {
 		return {
@@ -80,7 +86,7 @@ export default {
             gameList: null,
             platformList: null,
             genreList: null,
-            mixer: '',
+			mixer: ''
         }
     },
     computed: {
@@ -150,7 +156,7 @@ export default {
         margin: 20px 0;
     }
     .c-upload-how-to {
-        margin: 5px 10px 10px;
+        margin: 80px 10px 10px;
         flex-grow: 1;
         text-align: center;
         width: 30%;
@@ -169,7 +175,11 @@ export default {
     .c-button-modify {
         background-color: $primary-white;
         border: 1px solid $primary-border;
-    }
+	}
+	.c-upload-divider {
+		padding: 20px 0;
+		border-bottom: 1px solid $primary-border;
+	}
 </style>
 
 <style lang="scss">
