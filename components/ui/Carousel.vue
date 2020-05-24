@@ -1,78 +1,78 @@
 <template>
     <div class="c-upload-carousel">
-        <div class="c-upload-featured c-upload-red">Check Out Our Featured List</div>
-			<VueSlickCarousel v-bind="settings">
-				<div>
-					<iframe 
-						allow="autoplay *;
-						encrypted-media *;"
-						frameborder="0"
-						height="350"
-                        width="350"
-						style="max-width:400px;overflow:hidden;background:transparent;"
-						sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/playlist/chill-house/pl.bd55c25265aa4de8b3fc3e0960751846?app=music">
-					</iframe>
-                    <div class="c-upload-mid-space">
-                        <span>Uploaded by: <span class="c-upload-red">Mile Milenkovski</span></span><br>
-                        <span>Games: <span class="c-upload-red">Dota 2, LoL</span></span>
-                    </div>
-				</div>
-				<div>
-					<iframe
-						width="350"
-						height="350"
-						src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG"
-						frameborder="0"
-						allow="autoplay;
-						encrypted-media"
-						allowfullscreen>
-					</iframe>
-                    <div class="c-upload-mid-space">
-                        <span>Uploaded by: <span class="c-upload-red">Saban Sabanovski</span></span><br>
-                        <span>Games: <span class="c-upload-red">Starcraft</span></span>
-                    </div>
-				</div>
-				<div>
-					<iframe id='AmazonMusicEmbedB088BK6ZG4'
-						src='https://music.amazon.com/embed/B088BK6ZG4/?id=IbCYiN8K07&marketplaceId=ATVPDKIKX0DER&musicTerritory=US'
-						width='350px'
-						height='350px'
-						style='border:1px solid rgba(0, 0, 0, 0.12);max-width:400px;overflow-x:hidden;'>
-					</iframe>
-                    <div class="c-upload-mid-space">
-                        <span>Uploaded by: <span class="c-upload-red">Bane Banevski</span></span><br>
-                        <span>Games: <span class="c-upload-red">CSGO</span></span>
-                    </div>
-				</div>
-				<div>
-					<iframe
-						src="https://open.spotify.com/embed/playlist/0e7sxPYOixPoNOD3L37wbz"
-						width="350"
-						height="350"
-						frameborder="0"
-						allowtransparency="true"
-						allow="encrypted-media">
-					</iframe>
-                    <div class="c-upload-mid-space">
-                        <span>Uploaded by: <span class="c-upload-red">Trajko Trajkovski</span></span><br>
-                        <span>Games: <span class="c-upload-red">Poker</span></span>
-                    </div>
-				</div>
-                <div>
-                    <iframe 
-                        width="350"
-                        height="350"
-                        scrolling="no"
-                        frameborder="no"
-                        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/637658580&color=%23ff5500&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
-                    </iframe>
-                    <div class="c-upload-mid-space">
-                        <span>Uploaded by: <span class="c-upload-red">Bumbar Bumbarovski</span></span><br>
-                        <span>Games: <span class="c-upload-red">Dota 2</span></span>
-                    </div>
+        <div v-if="!isMain" class="c-upload-featured c-upload-red">Check Out Our Featured List</div>
+        <div v-else class="c-upload-featured c-upload-red">Check Out Most Popular Lists</div>
+        <VueSlickCarousel v-bind="settings">
+            <div>
+                <iframe 
+                    allow="autoplay *;
+                    encrypted-media *;"
+                    frameborder="0"
+                    height="350"
+                    width="350"
+                    style="max-width:400px;overflow:hidden;background:transparent;"
+                    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/playlist/chill-house/pl.bd55c25265aa4de8b3fc3e0960751846?app=music">
+                </iframe>
+                <div class="c-upload-mid-space">
+                    <span>Uploaded by: <span class="c-upload-red">Mile Milenkovski</span></span><br>
+                    <span>Games: <span class="c-upload-red">Dota 2, LoL</span></span>
                 </div>
-            </VueSlickCarousel>
-        </div>
+            </div>
+            <div>
+                <iframe
+                    width="350"
+                    height="350"
+                    src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG"
+                    frameborder="0"
+                    allow="autoplay;
+                    encrypted-media"
+                    allowfullscreen>
+                </iframe>
+                <div class="c-upload-mid-space">
+                    <span>Uploaded by: <span class="c-upload-red">Saban Sabanovski</span></span><br>
+                    <span>Games: <span class="c-upload-red">Starcraft</span></span>
+                </div>
+            </div>
+            <div>
+                <iframe id='AmazonMusicEmbedB088BK6ZG4'
+                    src='https://music.amazon.com/embed/B088BK6ZG4/?id=IbCYiN8K07&marketplaceId=ATVPDKIKX0DER&musicTerritory=US'
+                    width='350px'
+                    height='350px'
+                    style='border:1px solid rgba(0, 0, 0, 0.12);max-width:400px;overflow-x:hidden;'>
+                </iframe>
+                <div class="c-upload-mid-space">
+                    <span>Uploaded by: <span class="c-upload-red">Bane Banevski</span></span><br>
+                    <span>Games: <span class="c-upload-red">CSGO</span></span>
+                </div>
+            </div>
+            <div>
+                <iframe
+                    src="https://open.spotify.com/embed/playlist/0e7sxPYOixPoNOD3L37wbz"
+                    width="350"
+                    height="350"
+                    frameborder="0"
+                    allowtransparency="true"
+                    allow="encrypted-media">
+                </iframe>
+                <div class="c-upload-mid-space">
+                    <span>Uploaded by: <span class="c-upload-red">Trajko Trajkovski</span></span><br>
+                    <span>Games: <span class="c-upload-red">Poker</span></span>
+                </div>
+            </div>
+            <div>
+                <iframe 
+                    width="350"
+                    height="350"
+                    scrolling="no"
+                    frameborder="no"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/637658580&color=%23ff5500&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+                </iframe>
+                <div class="c-upload-mid-space">
+                    <span>Uploaded by: <span class="c-upload-red">Bumbar Bumbarovski</span></span><br>
+                    <span>Games: <span class="c-upload-red">Dota 2</span></span>
+                </div>
+            </div>
+        </VueSlickCarousel>
     </div>
 </template>
 
@@ -85,6 +85,12 @@ export default {
     name: 'Carousel',
     components: {
         VueSlickCarousel
+    },
+    props: {
+        isMain: {
+            type: Boolean,
+            required: false
+        }
     },
     data() {
         return {

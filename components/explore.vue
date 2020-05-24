@@ -14,7 +14,7 @@ export default {
 
 <style scoped lang="scss">
     .c-explore {
-        height: 300px;
+        height: 600px;
         font-size:2rem;
         background-color: darkviolet;
         color: $primary-white;
