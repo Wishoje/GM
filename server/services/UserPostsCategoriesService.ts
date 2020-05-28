@@ -6,10 +6,8 @@ import UserPlatformDto from '../models/UserPlatformDto';
 class UserPostsCategoriesService {
 	private userPostCategoriesRepository = getRepository(UserPostsCategories);
 
-	public insertGamePostCategories = async (game: Array<any>, userPostId: number) => {
+	public insertGamePostCategories = async (game: any, userPostId: number) => {
         try {
-            const util = require('util');
-		    console.log('STORE ' + util.inspect(game, false, null, true /* enable colors */));
             await Promise.all(game.map(games => {
                 return this.userPostCategoriesRepository.query(`
                     INSERT INTO 
@@ -35,7 +33,7 @@ class UserPostsCategoriesService {
         }
     }
 
-    public insertGenrePostCategories = async (genre: Array<any>, userPostId: number) => {
+    public insertGenrePostCategories = async (genre: any, userPostId: number) => {
         try {
             await Promise.all(genre.map(genres => {
                 return this.userPostCategoriesRepository.query(`
