@@ -11,25 +11,19 @@ class UserPosts {
 	@Column({ type: "text" })
     public playlist: string;
 
-    @Column({ type: "smallint" })
-    public game_id: number;
+    @Column({ type: "smallint", default: 0 })
+    public likes: number;
 
-    @Column({ type: "smallint" })
-    public music_app_id: number;
-
-    @Column({ type: "text" })
-    public genres: string;
-
-    @Column({ type: "smallint" })
-    public views: number;
-
-    @Column({ type: "smallint" })
+    @Column({ type: "smallint", default: 0 })
     public shares: number;
 
-    @Column({ type: "smallint" })
-    public twitch_link: number;
+    @Column({ type: "text", default: '' })
+    public twitch_link: string;
 
-    @Column({ type: "smallint" })
+    @Column({ type: "text", default: '' })
+    public mixer: string;
+
+    @Column({ type: "smallint", default: 0 })
     public is_featured: number;
 }
 
