@@ -120,9 +120,9 @@ export default {
             try {
 				const result = await this.$axios.post('/api/usersPosts', {
 					playlist: this.playlist,
-					game: JSON.stringify(this.game),
-					musicApp: JSON.stringify(this.musicApp),
-					genre: JSON.stringify(this.genre),
+					game: this.game,
+					musicApp: this.musicApp,
+					genre: this.genre,
 					twitch: this.twitch,
 					mixer: this.mixer
 				});
