@@ -126,10 +126,20 @@ export default {
 					twitch: this.twitch,
 					mixer: this.mixer
 				});
-				console.log(result);
+                this.resetForm();
+                this.showModal('Success');
             } catch(err) {
 				console.log(err);
             }
+        },
+        resetForm() {
+            this.playlist = '',
+            this.game = '',
+            this.musicApp = '',
+            this.genre = '',
+            this.streamer = false,
+			this.twitch = '',
+			this.mixer = ''
         }
     },
     async asyncData({$axios, error}) {

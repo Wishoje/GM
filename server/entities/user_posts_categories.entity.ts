@@ -10,6 +10,9 @@ class UserPostsCategories {
 
     @Column({ type: "smallint" })
     public category_id: number;
+
+    @Column({ type: "text" })
+    public category_name: string;
 }
 
 export default UserPostsCategories;

@@ -11,9 +11,9 @@ class UserPostsCategoriesService {
             await Promise.all(game.map(games => {
                 return this.userPostCategoriesRepository.query(`
                     INSERT INTO 
-                        user_posts_categories(user_post_id, category_id)
+                        user_posts_categories(user_post_id, category_id, category_name)
                     VALUES 
-                        (${userPostId}, ${games.id})`);
+                        (${userPostId}, ${games.id}, '${games.name}')`);
             }));
         } catch(err) {
             throw new Error(err)
@@ -24,9 +24,9 @@ class UserPostsCategoriesService {
         try {
             await this.userPostCategoriesRepository.query(`
                 INSERT INTO 
-                    user_posts_categories(user_post_id, category_id)
+                    user_posts_categories(user_post_id, category_id, category_name)
                 VALUES 
-                    (${userPostId}, ${platform.id})`
+                    (${userPostId}, ${platform.id}, '${platform.name}')`
                 );
         } catch(err) {
             throw new Error(err)
@@ -38,9 +38,9 @@ class UserPostsCategoriesService {
             await Promise.all(genre.map(genres => {
                 return this.userPostCategoriesRepository.query(`
                     INSERT INTO 
-                        user_posts_categories(user_post_id, category_id)
+                        user_posts_categories(user_post_id, category_id, category_name)
                     VALUES 
-                        (${userPostId}, ${genres.id})`);
+                        (${userPostId}, ${genres.id}, '${genres.name}')`);
             }));
         } catch(err) {
             throw new Error(err)
