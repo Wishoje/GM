@@ -25,6 +25,9 @@ class UserPosts {
 
     @Column({ type: "smallint", default: 0 })
     public is_featured: number;
+
+    @Column({ type: "smallint", default: 0 })
+    public is_approved: number;
 }
 
 export default UserPosts;
