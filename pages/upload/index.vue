@@ -6,7 +6,7 @@
 				<h3 v-else>Upload your Playlist From Your Favorite Music App</h3>
 			</div>
 			<div class="c-upload-form" v-if="user">
-				<form>
+				<form @submit.prevent="submitForm">
 					<form-inputs type="text" field="playlist" :required="true" v-model="playlist">
 						Playlist Link:
 					</form-inputs>
@@ -34,14 +34,15 @@
 					<checkbox field="streamer" v-model="streamer">Streamer</checkbox>
 
 					<div class="c-options">
-						<commonButton text="AWESOME" />
+						<commonButton buttonType="submit" class="c-button-modify" text="AWESOME" />
 					</div>
+					{{ game }}
 				</form>
 			</div>
 			<div class="c-upload-how-to">
 				<div class="c-upload-playlist-link">How To Find Playlist Link From Your Favorite Music App:</div>
 				<div v-for="platform in platformList" :key="platform.id">
-					<commonButton @click.native="showModal(`${platform.name}`)" class="c-upload-ul c-button-modify" :text="`${platform.name}`"></commonButton>
+					<commonButton @click.native="showModal(`${platform.name}`)" class="c-upload-ul" :text="`${platform.name}`"></commonButton>
 				</div>
 			</div>
 		</div>
@@ -82,11 +83,11 @@ export default {
             musicApp: '',
             genre: '',
             streamer: false,
-            twitch: '',
+			twitch: '',
+			mixer: '',
             gameList: null,
             platformList: null,
             genreList: null,
-			mixer: ''
         }
     },
     computed: {
@@ -100,7 +101,7 @@ export default {
             const gameTag = {
                 name: newGameTag.name,
                 id: newGameTag.id
-            }
+			}
             this.gameList.push(gameTag)
             this.game.push(gameTag)
         },
@@ -114,6 +115,21 @@ export default {
             }
             this.genreList.push(genreTag)
             this.genre.push(genreTag)
+		},
+		async submitForm() {
+            try {
+				const result = await this.$axios.post('/api/usersPosts', {
+					playlist: this.playlist,
+					game: JSON.stringify(this.game),
+					musicApp: JSON.stringify(this.musicApp),
+					genre: JSON.stringify(this.genre),
+					twitch: this.twitch,
+					mixer: this.mixer
+				});
+				console.log(result);
+            } catch(err) {
+				console.log(err);
+            }
         }
     },
     async asyncData({$axios, error}) {
@@ -173,8 +189,8 @@ export default {
         margin-bottom: 5px;
     }
     .c-button-modify {
-        background-color: $primary-white;
-        border: 1px solid $primary-border;
+        background-color: $primary-black;
+        color: $primary-white;
 	}
 	.c-upload-divider {
 		padding: 20px 0;
