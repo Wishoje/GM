@@ -1,5 +1,5 @@
 <template>
-	<button class="c-button m-font-bold">
+	<button :type="buttonType" class="c-button m-font-bold">
 		{{text}}
 	</button>
 </template>
@@ -8,12 +8,19 @@
 	export default {
 		name: 'commonButton',
 		props: {
-			text: String
+			text: {
+				type: String,
+				required: true
+			},
+			buttonType: {
+				type: String,
+				default: "button"
+			}
 		}
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	.c-button {
 		background-color: $primary-red;
 		color: $primary-black;

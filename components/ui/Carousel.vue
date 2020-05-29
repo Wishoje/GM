@@ -8,7 +8,7 @@
                     allow="autoplay *;
                     encrypted-media *;"
                     frameborder="0"
-                    height="350"
+                    height="400"
                     width="350"
                     style="max-width:400px;overflow:hidden;background:transparent;"
                     sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/playlist/chill-house/pl.bd55c25265aa4de8b3fc3e0960751846?app=music">
@@ -21,7 +21,7 @@
             <div>
                 <iframe
                     width="350"
-                    height="350"
+                    height="400"
                     src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG"
                     frameborder="0"
                     allow="autoplay;
@@ -34,10 +34,10 @@
                 </div>
             </div>
             <div>
-                <iframe id='AmazonMusicEmbedB088BK6ZG4'
+                <iframe id='AmazonMusicEmbedB088BK6ZG4' scrolling="no"
                     src='https://music.amazon.com/embed/B088BK6ZG4/?id=IbCYiN8K07&marketplaceId=ATVPDKIKX0DER&musicTerritory=US'
                     width='350px'
-                    height='350px'
+                    height='400px'
                     style='border:1px solid rgba(0, 0, 0, 0.12);max-width:400px;overflow-x:hidden;'>
                 </iframe>
                 <div class="c-upload-mid-space">
@@ -49,7 +49,7 @@
                 <iframe
                     src="https://open.spotify.com/embed/playlist/0e7sxPYOixPoNOD3L37wbz"
                     width="350"
-                    height="350"
+                    height="400"
                     frameborder="0"
                     allowtransparency="true"
                     allow="encrypted-media">
@@ -62,7 +62,7 @@
             <div>
                 <iframe 
                     width="350"
-                    height="350"
+                    height="400"
                     scrolling="no"
                     frameborder="no"
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/637658580&color=%23ff5500&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
