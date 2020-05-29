@@ -28,6 +28,9 @@ class UserPosts {
 
     @Column({ type: "smallint" })
     public twitch_link: number;
+
+    @Column({ type: "smallint" })
+    public is_featured: number;
 }
 
 export default UserPosts;

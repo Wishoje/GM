@@ -1,40 +1,79 @@
 <template>
-	<div class="c-modalLogin">
-		<form v-if="!user" @submit.prevent="submitForm">
-			<h3>
-				Login
-			</h3>
-			<div>
-				<label for="name">Email</label>
-				<input class="m-rounded" v-model="email" id="email" type="text" placeholder="Email">
-			</div>
-
-			<div>
-				<label for="password">Password</label>
-				<input class="m-rounded" v-model="password"  id="password" type="password" placeholder="******">
-			</div>
-
-			<div>
-				<button class="c-modalLogin__login m-rounded" type="submit">
-					LOG IN
-				</button>
-				<div id="c-customGoogleBtn"
-					class="customGPlusSignIn m-rounded"
-					v-if="googleReady"
-					@click="googleSubmit"
-					:loading="googleLoading"
-					:disabled="googleLoading">
-					<span class="icon"></span>
-      				<span class="buttonText">Log in with Google</span>
+	<div>
+		<div class="c-modalRegister" v-if="modalTypeProps === 'modalRegister'">
+			<form @submit.prevent="submitForm">
+				<h3>Create Account</h3>
+				<div>
+					<label for="name">Nickname</label>
+					<input class="m-rounded" v-model="name" id="name" type="text"	placeholder="name">
 				</div>
-			</div>
+				<div>
+					<label for="email">Email</label>
+					<input class="m-rounded" v-model="email" id="email" type="text"	placeholder="Email">
+				</div>
+				<div>
+					<label for="password">Password</label>
+					<input class="m-rounded" v-model="password" id="password" type="password" placeholder="******">
+				</div>
+				<div>
+					<div>
+						<button class="c-modalLogin__login m-rounded" @click="submitRegisterForm">
+							Create Account
+						</button>
+						<div id="c-customGoogleBtn"
+							class="customGPlusSignIn m-rounded"
+							v-if="googleReady"
+							@click="googleSubmit"
+							:loading="googleLoading"
+							:disabled="googleLoading">
+							<span class="icon"></span>
+							<span class="buttonText">Log in with Google</span>
+						</div>
+					</div>
 
-		<div class="c-modalLogin__smallPrint">New to GamersMusic? You can <a href="#">sign up here.</a>
-			<br>
-			Forgot your password? <a href="#">Reset it here.</a><br>
+					Forgot your password? <a href="#">Reset it here.</a><br>
+				</div>
+				<div v-if="error">{{ error }}</div>
+			</form>
 		</div>
-			<div v-if="error">{{ error }}</div>
-		</form>
+
+		<div class="c-modalLogin" v-if="modalTypeProps === 'modalLogin'">
+			<form v-if="!user" @submit.prevent="submitForm">
+				<h3>
+					Login
+				</h3>
+				<div>
+					<label for="name">Email</label>
+					<input class="m-rounded" v-model="email" id="email" type="text" placeholder="Email">
+				</div>
+
+				<div>
+					<label for="password">Password</label>
+					<input class="m-rounded" v-model="password"  id="password" type="password" placeholder="******">
+				</div>
+
+				<div>
+					<button class="c-modalLogin__login m-rounded" type="submit">
+						LOG IN
+					</button>
+					<div id="c-customGoogleBtn"
+						class="customGPlusSignIn m-rounded"
+						v-if="googleReady"
+						@click="googleSubmit"
+						:loading="googleLoading"
+						:disabled="googleLoading">
+						<span class="icon"></span>
+						<span class="buttonText">Log in with Google</span>
+					</div>
+				</div>
+
+				<div class="c-modalLogin__smallPrint">New to GamersMusic? You can <a href="#">sign up here.</a>
+					<br>
+					Forgot your password? <a href="#">Reset it here.</a><br>
+				</div>
+				<div v-if="error">{{ error }}</div>
+			</form>
+		</div>
 	</div>
 </template>
 
@@ -45,9 +84,8 @@ import AuthenticationMixin from '../../mixins/authentication-mixin';
 export default {
 	name: `ModalLogin`,
 	props: {
-		isLoginModal: {
-			type: Boolean,
-			default: true
+		modalTypeProps: {
+			type: String
 		}
 	},
 	mixins: [
@@ -67,12 +105,16 @@ export default {
 		return {
 			email: '',
 			password: '',
+			name: '',
 			error: ''
 		};
 	},
 	computed: {
 		user() { 
 			return this.$store.state.auth.user;
+		},
+		users() { 
+			return this.$store.state.user;
 		}
 	},
 	methods: {
@@ -91,13 +133,27 @@ export default {
 				this.password = '';
 				this.error = 'Username Or Password is incorrect';
 			}
+		},
+		async submitRegisterForm() {
+			try {
+			const result = await this.$store.dispatch('auth/register', {
+				email: this.email,
+				password: this.password,
+				name: this.name
+			});
+			} catch(err) {
+			this.email = '';
+			this.password = '';
+			this.error = 'Something went wrong please try again';
+			}
+			this.hideModal();
 		}
 	},
 };
 </script>
 
 <style lang="scss">
-	.c-modalLogin {
+	.c-modalLogin, .c-modalRegister {
 		> :not(:first-child) {
 			margin-top: 1em;
 		}
