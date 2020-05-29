@@ -8,7 +8,7 @@ import UserPosts from '../entities/user_posts.entity';
 import AuthMiddleware from '../middleware/AuthMiddleware';
 import UserPostsCategoriesService from '../services/UserPostsCategoriesService';
 
-class UsersContollers implements ControllerInterface {
+class UsersPostsContollers implements ControllerInterface {
 	public path = '/api/usersPosts';
 	public router = express.Router();
 	private userPostRepository = getRepository(UserPosts);
@@ -65,4 +65,4 @@ class UsersContollers implements ControllerInterface {
 	}
 }
 
-export default UsersContollers;
+export default UsersPostsContollers;
