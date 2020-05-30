@@ -21,20 +21,40 @@
         <div class="c-profile-playlist">
             <span>Your Uploads</span>
         </div>
+        {{  }}
+        <div v-for="iframe in getPlaylistIframe" :key="iframe">
+            <div v-html="iframe"></div><br>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     name: 'account',
+    data() {
+		return {
+			userPosts: null,
+		};
+	},
     computed: {
         user() {
             return this.$store.state.auth.user;
+        },
+        getPlaylistIframe() {
+            return this.userPosts.map(userPost => {
+                return userPost.playlist
+            })
         }
     },
-    asyncData({store, redirect}) {
+    async asyncData({$axios, store, redirect}) {
         if (!store.state.auth.user) {
             return redirect('/registration');
+        }
+
+        const result = await $axios.get('/api/usersPosts');
+        console.log(result);
+        return {
+            userPosts: result.data
         }
     }
 }

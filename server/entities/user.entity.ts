@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import UserPosts from '../entities/user_posts.entity';
 
 @Entity()
 class User {
@@ -25,6 +26,9 @@ class User {
 
     @Column({ type: "varchar", default: '' })
     public login_type: string;
+
+    @OneToMany(type => UserPosts, posts => posts.user)
+    public posts: UserPosts[];
 }
 
 export default User;

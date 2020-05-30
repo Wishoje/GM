@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
+import User from '../entities/user.entity';
+import UserPostsCategories from '../entities/user_posts_categories.entity';
 
 @Entity()
 class UserPosts {
@@ -28,6 +30,12 @@ class UserPosts {
 
     @Column({ type: "smallint", default: 0 })
     public is_approved: number;
+
+    @ManyToOne(type => User, user => user.posts)
+    public user: User;
+
+    @OneToMany(type => UserPostsCategories, userPostsCategories => userPostsCategories.userpost)
+    public userPostsCategories: UserPostsCategories[];
 }
 
 export default UserPosts;

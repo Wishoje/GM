@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { getRepository } from 'typeorm';
+import { getRepository, createQueryBuilder } from 'typeorm';
 import PageNotFoundException from '../exceptions/PageNotFoundException';
 import ValidationMiddleware from '../middleware/ValidationMiddleware';
 import ControllerInterface from '../interfaces/ControllerInterface';
@@ -7,12 +7,15 @@ import UserPostsDto from '../models/User/UserPostsDto';
 import UserPosts from '../entities/user_posts.entity';
 import AuthMiddleware from '../middleware/AuthMiddleware';
 import UserPostsCategoriesService from '../services/UserPostsCategoriesService';
+import UserPostsInterface from '../interfaces/UserPostsInterface';
+import FiltersService from '../services/FiltersService';
 
 class UsersPostsContollers implements ControllerInterface {
 	public path = '/api/usersPosts';
 	public router = express.Router();
 	private userPostRepository = getRepository(UserPosts);
 	private userPostsCategoriesService = new UserPostsCategoriesService;
+	private filtersService = new FiltersService;
 
 	constructor() {
 		this.intializeRoutes();
@@ -25,8 +28,22 @@ class UsersPostsContollers implements ControllerInterface {
 	}
 
 	private getUserPosts = async (request: express.Request, response: express.Response) => {
-		const userData = await this.userPostRepository.find({ user_id: response.locals.user.id });
-		response.send(userData);
+		const userPosts = await this.userPostRepository.createQueryBuilder("user_posts")
+			.innerJoinAndSelect("user_posts.user", "User")
+			.innerJoinAndSelect("user_posts.userPostsCategories", "UserPostsCategories")
+			.where("user_posts.user = :id", { id: 1 })
+			.getMany();
+
+		const result = userPosts.map(userPost => {
+			return {
+				playlist: this.filtersService.getIframe(userPost.playlist, userPost.userPostsCategories[userPost.userPostsCategories.length - 1]),
+				likes: userPost.likes,
+				shares: userPost.shares,
+				UserPostsCategories: userPost.userPostsCategories
+			} as UserPostsInterface
+		});
+
+		response.send(result);
 	}
 
 	private uploadPost = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
@@ -34,6 +51,7 @@ class UsersPostsContollers implements ControllerInterface {
 			const postData: UserPostsDto = request.body;
 			const newUserPost = this.userPostRepository.create({
 				user_id: response.locals.user.id,
+				user: response.locals.user.id,
 				playlist: postData.playlist,
 				twitch_link: postData.twitch,
 				mixer: postData.mixer
