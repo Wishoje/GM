@@ -20,10 +20,15 @@
         </ul>
         <div class="c-profile-playlist">
             <span>Your Uploads</span>
-        </div>
-        {{  }}
-        <div v-for="iframe in getPlaylistIframe" :key="iframe">
-            <div v-html="iframe"></div><br>
+                <div v-if="!userPosts">
+                    <div>Go to our<a href="/upload">Upload</a> Page to add your favorite playlist</div>
+                </div>
+                <div v-else>
+                    <div v-for="iframe in getPlaylistIframe" :key="iframe">
+                    <div v-html="iframe.playlist"></div> 
+                    <div>Likes: {{ iframe.likes }} </div><br>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -42,7 +47,10 @@ export default {
         },
         getPlaylistIframe() {
             return this.userPosts.map(userPost => {
-                return userPost.playlist
+                return {
+                    playlist: userPost.playlist,
+                    likes: userPost.likes
+                }
             })
         }
     },
