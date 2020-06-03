@@ -14,7 +14,7 @@
 	>
 		<div v-if="visible" class="c-appModal__content" @click.self="hideModal">
 			<div class="c-appModal__innerContent">
-				<component :is="component"/>
+				<component :is="component" :modalTypeProps="type"/>
 			</div>
 		</div>
 	</transition>
@@ -30,12 +30,19 @@ export default {
 	data() {
 		return {
 			component: null,
+			type: null
 		};
+	},
+	props: {
+		modalTypeProps: {
+			type: String
+		}
 	},
 	computed: {
 		...mapState('modal', {
 			visible: `modalVisible`,
 			modalComponent: `modalComponent`,
+			modalType: `modalType`
 		})
 	},
 	watch: {
@@ -44,7 +51,11 @@ export default {
 			if (!componentName) return;
 			Vue.component(componentName, () => import(`./modal/${componentName}`));
 			this.component = componentName;
+		},
+		modalType(type) {
+			this.type = type;
 		}
+
 	},
 	mounted() {
 		const escapeHandler = (e) => {
