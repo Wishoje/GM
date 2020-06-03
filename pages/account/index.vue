@@ -20,6 +20,15 @@
         </ul>
         <div class="c-profile-playlist">
             <span>Your Uploads</span>
+                <div v-if="!userPosts">
+                    <div>Go to our<a href="/upload">Upload</a> Page to add your favorite playlist</div>
+                </div>
+                <div v-else>
+                    <div v-for="iframe in getPlaylistIframe" :key="iframe">
+                    <div v-html="iframe.playlist"></div> 
+                    <div>Likes: {{ iframe.likes }} </div><br>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -27,14 +36,33 @@
 <script>
 export default {
     name: 'account',
+    data() {
+		return {
+			userPosts: null,
+		};
+	},
     computed: {
         user() {
             return this.$store.state.auth.user;
+        },
+        getPlaylistIframe() {
+            return this.userPosts.map(userPost => {
+                return {
+                    playlist: userPost.playlist,
+                    likes: userPost.likes
+                }
+            })
         }
     },
-    asyncData({store, redirect}) {
+    async asyncData({$axios, store, redirect}) {
         if (!store.state.auth.user) {
             return redirect('/registration');
+        }
+
+        const result = await $axios.get('/api/usersPosts');
+        console.log(result);
+        return {
+            userPosts: result.data
         }
     }
 }

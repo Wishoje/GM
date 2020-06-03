@@ -22,7 +22,7 @@ class CategoriesServices {
                     ('LoL', 1, 3, '/images/01.png', 1),('Witcher', 1, 17, '/images/01.png', 1),('Destiny', 1, 1, '/images/01.png', 1),
                     ('Half-Life', 1, 1, '/images/01.png', 1),('Spotify', 1, 17, '/images/01.png', 2),('Youtube', 1, 1, '/images/01.png', 2),
                     ('SoundCloud', 1, 2, '/images/01.png', 2),('AmazonMusic', 1, 4, '/images/01.png', 2), 
-                    ('Tidal', 1, 5, '/images/01.png', 2), ('Jazz', 1, 6, '/images/01.png', 3), 
+                    ('AppleMusic', 1, 5, '/images/01.png', 2), ('Jazz', 1, 6, '/images/01.png', 3), 
                     ('Chill', 1, 7, '/images/01.png', 3), ('Techno', 1, 8, '/images/01.png', 3), 
                     ('Hip Hop', 1, 9, '/images/01.png', 3), ('Rap', 1, 10, '/images/01.png', 3), 
                     ('Rock', 1, 11, '/images/01.png', 3), ('Blues', 1, 12, '/images/01.png', 3), 

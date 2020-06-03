@@ -1,11 +1,11 @@
 <template>
     <div>
-        Tidal
+        AppleMusic
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Tidal'
+    name: 'AppleMusic'
 }
 </script>
