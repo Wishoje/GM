@@ -14,7 +14,7 @@
 	>
 		<div v-if="visible" class="c-appModal__content" @click.self="hideModal">
 			<div class="c-appModal__innerContent">
-				<component :is="component" :modal-type-props="type"/>
+				<component :is="component" :modalTypeProps="type"/>
 			</div>
 		</div>
 	</transition>
