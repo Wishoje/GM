@@ -1,17 +1,20 @@
 export const state = () => ({
-  modalVisible: false,
-  modalComponent: null,
+	modalVisible: false,
+	modalComponent: null,
+	modalType: null
 })
 
 export const mutations = {
-  showModal(state, componentName) {
-    console.log('1' + componentName);
-    state.modalVisible = true;
-    state.modalComponent = componentName;
-    console.log('showModal store / state.modalComponent:', state.modalComponent);
-  },
-  hideModal(state) {
-    console.log('hideModal store / state:', state);
-    state.modalVisible = false;
-  },
+	/**
+	 * @param {state} state 
+	 * @param {object} payload - payload.modalName is the name of modal component, payload.modalType use to switch between login and register option
+	 */
+	showModal(state, payload) {
+		state.modalVisible = true;
+		state.modalComponent = payload.modalName;
+		state.modalType = payload.modalType;
+	},
+	hideModal(state) {
+		state.modalVisible = false;
+	},
 }
