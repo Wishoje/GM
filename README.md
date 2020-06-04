@@ -1,5 +1,5 @@
 # gamersMusic
-PostgreSQL - Node.js - Typescript - Vue.js
+PostgreSQL - Node.js - Typescript - Nuxt - Vue.js
 
 > gamersMusic
 
