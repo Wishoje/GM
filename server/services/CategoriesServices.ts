@@ -28,11 +28,10 @@ class CategoriesServices {
                     ('Rock', 1, 11, '/images/01.png', 3), ('Blues', 1, 12, '/images/01.png', 3), 
                     ('Metal', 1, 13, '/images/01.png', 3), ('Ambient', 1, 14, '/images/01.png',3),
                     ('Rnb', 1, 13, '/images/01.png', 3), ('Trance', 1, 14, '/images/01.png',3),
-                    ('Instrumental', 1, 13, '/images/01.png', 3), ('Rock', 1, 14, '/images/01.png',3),
-                    ('Reggae', 1, 13, '/images/01.png', 3), ('Funk', 1, 14, '/images/01.png',3),
-                    ('Dubstep', 1, 13, '/images/01.png', 3), ('Disco', 1, 14, '/images/01.png',3),
-                    ('House', 1, 11, '/images/01.png', 3), ('Pop', 1, 12, '/images/01.png', 3),
-                    ('Grunge', 1, 11, '/images/01.png', 3)`);
+                    ('Instrumental', 1, 13, '/images/01.png', 3), ('Reggae', 1, 13, '/images/01.png', 3),
+                    ('Funk', 1, 14, '/images/01.png',3), ('Dubstep', 1, 13, '/images/01.png', 3),
+                    ('Disco', 1, 14, '/images/01.png',3), ('House', 1, 11, '/images/01.png', 3),
+                    ('Pop', 1, 12, '/images/01.png', 3), ('Grunge', 1, 11, '/images/01.png', 3)`);
         } catch(err) {
             throw new Error(err)
         }
