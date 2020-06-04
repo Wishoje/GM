@@ -24,6 +24,27 @@ h3 {
 .m-flex-display {
 	display: flex;
 }
+
 .m-rounded {
 	border-radius: 0.5rem;
+}
+
+.m-banner {
+	padding: 90px 0;
+	background-image: url('/images/banner.jpg');
+	color: white;
+	text-align: center;
+	}
+
+.m-search-box {
+	width: 40%;
+	margin: 2rem auto;
+}
+
+.m-search-text {
+	background:white;
+	border-radius: 0.2rem;
+	color:black;
+	padding: 1rem 0 1rem 2rem;
+	width:70%;
 }
