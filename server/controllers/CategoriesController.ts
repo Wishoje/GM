@@ -23,13 +23,14 @@ class CategoriesController implements ControllerInterface {
 	private getCategories = async (request: express.Request, response: express.Response) => {
 		try {
 			const checkData = await this.categoriesRepository.find();
-			let categoryType = 1;
+			let categoryType = null;
 			if (!checkData || !checkData.length) {
 				await this.categoriesServices.insertCategories();
 				await this.categoriesTypeServices.insertCategoriesType();
 			}
-			
-			if (request.path.includes('platform')) {
+			if (request.path.includes('games')) {
+				categoryType = 1;
+			} else if (request.path.includes('platform')) {
 				categoryType = 2;
 			} else if (request.path.includes('genre')) {
 				categoryType = 3;
@@ -37,7 +38,9 @@ class CategoriesController implements ControllerInterface {
 				categoryType = 4;
 			}
 
-			const categoriesData = await this.categoriesRepository.find({where: { active: 1, type: categoryType }});
+			const categoriesData = categoryType ?
+				await this.categoriesRepository.find({where: { active: 1, type: categoryType }}) :
+				await this.categoriesRepository.find({where: { active: 1 }});
 			response.send(categoriesData);
 		} catch(err) {
             throw new Error(err)
