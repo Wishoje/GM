@@ -3,12 +3,12 @@
     <h2>Explore Playlists</h2>
     <h3>Combine and add more tags to show more playlists</h3>
     <div class="m-search-box">
-      <input type="text" class="m-search-text" placeholder="Search for genre">
+      <input type="text" class="m-search-text" placeholder="Search by Game Genre Platform">
     </div>
 	<section>
 		<ul>
-			<li v-for="genre in genres" :key="genre.id">
-				<button :class="{'selected': categoryQueryName.includes(genre.name) }" @click="toggleGenre(genre.id, genre.name)">{{genre.name}}</button>
+			<li v-for="category in categories" :key="category.id">
+				<button :class="{'selected': categoryQueryName.includes(category.name) }" @click="toggleCategory(category.id, category.name)">{{category.name}}</button>
 			</li>
 		</ul>
 	</section>
@@ -18,42 +18,34 @@
 <script>
 export default {
 	name: 'filterSearch',
-	data() {
-		return {
-			genres: [],
-			categoryQueryId: [],
-            categoryQueryName: []
-		};
-	},
-	mounted() {
-		this.getCategories();
+	props: {
+		categoryQueryId: {
+			type: Array,
+			default: []
+		},
+		categoryQueryName: {
+			type: Array,
+			default: []
+		},
+		categories: {
+			type: Array,
+			default: []
+		}
 	},
 	methods: {
-		async getCategories() {
-			try {
-				const result = await this.$axios.$get('/api/categories/genre');
-				return this.genres = result;
-			} catch(error) {
-				console.log('Error :', error);
-			}
-		},
-		toggleGenre(id, name) {
-            const genreID = id;
-            const genreName = name;
-            if (!this.categoryQueryId.includes(genreID) && !this.categoryQueryName.includes(genreName)) {
-                this.categoryQueryId.push(genreID);
-                this.categoryQueryName.push(genreName);
+		toggleCategory(id, name) {
+            const categoryID = id;
+            const categoryName = name;
+            if (!this.categoryQueryId.includes(categoryID) && !this.categoryQueryName.includes(categoryName)) {
+                this.categoryQueryId.push(categoryID);
+                this.categoryQueryName.push(categoryName);
             } else {
-                this.categoryQueryId = this.categoryQueryId.filter(item => item !== genreID);
-                this.categoryQueryName = this.categoryQueryName.filter(item => item !== genreName);
+                this.categoryQueryId = this.categoryQueryId.filter(item => item !== categoryID);
+                this.categoryQueryName = this.categoryQueryName.filter(item => item !== categoryName);
             }
             this.$router.replace({query: {categoryId: this.categoryQueryId.slice(0), categoryName: this.categoryQueryName.slice(0)}});
-        },
-	},
-	async asyncData({$axios, route, store, params, query, req, res, redirect, error}) {
-        const util = require('util');
-		console.log('STORE ' + util.inspect(route.query, false, null, true /* enable colors */));
-    }
+        }
+	}
 }
 </script>
 
