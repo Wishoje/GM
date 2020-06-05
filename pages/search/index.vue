@@ -1,6 +1,6 @@
 <template>
 	<main>
-        <filterSearch :categoryQueryId="categoryId" :categoryQueryName="categoryName" :categories="categories"/>
+        <filterSearch :categories="categories"/>
 	</main>
 </template>
 

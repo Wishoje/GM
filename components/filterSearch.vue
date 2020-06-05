@@ -1,54 +1,105 @@
 <template>
-  <article class="m-banner">
-    <h2>Explore Playlists</h2>
-    <h3>Combine and add more tags to show more playlists</h3>
-    <div class="m-search-box">
-      	<input type="text" class="m-search-text" placeholder="Search by Game Genre Platform">
-    </div>
-	<section>
-		<ul>
-			<li v-for="category in categories" :key="category.id">
-				<button :class="{'selected': categoryQueryName.includes(category.name) }" @click="toggleCategory(category.id, category.name)">{{category.name}}</button>
-			</li>
-		</ul>
-		{{ categoryQueryId }}
-	</section>
+  <article>
+	<div class="m-banner">
+		<h2>Explore Playlists</h2>
+		<h3>Combine and add more tags to show more playlists</h3>
+		<div class="m-search-box">
+			<input type="text" class="m-search-text" placeholder="Search by Game Genre Platform">
+		</div>
+		<section>
+			<ul>
+				<li v-for="category in categories" :key="category.id">
+					<button :class="{'selected': categoryQueryName.includes(category.name) }" @click="toggleCategory(category.id, category.name)">{{category.name}}</button>
+				</li>
+			</ul>
+		</section>
+	</div>
+	<div>
+		<div class="c-profile-playlist">
+			<div v-if="!categoriesPosts">
+				<div>No Results</div>
+			</div>
+			<div v-else>
+				<div v-for="iframe in getPlaylistIframe" :key="iframe.id">
+					<div v-html="iframe.playlist"></div> 
+					<div>Likes: {{ iframe.likes }} </div><br>
+				</div>
+			</div>
+        </div>
+	</div>
   </article>
 </template>
 
 <script>
 export default {
 	name: 'filterSearch',
+	data() {
+        return {
+            categoryQueryId: [],
+			categoryQueryName: [],
+			categoriesPosts: null
+        }
+    },
+    created() {
+        if (this.$route.query.categoryId && this.$route.query.categoryName) {
+            this.categoryQueryId.push(parseInt(this.$route.query.categoryId));
+            this.categoryQueryName.push(this.$route.query.categoryName);
+        }
+    },
 	props: {
-		categoryQueryId: {
-			type: Array,
-			default: []
-		},
-		categoryQueryName: {
-			type: Array,
-			default: []
-		},
 		categories: {
 			type: Array,
 			default: []
 		}
 	},
-	methods: {
-		toggleCategory(id, name) {
-            if (!this.categoryQueryId.includes(id) && !this.categoryQueryName.includes(name)) {
-                this.categoryQueryId.push(id);
-                this.categoryQueryName.push(name);
-            } else {
-                this.categoryQueryId = this.categoryQueryId.filter(item => item !== id);
-                this.categoryQueryName = this.categoryQueryName.filter(item => item !== name);
-            }
-            this.$router.replace({query: {categoryId: this.categoryQueryId.slice(0), categoryName: this.categoryQueryName.slice(0)}});
+	computed: {
+        getPlaylistIframe() {
+            return this.categoriesPosts.map(categoryPost => {
+                return {
+                    playlist: categoryPost.playlist,
+                    likes: categoryPost.likes
+                }
+            })
         }
+    },
+	mounted() {
+		this.getSelectedCategories();
+	},
+	methods: {
+		async toggleCategory(id, name) {
+			try {
+				if (!this.categoryQueryId.includes(id) && !this.categoryQueryName.includes(name)) {
+					this.categoryQueryId.push(id);
+					this.categoryQueryName.push(name);
+				} else {
+					this.categoryQueryId = this.categoryQueryId.filter(item => item !== id);
+					this.categoryQueryName = this.categoryQueryName.filter(item => item !== name);
+				}
+				this.$router.replace({query: {categoryId: this.categoryQueryId.slice(0), categoryName: this.categoryQueryName.slice(0)}});
+				this.getSelectedCategories();
+			} catch(error) {
+				console.log('Error :', error);
+			}
+		},
+		async getSelectedCategories() {
+			try {
+				const result = await this.$axios.get('/api/usersPosts/categories', { params: { categoriesData: this.categoryQueryId } });
+				return this.categoriesPosts = result.data;
+			} catch(error) {
+				console.log('Error :', error);
+			}
+		}
 	}
 }
 </script>
 
 <style lang="scss" scoped>
+	.c-profile-playlist {
+        font-size: 1.5rem;
+		padding: 30px 0;
+		width: 50%;
+		margin: 0 auto;
+    }
 	section {
 		width: 50%;
 		margin: auto;

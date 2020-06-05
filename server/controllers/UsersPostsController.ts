@@ -23,27 +23,66 @@ class UsersPostsContollers implements ControllerInterface {
 
 	public intializeRoutes() {
 		this.router.get(this.path, this.getUserPosts);
+		this.router.get(`${this.path}/categories`, this.getCategoriesPosts);
 		this.router.post(this.path, [AuthMiddleware, ValidationMiddleware(UserPostsDto)], this.uploadPost);
 		this.router.delete(`${this.path}/:id`, AuthMiddleware, this.deleteUser);
 	}
 
-	private getUserPosts = async (request: express.Request, response: express.Response) => {
-		const userPosts = await this.userPostRepository.createQueryBuilder("user_posts")
-			.innerJoinAndSelect("user_posts.user", "User")
-			.innerJoinAndSelect("user_posts.userPostsCategories", "UserPostsCategories")
-			.where("user_posts.user = :id", { id: 1 })
-			.getMany();
+	private getUserPosts = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+		try {
+			let result = null
+			const userPosts = await this.userPostRepository.createQueryBuilder("user_posts")
+				.innerJoinAndSelect("user_posts.user", "User")
+				.innerJoinAndSelect("user_posts.userPostsCategories", "UserPostsCategories")
+				.where("user_posts.user = :id", { id: 1 })
+				.getMany();
 
-		const result = userPosts.map(userPost => {
-			return {
-				playlist: this.filtersService.getIframe(userPost.playlist, userPost.userPostsCategories[userPost.userPostsCategories.length - 1]),
-				likes: userPost.likes,
-				shares: userPost.shares,
-				UserPostsCategories: userPost.userPostsCategories
-			} as UserPostsInterface
-		});
+			if (userPosts) {
+				result = userPosts.map(userPost => {
+					return {
+						playlist: this.filtersService.getIframe(userPost.playlist, userPost.userPostsCategories[userPost.userPostsCategories.length - 1]),
+						likes: userPost.likes,
+						shares: userPost.shares,
+						UserPostsCategories: userPost.userPostsCategories
+					} as UserPostsInterface
+				});
+			}
 
-		response.send(result);
+			response.send(result);
+		} catch (error) {
+			next(error);
+		} 
+	}
+
+	private getCategoriesPosts = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+		try {
+			const categoryData = request.query.categoriesData;
+			let result = null;
+			const util = require('util');
+			console.log('STORE ' + util.inspect(categoryData, false, null, true /* enable colors */));
+			const categoriesPosts = await this.userPostRepository.createQueryBuilder("user_posts")
+				.innerJoinAndSelect("user_posts.user", "User")
+				.innerJoinAndSelect("user_posts.userPostsCategories", "UserPostsCategories")
+				.where("UserPostsCategories.userpost IN (:...categories)", { categories: categoryData })
+				.getMany();
+
+			console.log('STORE ' + util.inspect(categoriesPosts, false, null, true /* enable colors */));
+			
+			if (categoriesPosts) {
+				result = categoriesPosts.map(categoryPost => {
+					return {
+						playlist: this.filtersService.getIframe(categoryPost.playlist, categoryPost.userPostsCategories[categoryPost.userPostsCategories.length - 1]),
+						likes: categoryPost.likes,
+						shares: categoryPost.shares,
+						UserPostsCategories: categoryPost.userPostsCategories
+					} as UserPostsInterface
+				});
+			}
+
+			response.send(result);
+		} catch (error) {
+			next(error);
+		} 
 	}
 
 	private uploadPost = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
