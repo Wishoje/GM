@@ -22,7 +22,7 @@ class UsersPostsContollers implements ControllerInterface {
 	}
 
 	public intializeRoutes() {
-		this.router.get(this.path, this.getUserPosts);
+		this.router.get(this.path, AuthMiddleware, this.getUserPosts);
 		this.router.get(`${this.path}/categories`, this.getCategoriesPosts);
 		this.router.post(this.path, [AuthMiddleware, ValidationMiddleware(UserPostsDto)], this.uploadPost);
 		this.router.delete(`${this.path}/:id`, AuthMiddleware, this.deleteUser);
@@ -34,7 +34,7 @@ class UsersPostsContollers implements ControllerInterface {
 			const userPosts = await this.userPostRepository.createQueryBuilder("user_posts")
 				.innerJoinAndSelect("user_posts.user", "User")
 				.innerJoinAndSelect("user_posts.userPostsCategories", "UserPostsCategories")
-				.where("user_posts.user = :id", { id: 1 })
+				.where("user_posts.user = :id", { id: response.locals.user.id })
 				.getMany();
 
 			if (userPosts) {
@@ -58,15 +58,11 @@ class UsersPostsContollers implements ControllerInterface {
 		try {
 			const categoryData = request.query.categoriesData;
 			let result = null;
-			const util = require('util');
-			console.log('STORE ' + util.inspect(categoryData, false, null, true /* enable colors */));
 			const categoriesPosts = await this.userPostRepository.createQueryBuilder("user_posts")
 				.innerJoinAndSelect("user_posts.user", "User")
 				.innerJoinAndSelect("user_posts.userPostsCategories", "UserPostsCategories")
 				.where("UserPostsCategories.userpost IN (:...categories)", { categories: categoryData })
 				.getMany();
-
-			console.log('STORE ' + util.inspect(categoriesPosts, false, null, true /* enable colors */));
 			
 			if (categoriesPosts) {
 				result = categoriesPosts.map(categoryPost => {
