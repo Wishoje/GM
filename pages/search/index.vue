@@ -24,7 +24,7 @@ export default {
             let categoryQueryId = [];
             let categoryQueryName = [];
             if (route.query.categoryId && route.query.categoryName) {
-                categoryQueryId.push(route.query.categoryId);
+                categoryQueryId.push(parseInt(route.query.categoryId));
                 categoryQueryName.push(route.query.categoryName);
             }
             const categoriesData = await $axios.get('/api/categories');

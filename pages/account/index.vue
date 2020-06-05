@@ -24,7 +24,7 @@
                     <div>Go to our<a href="/upload">Upload</a> Page to add your favorite playlist</div>
                 </div>
                 <div v-else>
-                    <div v-for="iframe in getPlaylistIframe" :key="iframe">
+                    <div v-for="iframe in getPlaylistIframe" :key="iframe.id">
                     <div v-html="iframe.playlist"></div> 
                     <div>Likes: {{ iframe.likes }} </div><br>
                 </div>
