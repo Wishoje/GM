@@ -1,6 +1,6 @@
 <template>
 	<main>
-        <filterSearch :categories="categories"/>
+        <filterSearch :allCategories="categories"/>
 	</main>
 </template>
 
