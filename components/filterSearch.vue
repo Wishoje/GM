@@ -4,11 +4,11 @@
 		<h2>Explore Playlists</h2>
 		<h3>Combine and add more tags to show more playlists</h3>
 		<div class="m-search-box">
-			<input type="text" class="m-search-text" placeholder="Search by Game Genre Platform">
+			<input type="text" id="searchQuery" class="m-search-text" v-model="searchQuery" @keyup="searchFilter()" placeholder="Search by Game Genre Platform">
 		</div>
 		<section>
 			<ul>
-				<li v-for="category in categories" :key="category.id">
+				<li v-for="category in categoriesToRender" :key="category.id">
 					<button :class="{'selected': categoryQueryName.includes(category.name) }" @click="toggleCategory(category.id, category.name)">{{category.name}}</button>
 				</li>
 			</ul>
@@ -37,17 +37,20 @@ export default {
         return {
             categoryQueryId: [],
 			categoryQueryName: [],
-			categoriesPosts: null
+			categoriesPosts: null,
+			searchQuery: '',
+			categoriesToRender: []
         }
     },
     created() {
+		this.getAllCategoriesFromProps();
         if (this.$route.query.categoryId && this.$route.query.categoryName) {
             this.categoryQueryId.push(parseInt(this.$route.query.categoryId));
             this.categoryQueryName.push(this.$route.query.categoryName);
         }
     },
 	props: {
-		categories: {
+		allCategories: {
 			type: Array,
 			default: []
 		}
@@ -66,6 +69,21 @@ export default {
 		this.getSelectedCategories();
 	},
 	methods: {
+		searchFilter() {
+			if (this.searchQuery.length > 1) {
+				const result = this.allCategories.filter( category => {
+					if (category.name.toLowerCase().includes(this.searchQuery.trim().toLowerCase())) {
+						return category
+					}
+				});
+				this.categoriesToRender = result;
+			} else {
+				this.getAllCategoriesFromProps();
+			}
+		},
+		getAllCategoriesFromProps() {
+			this.categoriesToRender = this.allCategories;
+		},
 		async toggleCategory(id, name) {
 			try {
 				if (!this.categoryQueryId.includes(id) && !this.categoryQueryName.includes(name)) {
