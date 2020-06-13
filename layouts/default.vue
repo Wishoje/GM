@@ -2,7 +2,6 @@
 	<div>
 		<AppModal />
 		<navigationMobile v-if="$device.isMobile" />
-		<!-- <navigationMobile v-if="$device.isDesktop" /> -->
 		<navigation v-else />
 		<nuxt />
 	</div>
