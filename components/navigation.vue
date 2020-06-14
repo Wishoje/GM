@@ -1,9 +1,7 @@
 <template>
 	<nav class="navbar">
 		<div class="c-logo">
-			<nuxt-link to="/">
-			<img src="../assets/images/gamersmusiclogo.svg" alt="Gamers Music Logo">
-			</nuxt-link>
+			<nuxt-link to="/"><img src="../assets/images/gamersmusiclogo.svg" alt="Gamers Music Logo"></nuxt-link>
 		</div>
 		<navigationLinks />
 	</nav>
