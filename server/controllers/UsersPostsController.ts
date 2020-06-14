@@ -58,7 +58,7 @@ class UsersPostsContollers implements ControllerInterface {
 		try {
 			const categoryData = request.query.categoriesData;
 			let result = null;
-			const categoriesPosts = await this.userPostRepository.createQueryBuilder("user_posts",)
+			const categoriesPosts = await this.userPostRepository.createQueryBuilder("user_posts")
 				.innerJoinAndSelect("user_posts.user", "User")
 				.innerJoinAndSelect("user_posts.userPostsCategories", "UserPostsCategories")
 				.where("UserPostsCategories.category_id IN (:...categories)", { categories: categoryData })
