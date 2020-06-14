@@ -37,9 +37,6 @@ class UsersPostsContollers implements ControllerInterface {
 				.where("user_posts.user = :id", { id: response.locals.user.id })
 				.getMany();
 
-			const util = require('util');
-			console.log('STORE1 ' + util.inspect(userPosts, false, null, true /* enable colors */));
-
 			if (userPosts) {
 				result = userPosts.map(userPost => {
 					return {
@@ -66,9 +63,6 @@ class UsersPostsContollers implements ControllerInterface {
 				.innerJoinAndSelect("user_posts.userPostsCategories", "UserPostsCategories")
 				.where("UserPostsCategories.category_id IN (:...categories)", { categories: categoryData })
 				.getMany();
-
-			const util = require('util');
-			console.log('STORE ' + util.inspect(categoriesPosts, false, null, true /* enable colors */));
 			
 			if (categoriesPosts) {
 				result = categoriesPosts.map(categoryPost => {
