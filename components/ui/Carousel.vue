@@ -1,7 +1,7 @@
 <template>
     <div class="c-upload-carousel">
-        <div v-if="!isMain" class="c-upload-featured c-upload-red">Check Out Our Featured List</div>
-        <div v-else class="c-upload-featured c-upload-red">Check Out Most Popular Lists</div>
+        <h3 v-if="!isMain" class="c-upload-featured c-upload-red">Check Out Our Featured List</h3>
+        <h3 v-else class="c-upload-featured c-upload-red">Check Out Most Popular Lists</h3>
         <VueSlickCarousel v-bind="settings">
             <div>
                 <iframe 
@@ -124,6 +124,7 @@ export default {
     }
     .c-upload-red {
         color: $primary-red;
+        font-weight: normal;
     }
     .c-upload-mid-space {
         font-size: 10px;

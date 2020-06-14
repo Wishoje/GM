@@ -2,7 +2,7 @@
 	<main>
 		<banner/>
 		<categories :categoriesURL="'/api/categories/games'" />
-		<explore/>
+		<!-- <explore/> -->
 		<lovedLists/>
 	</main>
 </template>

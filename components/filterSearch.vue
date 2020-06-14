@@ -101,7 +101,13 @@ export default {
 		},
 		async getSelectedCategories() {
 			try {
-				const result = await this.$axios.get('/api/usersPosts/categories', { params: { categoriesData: this.categoryQueryId } });
+				console.log(this.categoryQueryId);
+				const result = await this.$axios.get('/api/usersPosts/categories', { 
+					params: { 
+						categoriesData: this.categoryQueryId 
+						} 
+					}
+				);
 				return this.categoriesPosts = result.data;
 			} catch(error) {
 				console.log('Error :', error);
