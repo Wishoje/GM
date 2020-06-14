@@ -20,13 +20,22 @@
         </ul>
         <div class="c-profile-playlist">
             <span>Your Uploads</span>
-                <div v-if="!userPosts">
-                    <div>Go to our<a href="/upload">Upload</a> Page to add your favorite playlist</div>
-                </div>
-                <div v-else>
-                    <div v-for="iframe in getPlaylistIframe" :key="iframe.id">
-                    <div v-html="iframe.playlist"></div> 
-                    <div>Likes: {{ iframe.likes }} </div><br>
+            <div v-if="!userPosts">
+                <div>Go to our<a href="/upload">Upload</a> Page to add your favorite playlist</div>
+            </div>
+            <div v-else>
+                <div class="c-profile-playlist-section" v-for="iframe in getPlaylistIframe" :key="iframe.id">
+                    <div class="c-profile-playlist-tags">
+                        <div v-for="postDetail in iframe.postDetails" :key="postDetail.id"> 
+                            #{{ postDetail.category_name }}&nbsp;&nbsp;
+                        </div>
+                    </div>
+                    <div class="c-profile-playlist-iframe">
+                        <div v-html="iframe.playlist"></div> 
+                        <div class="c-profile-playlist-likes">
+                            <img src="https://img.icons8.com/android/24/000000/thumb-up.png"/> {{ iframe.likes }} 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,7 +58,12 @@ export default {
             return this.userPosts.map(userPost => {
                 return {
                     playlist: userPost.playlist,
-                    likes: userPost.likes
+                    likes: userPost.likes,
+                    postDetails: userPost.UserPostsCategories.map(userPostCategory => {
+                        return {
+                            category_name: userPostCategory.category_name
+                        }
+                    })
                 }
             })
         }
@@ -61,6 +75,8 @@ export default {
             }
 
             const result = await $axios.get('/api/usersPosts');
+            const util = require('util');
+		    console.log('STORE ' + util.inspect(result.data, false, null, true /* enable colors */));
             return {
                 userPosts: result.data
             }
@@ -105,5 +121,28 @@ export default {
             padding-right: 10px;
             color: $primary-red;
         }
+    }
+    .c-profile-playlist-iframe {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    .c-profile-playlist-section {
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+    }
+    .c-profile-playlist-likes {
+        margin-top: auto;
+        margin-left: 10px;
+        img {
+            display: inline;
+        }
+    }
+    .c-profile-playlist-tags {
+        display: flex;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        color: $primary-red;
     }
 </style>
