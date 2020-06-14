@@ -8,6 +8,7 @@ const config: ConnectionOptions = {
 	password: 'admin',
 	database: 'GM',
 	synchronize: true,
+	logging: true,
 	entities: [
 		__dirname + '/../**/*.entity{.ts,.js}',
 	],

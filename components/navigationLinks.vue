@@ -38,7 +38,6 @@
 		methods: {
             ...mapMutations('modal', ['showModal']),
             toggleHamburger() {
-                console.log('here' + this.$store.state.navigation.isHamburgerActive);
                 this.$store.commit('navigation/SET_HAMBURGER');
             },
 			async logout() {

@@ -40,7 +40,7 @@ class UsersPostsContollers implements ControllerInterface {
 			if (userPosts) {
 				result = userPosts.map(userPost => {
 					return {
-						playlist: this.filtersService.getIframe(userPost.playlist, userPost.userPostsCategories[userPost.userPostsCategories.length - 1]),
+						playlist: this.filtersService.getIframe(userPost.playlist),
 						likes: userPost.likes,
 						shares: userPost.shares,
 						UserPostsCategories: userPost.userPostsCategories
@@ -61,13 +61,13 @@ class UsersPostsContollers implements ControllerInterface {
 			const categoriesPosts = await this.userPostRepository.createQueryBuilder("user_posts")
 				.innerJoinAndSelect("user_posts.user", "User")
 				.innerJoinAndSelect("user_posts.userPostsCategories", "UserPostsCategories")
-				.where("UserPostsCategories.userpost IN (:...categories)", { categories: categoryData })
+				.where("UserPostsCategories.category_id IN (:...categories)", { categories: categoryData })
 				.getMany();
 			
 			if (categoriesPosts) {
 				result = categoriesPosts.map(categoryPost => {
 					return {
-						playlist: this.filtersService.getIframe(categoryPost.playlist, categoryPost.userPostsCategories[categoryPost.userPostsCategories.length - 1]),
+						playlist: this.filtersService.getIframe(categoryPost.playlist),
 						likes: categoryPost.likes,
 						shares: categoryPost.shares,
 						UserPostsCategories: categoryPost.userPostsCategories

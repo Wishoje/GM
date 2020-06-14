@@ -69,7 +69,6 @@ export default {
                     email: this.email,
                     password: this.password
                 });
-                console.log('AAAAAAAAAAAA');
                 this.router.push('/account');
             } catch(err) {
                 this.email = '';

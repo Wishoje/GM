@@ -53,7 +53,6 @@
              async submitForm() {
                 try {
                     const results = await this.$axios.get('/api/users');
-                    console.log(results);
                 } catch(err) {
                     this.email = '';
                     this.error = err;

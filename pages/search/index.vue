@@ -34,7 +34,8 @@ export default {
                 categories: categoriesData.data
             }
         } catch(error) {
-				console.log('Error :', error);
+            error({ statusCode: 404, message: 'Page Not Found!' })
+            console.log('Error :', error);
         }
     }
 }

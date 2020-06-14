@@ -54,18 +54,17 @@ export default {
             })
         }
     },
-    async asyncData({$axios, store, redirect}) {
+    async asyncData({$axios, store, redirect, error}) {
         try {
             if (!store.state.auth.user) {
                 return redirect('/registration');
             }
 
             const result = await $axios.get('/api/usersPosts');
-            console.log(result);
             return {
                 userPosts: result.data
             }
-        } catch(err) {
+        } catch(error) {
             error({ statusCode: 404, message: 'Page Not Found!' })
         }
     }
