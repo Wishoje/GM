@@ -19,35 +19,35 @@
 </template>
 
 <script>
-	import { mapMutations } from 'vuex';
-    import commonButton from './commonButton';
-    import navigationLinks from './navigationLinks';
+import { mapMutations } from 'vuex';
+import commonButton from './commonButton';
+import navigationLinks from './navigationLinks';
     
 
-	export default {
-		name: 'navigationMobile',
-		components: {
-            commonButton,
-            navigationLinks
+export default {
+    name: 'navigationMobile',
+    components: {
+        commonButton,
+        navigationLinks
+    },
+    props: {
+        modalType: String
+    },
+    methods: {
+        ...mapMutations('modal', ['showModal']),
+        toggleHamburger() {
+            this.$store.commit('navigation/SET_HAMBURGER');
         },
-		props: {
-			modalType: String
-		},
-		methods: {
-            ...mapMutations('modal', ['showModal']),
-            toggleHamburger() {
-                this.$store.commit('navigation/SET_HAMBURGER');
-            },
-			async logout() {
-				try {
-					await this.$store.dispatch('auth/reset');
-					this.$router.go();
-				} catch(err) {
-					throw new Error(err);
-				}
-			}
-		}
-  }
+        async logout() {
+            try {
+                await this.$store.dispatch('auth/reset');
+                this.$router.go();
+            } catch(err) {
+                throw new Error(err);
+            }
+        }
+    }
+}
 </script>
 
 <style lang="scss" scoped>
