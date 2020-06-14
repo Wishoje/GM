@@ -3,7 +3,7 @@
 		<div class="c-upload-wrapper m-flex-display">
 			<div class="c-options c-upload-header">
 				<h3 v-if="!user">How to Upload Your Favorite Playlist</h3>
-				<h3 v-else>Upload your Playlist From Your Favorite Music App</h3>
+				<h3 v-else>Upload Your Playlist From Your Favorite Music App</h3>
 			</div>
 			<div class="c-upload-form" v-if="user">
 				<form @submit.prevent="submitForm">
@@ -34,15 +34,14 @@
 					<checkbox field="streamer" v-model="streamer">Streamer</checkbox>
 
 					<div class="c-options">
-						<commonButton buttonType="submit" class="c-button-modify" text="AWESOME" />
+						<commonButton buttonType="submit" class="c-button-modify" text="Upload" />
 					</div>
-					{{ game }}
 				</form>
 			</div>
 			<div class="c-upload-how-to">
-				<div class="c-upload-playlist-link">How To Find Playlist Link From Your Favorite Music App:</div>
+				<div class="c-upload-playlist-link">How To Find The Playlist Link From Your Favorite Music App:</div>
 				<div v-for="platform in platformList" :key="platform.id">
-					<commonButton @click.native="showModal(`${platform.name}`)" class="c-upload-ul" :text="`${platform.name}`"></commonButton>
+					<commonButton @click.native="showModal({modalName:`${platform.name}`, modalType:`${platform.name}`})" class="c-upload-ul c-button-white" :text="`${platform.name}`"></commonButton>
 				</div>
 			</div>
 		</div>
@@ -127,9 +126,9 @@ export default {
 					mixer: this.mixer
 				});
                 this.resetForm();
-                this.showModal('Success');
+                this.showModal({modalName: 'Success', modalType:'Success'});
             } catch(err) {
-				console.log(err);
+				throw new Error(err);
             }
         },
         resetForm() {
@@ -160,7 +159,7 @@ export default {
                 genreList: genreResult.data || null
             }
         } catch (e) {
-            return error('Something went wrong please try again');
+            return error('Something went wrong please try again', e);
         }
     },
 }
@@ -202,6 +201,9 @@ export default {
         background-color: $primary-black;
         color: $primary-white;
 	}
+    .c-button-white {
+        color: $primary-white;
+    }
 	.c-upload-divider {
 		padding: 20px 0;
 		border-bottom: 1px solid $primary-border;

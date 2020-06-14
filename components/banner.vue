@@ -1,8 +1,8 @@
 <template>
 	<article class="c-banner">
 		<h2>SHARE YOUR <br />FAVORITE PLAYLISTS!</h2>
-		<h3>Join the gamers community where the music<br>
-		lead you to the another level.</h3>
+		<h3>Join The Gamers Community Where The Music<br>
+		Leads You To Another Level</h3>
 		<commonButton v-if="!$store.state.auth.user" @click.native="showModal({modalName: 'ModalLogin', modalType:'modalRegister'})" text="JOIN" />
 	</article>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <article>
-	<div class="m-banner">
+	<div class="m-banner c-banner">
 		<h2>Explore Playlists</h2>
 		<h3>Combine and add more tags to show more playlists</h3>
 		<div class="m-search-box">
@@ -117,6 +117,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+	.c-banner {
+		padding: 30px 0;
+	}
 	.c-profile-playlist {
         font-size: 1.5rem;
 		padding: 30px 0;
@@ -124,7 +127,7 @@ export default {
 		margin: 0 auto;
     }
 	section {
-		width: 50%;
+		width: 65%;
 		margin: auto;
 
 		ul {
