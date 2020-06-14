@@ -125,7 +125,6 @@ export default {
 					email: this.email,
 					password: this.password
 				});
-				console.log(`User with email: ${this.email} is logged in.`);
 				this.hideModal();
 				this.router.push('/account');
 			} catch(err) {

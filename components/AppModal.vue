@@ -47,7 +47,6 @@ export default {
 	},
 	watch: {
 		modalComponent(componentName) {
-			console.log('  modalComponent(componentName) :', componentName );
 			if (!componentName) return;
 			Vue.component(componentName, () => import(`./modal/${componentName}`));
 			this.component = componentName;

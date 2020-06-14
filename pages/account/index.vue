@@ -61,7 +61,6 @@ export default {
             }
 
             const result = await $axios.get('/api/usersPosts');
-            console.log(result);
             return {
                 userPosts: result.data
             }
