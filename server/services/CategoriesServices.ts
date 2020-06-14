@@ -31,7 +31,7 @@ class CategoriesServices {
                     ('Instrumental', 1, 13, '/images/01.png', 3), ('Reggae', 1, 13, '/images/01.png', 3),
                     ('Funk', 1, 14, '/images/01.png',3), ('Dubstep', 1, 13, '/images/01.png', 3),
                     ('Disco', 1, 14, '/images/01.png',3), ('House', 1, 11, '/images/01.png', 3),
-                    ('Pop', 1, 12, '/images/01.png', 3), ('Grunge', 1, 11, '/images/01.png', 3)`);
+                    ('Pop', 1, 12, '/images/01.png', 3), ('Grunge', 1, 11, '/images/01.png', 3), ('Anime', 1, 12, '/images/01.png', 3)`);
         } catch(err) {
             throw new Error(err)
         }

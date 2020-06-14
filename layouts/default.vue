@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<AppModal />
-		<navigationMobile v-if="$device.isMobile" />
+		<navigationMobile v-if="isMobile" />
 		<navigation v-else />
 		<nuxt />
 	</div>
@@ -17,6 +17,11 @@
 			AppModal,
 			navigationMobile,
 			navigation
+		},
+		computed: {
+			isMobile() {
+				return this.$device.isMobile;
+			}
 		}
 	}
 </script>

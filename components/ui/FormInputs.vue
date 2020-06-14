@@ -53,7 +53,7 @@ export default {
             type: String
         },
         maxlength: {
-            default: 256
+            default: 2000
         },
         required: {
             default: false,

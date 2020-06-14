@@ -1,7 +1,7 @@
 <template>
     <div class="c-upload-carousel">
         <h3 v-if="!isMain" class="c-upload-featured c-upload-red">Check Out Our Featured List</h3>
-        <h3 v-else class="c-upload-featured c-upload-red">Check Out Most Popular Lists</h3>
+        <h3 v-else class="c-upload-featured c-upload-red">Check Out Our Most Popular Lists</h3>
         <VueSlickCarousel v-bind="settings">
             <div>
                 <iframe 

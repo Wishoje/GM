@@ -1,5 +1,5 @@
 <template>
-    <ul :class="[$device.isMobile ? 'c-links-mobile' : 'c-links' ]" @click="toggleHamburger">
+    <ul :class="[isMobile ? 'c-links-mobile' : 'c-links' ]" @click="toggleHamburger">
         <li>
             <nuxt-link class="c-cat-link" to="/categories"><span>Categories</span></nuxt-link>
         </li>
@@ -34,6 +34,11 @@
 		},
 		props: {
 			modalType: String
+		},
+		computed: {
+			isMobile() {
+				return this.$device.isMobile;
+			}
 		},
 		methods: {
             ...mapMutations('modal', ['showModal']),
