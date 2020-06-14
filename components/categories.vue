@@ -2,8 +2,7 @@
 	<article class="c-categories">
 		<div v-if="!isCategoryPage">
 			<h2>MOST POPULAR <br />CATEGORIES</h2>
-			<h3>Listen, share and connect your musical world.<br>
-			Go explore the most popular tags.</h3>
+			<h3>Listen, share and connect your musical world. Go explore the most popular tags.</h3>
 		</div>
 		<section>
 			<ul>
