@@ -40,7 +40,7 @@ class UsersPostsContollers implements ControllerInterface {
 			if (userPosts) {
 				result = userPosts.map(userPost => {
 					return {
-						playlist: this.filtersService.getIframe(userPost.playlist),
+						playlist: this.filtersService.getIframe(userPost.playlist, 'profile'),
 						likes: userPost.likes,
 						shares: userPost.shares,
 						UserPostsCategories: userPost.userPostsCategories
@@ -67,7 +67,7 @@ class UsersPostsContollers implements ControllerInterface {
 			if (categoriesPosts) {
 				result = categoriesPosts.map(categoryPost => {
 					return {
-						playlist: this.filtersService.getIframe(categoryPost.playlist),
+						playlist: this.filtersService.getIframe(categoryPost.playlist, 'search'),
 						likes: categoryPost.likes,
 						shares: categoryPost.shares,
 						UserPostsCategories: categoryPost.userPostsCategories
