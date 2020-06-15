@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="c-profile-playlist-iframe">
-                        <div v-html="iframe.playlist"></div> 
+                        <div class="c-profile-playlist-wrapper" v-html="iframe.playlist"></div> 
                         <div class="c-profile-playlist-likes">
                             <img src="https://img.icons8.com/android/24/000000/thumb-up.png"/> {{ iframe.likes }} 
                         </div>
@@ -111,7 +111,7 @@ export default {
         min-height: 270px;
     }
     .c-profile-wrapper {
-        width: 60%;
+        width: 70%;
         margin: 0 auto;
     }
     .c-profile-links {
@@ -144,5 +144,51 @@ export default {
         margin-top: 20px;
         flex-wrap: wrap;
         color: $primary-red;
+    }
+    .c-profile-playlist-wrapper {
+        width: 80%;
+    }
+
+    @media #{$mq-tablet} {
+        .c-profile-wrapper {
+            width: 100%;
+        }
+    }
+
+    @media #{$mq-mobile} {
+        .c-profile-wrapper {
+            width: 100%;
+            flex-direction: column;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .c-profile-playlist {
+            padding: 0;
+            width: 90%;
+            margin: 0 auto;
+        }
+        .c-profile-wrapper-info {
+            background: linear-gradient($primary-red 50%, transparent 50%) no-repeat;
+            min-height: 200px;
+        }
+        .c-profile-image {
+            padding: 0;
+            margin-top: 70px;
+            margin-left: 20px;
+            flex-shrink: 0;
+            img {
+                height: 100px;
+                border: 2px solid $primary-white;
+            }  
+        }
+        .c-profile-info {
+            padding: 100px 20px 0 5px;
+        }
+        .c-profile-links {
+            padding: 5px 20px;
+        }
+        .c-profile-playlist-wrapper {
+            width: 100%;
+        }
     }
 </style>

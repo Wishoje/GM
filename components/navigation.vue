@@ -41,7 +41,7 @@
 		width: 100%;
 		top: 0;
 		overflow: hidden;
-		z-index: 100;
+		z-index: 1000;
 	}
 	nav {
 		font-family: Arial;

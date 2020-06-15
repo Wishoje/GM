@@ -12,15 +12,15 @@
 					</form-inputs>
 
 					<div class="c-options">
-						<multiselect v-model="game" tag-placeholder="Add this as a New Game" placeholder="Search For Your Favorite Games Or Add " label="name" track-by="id" :options="gameList" :multiple="true" :taggable="true" @tag="addGameTag"></multiselect>
+						<multiselect v-model="game" tag-placeholder="Add this as a New Game" placeholder="Search For Your Favorite Games" label="name" track-by="id" :options="gameList" :multiple="true" :taggable="true" @tag="addGameTag"></multiselect>
 					</div>
 
 					<div class="c-options">
-						<multiselect v-model="musicApp" :custom-label="addPlatformTag" placeholder="Search For Platform Name Or Add" label="name" track-by="id" :options="platformList"></multiselect>
+						<multiselect v-model="musicApp" :custom-label="addPlatformTag" placeholder="Search For Platform Name" label="name" track-by="id" :options="platformList"></multiselect>
 					</div>
 
 					<div class="c-options">
-						<multiselect v-model="genre" tag-placeholder="Add This as a New Genre" placeholder="Search For Most Popular Genres on Your Playlist Or Add" label="name" track-by="id" :options="genreList" :multiple="true" :taggable="true" @tag="addGenreTag"></multiselect>
+						<multiselect v-model="genre" tag-placeholder="Add This as a New Genre" placeholder="Search For Most Popular Genres on Your Playlist" label="name" track-by="id" :options="genreList" :multiple="true" :taggable="true" @tag="addGenreTag"></multiselect>
 					</div>
 
 					<form-inputs class="c-options" type="text" field="twitch" v-model="twitch">
@@ -208,6 +208,25 @@ export default {
 		padding: 20px 0;
 		border-bottom: 1px solid $primary-border;
 	}
+    @media #{$mq-tablet} {
+        .c-upload-wrapper {
+            width: 90%;
+        }
+    }
+     @media #{$mq-mobile} {
+        .c-upload-wrapper {
+            width: 95%;
+            flex-direction: column;
+            padding-top: 0;
+        }
+        .c-upload-form, .c-upload-how-to {
+            width: 95%;
+            margin: 0 auto;
+        }
+        .c-button-modify, .c-upload-ul {
+            width: 100%;
+	    }
+     }
 </style>
 
 <style lang="scss">

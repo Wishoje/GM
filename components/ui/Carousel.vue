@@ -3,13 +3,13 @@
         <h3 v-if="!isMain" class="c-upload-featured c-upload-red">Check Out Our Featured List</h3>
         <h3 v-else class="c-upload-featured c-upload-red">Check Out Our Most Popular Lists</h3>
         <VueSlickCarousel v-bind="settings">
-            <div>
+            <div class="c-carousel-wrapper">
                 <iframe 
                     allow="autoplay *;
                     encrypted-media *;"
                     frameborder="0"
                     height="400"
-                    width="350"
+                    width="100%"
                     style="max-width:400px;overflow:hidden;background:transparent;"
                     sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/playlist/chill-house/pl.bd55c25265aa4de8b3fc3e0960751846?app=music">
                 </iframe>
@@ -18,9 +18,9 @@
                     <span>Games: <span class="c-upload-red">Dota 2, LoL</span></span>
                 </div>
             </div>
-            <div>
+            <div class="c-carousel-wrapper">
                 <iframe
-                    width="350"
+                    width="100%"
                     height="400"
                     src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG"
                     frameborder="0"
@@ -33,10 +33,10 @@
                     <span>Games: <span class="c-upload-red">Starcraft</span></span>
                 </div>
             </div>
-            <div>
+            <div class="c-carousel-wrapper">
                 <iframe id='AmazonMusicEmbedB088BK6ZG4' scrolling="no"
                     src='https://music.amazon.com/embed/B088BK6ZG4/?id=IbCYiN8K07&marketplaceId=ATVPDKIKX0DER&musicTerritory=US'
-                    width='350px'
+                    width='100%'
                     height='400px'
                     style='border:1px solid rgba(0, 0, 0, 0.12);max-width:400px;overflow-x:hidden;'>
                 </iframe>
@@ -45,10 +45,10 @@
                     <span>Games: <span class="c-upload-red">CSGO</span></span>
                 </div>
             </div>
-            <div>
+            <div class="c-carousel-wrapper">
                 <iframe
                     src="https://open.spotify.com/embed/playlist/0e7sxPYOixPoNOD3L37wbz"
-                    width="350"
+                    width="100%"
                     height="400"
                     frameborder="0"
                     allowtransparency="true"
@@ -59,9 +59,9 @@
                     <span>Games: <span class="c-upload-red">Poker</span></span>
                 </div>
             </div>
-            <div>
+            <div class="c-carousel-wrapper">
                 <iframe 
-                    width="350"
+                    width="100%"
                     height="400"
                     scrolling="no"
                     frameborder="no"
@@ -99,10 +99,37 @@ export default {
 				speed: 500,
 				slidesToShow: 4,
 				infinite: true,
-				slidesToScroll: 3,
+				slidesToScroll: 4,
 				touchThreshold: 5,
 				focusOnSelect: true,
-                arrows: true
+                arrows: true,
+                initialSlide: 0,
+                responsive: [{
+                    breakpoint: 1279,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: true
+                    }
+                    },
+                    {
+                    breakpoint: 1025,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        initialSlide: 2
+                    }
+                    },
+                    {
+                    breakpoint: 760,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        initialSlide: 1
+                    }
+                    }
+                ]
 			}
         }
     }
@@ -129,5 +156,8 @@ export default {
     .c-upload-mid-space {
         font-size: 10px;
         padding-top: 10px
+    }
+    .c-carousel-wrapper {
+        padding: 0 20px;
     }
 </style>
