@@ -16,7 +16,7 @@
 	</div>
 	<div>
 		<div class="c-profile-playlist">
-			<div v-if="!categoriesPosts">
+			<div v-if="!categoriesPosts || categoriesPosts.length == 0">
 				<div>No Results</div>
 			</div>
 			<div v-else>

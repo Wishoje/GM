@@ -2,8 +2,16 @@
 	<div>
 		<div class="c-upload-wrapper m-flex-display">
 			<div class="c-options c-upload-header">
-				<h3 v-if="!user">How to Upload Your Favorite Playlist</h3>
-				<h3 v-else>Upload Your Playlist From Your Favorite Music App</h3>
+                <div class="c-upload-join" v-if="!user">.
+                    <h3>Upload</h3>
+				    <h2>Join Our Gamers Community To Explore New Awesome Music While You Playing Your Favorite Game</h2>
+                    <div class="c-upload-login">
+                        <commonButton v-if="!$store.state.auth.user" @click.native="showModal({modalName: 'ModalLogin', modalType:'modalRegister'})" text="UPLOAD A PLAYLIST" />
+                    </div>
+                </div>
+                <div v-else>
+				    <h3>Upload Your Playlist From Your Favorite Music App</h3>
+                </div>
 			</div>
 			<div class="c-upload-form" v-if="user">
 				<form @submit.prevent="submitForm">
@@ -36,9 +44,10 @@
 					<div class="c-options">
 						<commonButton buttonType="submit" class="c-button-modify" text="Upload" />
 					</div>
+                    <span class="error" v-if="error">{{ error }}</span>
 				</form>
 			</div>
-			<div class="c-upload-how-to">
+			<div v-if="user" class="c-upload-how-to">
 				<div class="c-upload-playlist-link">How To Find The Playlist Link From Your Favorite Music App:</div>
 				<div v-for="platform in platformList" :key="platform.id">
 					<commonButton @click.native="showModal({modalName:`${platform.name}`, modalType:`${platform.name}`})" class="c-upload-ul c-button-white" :text="`${platform.name}`"></commonButton>
@@ -87,6 +96,7 @@ export default {
             gameList: null,
             platformList: null,
             genreList: null,
+            error: ''
         }
     },
     computed: {
@@ -117,19 +127,28 @@ export default {
 		},
 		async submitForm() {
             try {
-				const result = await this.$axios.post('/api/usersPosts', {
-					playlist: this.playlist,
-					game: this.game,
-					musicApp: this.musicApp,
-					genre: this.genre,
-					twitch: this.twitch,
-					mixer: this.mixer
-				});
-                this.resetForm();
-                this.showModal({modalName: 'Success', modalType:'Success'});
+                if (this.errorHandling()) {
+                    const result = await this.$axios.post('/api/usersPosts', {
+                        playlist: this.playlist,
+                        game: this.game,
+                        musicApp: this.musicApp,
+                        genre: this.genre,
+                        twitch: this.twitch,
+                        mixer: this.mixer
+                    });
+                    this.resetForm();
+                    this.showModal({modalName: 'Success', modalType:'Success'});
+                }
             } catch(err) {
 				throw new Error(err);
             }
+        },
+        errorHandling() {
+            if (!this.playlist || !this.game || !this.musicApp || !this.genre) {
+                this.error = 'Please Enter Your Playlist, Game, Music App and Genre';
+                return false
+            }
+            return true
         },
         resetForm() {
             this.playlist = '',
@@ -138,7 +157,8 @@ export default {
             this.genre = '',
             this.streamer = false,
 			this.twitch = '',
-			this.mixer = ''
+            this.mixer = '',
+            this.error = ''
         }
     },
     async asyncData({$axios, error}) {
@@ -208,6 +228,21 @@ export default {
 		padding: 20px 0;
 		border-bottom: 1px solid $primary-border;
 	}
+    .c-upload-login {
+        text-align: center;
+        margin-top: 50px;
+    }
+    .c-upload-join {
+        width: 65%;
+        margin: 0 auto;
+        line-height: 50px;
+        h2 {
+            line-height: 50px
+        }
+    }
+    .error {
+        color: $primary-red;
+    }
     @media #{$mq-tablet} {
         .c-upload-wrapper {
             width: 90%;
@@ -226,6 +261,14 @@ export default {
         .c-button-modify, .c-upload-ul {
             width: 100%;
 	    }
+        .c-upload-join {
+            width: 90%;
+            line-height: 40px;
+            h2 {
+                font-size: 20px;
+            }
+            
+        }
      }
 </style>
 
