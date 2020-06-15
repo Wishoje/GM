@@ -56,7 +56,7 @@ export default {
     width: 100%;
     top: 0;
     overflow: hidden;
-    z-index: 100;
+    z-index: 1000;
     
     .hamburger {
         position: relative;
@@ -98,6 +98,7 @@ export default {
     width: 100%;
     height: 100%;
     display: none;
+    z-index: 1000;
     &.change {
         background-color: black;
         display: block;
