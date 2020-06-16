@@ -1,5 +1,5 @@
 <template>
-	<article :class="[isMobile ? 'c-categories-mobile' : '' ]" class="c-categories">
+	<article class="c-categories">
 		<div v-if="!isCategoryPage">
 			<h2>MOST POPULAR <br />CATEGORIES</h2>
 			<h3>Listen, share and connect wtih the musical world. Go explore the most popular tags.</h3>
@@ -70,9 +70,6 @@
 					return a.sort - b.sort;
 				});
 				return this.limit ? this.categories.slice(0, this.limit) : this.categories;
-			},
-			isMobile() {
-				return this.$device.isMobile;
 			}
 		}
 	}
@@ -115,23 +112,25 @@
 		}
 	}
 
-	.c-categories-mobile {
-		ul {
-			width: 100%;
-
-			li {
+	@media #{$mq-mobile-portrait} {
+		.c-categories {
+			ul {
 				width: 100%;
-				margin: 0.2rem 0;
-				height: 5rem;
 
-				a {
-					line-height: 5rem;
+				li {
+					width: 100%;
+					margin: 0.2rem 0;
+					height: 5rem;
+
+					a {
+						line-height: 5rem;
+					}
 				}
 			}
 		}
 	}
 	
-	@media #{$mq-desktop-large} { 
+	@media #{$mq-desktop-large} {
 		.c-categories {
 			ul {
 				width: 60%;

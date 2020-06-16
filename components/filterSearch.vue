@@ -1,6 +1,6 @@
 <template>
   <article>
-	<div class="m-banner c-banner" :class="[isMobile ? 'c-banner-mobile' : '' ]">
+	<div class="m-banner c-banner">
 		<h2>Explore Playlists</h2>
 		<h3>Combine and add more tags to show more playlists</h3>
 		<div class="m-search-box">
@@ -71,9 +71,6 @@ export default {
 					userName: categoryPost.userName
                 }
             })
-		},
-		isMobile() {
-			return this.$device.isMobile;
 		}
     },
 	mounted() {
@@ -207,15 +204,40 @@ export default {
         }
     }
 
-	.c-banner-mobile {
-		.m-search-box {
-			width: 80%;
-			input {
-				width: 100%;
+	@media #{$mq-tablet} {
+		.c-banner {
+			.m-search-box {
+				width: 50%;
+				input {
+					width: 100%;
+				}
 			}
 		}
-		section {
-			width: 95%;
+	}
+	
+
+	@media #{$mq-mobile} {
+		.c-banner {
+			.m-search-box {
+				width: 60%;
+				input {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	@media #{$mq-mobile-portrait} {
+		.c-banner {
+			.m-search-box {
+				width: 80%;
+				input {
+					width: 100%;
+				}
+			}
+			section {
+				width: 95%;
+			}
 		}
 	}
 </style>
