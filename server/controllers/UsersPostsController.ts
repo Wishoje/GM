@@ -70,7 +70,8 @@ class UsersPostsContollers implements ControllerInterface {
 						playlist: this.filtersService.getIframe(categoryPost.playlist, 'search'),
 						likes: categoryPost.likes,
 						shares: categoryPost.shares,
-						UserPostsCategories: categoryPost.userPostsCategories
+						UserPostsCategories: categoryPost.userPostsCategories,
+						userName: categoryPost.user.name
 					} as UserPostsInterface
 				});
 			}

@@ -4,7 +4,7 @@
 			<div class="c-options c-upload-header">
                 <div class="c-upload-join" v-if="!user">.
                     <h3>Upload</h3>
-				    <h2>Join Our Gamers Community To Explore New Awesome Music While You Playing Your Favorite Game</h2>
+				    <h2>Join Our Gamers Community To Explore New Awesome Music While You Are Playing Your Favorite Game</h2>
                     <div class="c-upload-login">
                         <commonButton v-if="!$store.state.auth.user" @click.native="showModal({modalName: 'ModalLogin', modalType:'modalRegister'})" text="UPLOAD A PLAYLIST" />
                     </div>

@@ -33,7 +33,7 @@
                     <div class="c-profile-playlist-iframe">
                         <div class="c-profile-playlist-wrapper" v-html="iframe.playlist"></div> 
                         <div class="c-profile-playlist-likes">
-                            <img src="https://img.icons8.com/android/24/000000/thumb-up.png"/> {{ iframe.likes }} 
+                            <img src="https://img.icons8.com/ios-filled/40/000000/like.png"/> <span class="c-profile-icon">{{ iframe.likes }}</span>
                         </div>
                     </div>
                 </div>
@@ -147,6 +147,10 @@ export default {
     }
     .c-profile-playlist-wrapper {
         width: 80%;
+    }
+    .c-profile-icon {
+        font-size: 24px;
+        vertical-align: bottom;
     }
 
     @media #{$mq-tablet} {
