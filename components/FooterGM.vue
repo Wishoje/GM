@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  name: "footer"
+  name: "FooterGM"
 };
 </script>
 

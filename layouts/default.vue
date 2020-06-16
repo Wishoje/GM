@@ -4,7 +4,7 @@
     <navigationMobile v-if="isMobile" />
     <navigation v-else />
     <nuxt />
-    <footer />
+    <FooterGM />
   </div>
 </template>
 
@@ -12,14 +12,14 @@
 import AppModal from "../components/AppModal";
 import navigation from "../components/navigation";
 import navigationMobile from "../components/navigationMobile";
-import footer from "../components/footer";
+import FooterGM from "../components/FooterGM";
 
 export default {
   components: {
     AppModal,
     navigationMobile,
     navigation,
-    footer
+    FooterGM
   },
   computed: {
     isMobile() {
