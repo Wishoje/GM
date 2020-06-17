@@ -136,12 +136,13 @@ export default {
 		},
 		async likePlaylist(id) {
 			try {
-				const foundPost = this.likedPosts.filter(likedPost => likedPost.id === id);
-				if (foundPost.length > 0) {
+				const foundPost = this.likedPosts.filter(likedPost => likedPost.userpost.id === id);
+				if (foundPost && foundPost.length > 0) {
 					this.showModal({modalName: 'LikedAlreadyPost', modalType:'LikedAlreadyPost'});
 				} else {
 					const result = await this.$axios.post('/api/usersPosts/like', { playlistId: id });
 					this.getSelectedCategories(); // nonon
+					this.getAlreadyLikedPlaylists();
 				}
 			} catch(error) {
 				console.log('Error :', error);
