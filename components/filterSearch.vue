@@ -160,6 +160,7 @@ export default {
 		padding: 30px 0;
 		width: 60%;
 		margin: 0 auto;
+		min-height: 50vh;
     }
 	section {
 		width: 65%;

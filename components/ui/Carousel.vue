@@ -14,7 +14,7 @@
                     sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/playlist/chill-house/pl.bd55c25265aa4de8b3fc3e0960751846?app=music">
                 </iframe>
                 <div class="c-upload-mid-space">
-                    <span>Uploaded by: <span class="c-upload-red">Mile Milenkovski</span></span><br>
+                    <span>Uploaded by: <span class="c-upload-red">GodMan</span></span><br>
                     <span>Games: <span class="c-upload-red">Dota 2, LoL</span></span>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     allowfullscreen>
                 </iframe>
                 <div class="c-upload-mid-space">
-                    <span>Uploaded by: <span class="c-upload-red">Saban Sabanovski</span></span><br>
+                    <span>Uploaded by: <span class="c-upload-red">Crash</span></span><br>
                     <span>Games: <span class="c-upload-red">Starcraft</span></span>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     style='border:1px solid rgba(0, 0, 0, 0.12);max-width:400px;overflow-x:hidden;'>
                 </iframe>
                 <div class="c-upload-mid-space">
-                    <span>Uploaded by: <span class="c-upload-red">Bane Banevski</span></span><br>
+                    <span>Uploaded by: <span class="c-upload-red">BratMinli</span></span><br>
                     <span>Games: <span class="c-upload-red">CSGO</span></span>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                     allow="encrypted-media">
                 </iframe>
                 <div class="c-upload-mid-space">
-                    <span>Uploaded by: <span class="c-upload-red">Trajko Trajkovski</span></span><br>
+                    <span>Uploaded by: <span class="c-upload-red">Sususam</span></span><br>
                     <span>Games: <span class="c-upload-red">Poker</span></span>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/637658580&color=%23ff5500&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
                 </iframe>
                 <div class="c-upload-mid-space">
-                    <span>Uploaded by: <span class="c-upload-red">Bumbar Bumbarovski</span></span><br>
+                    <span>Uploaded by: <span class="c-upload-red">Bombina</span></span><br>
                     <span>Games: <span class="c-upload-red">Dota 2</span></span>
                 </div>
             </div>

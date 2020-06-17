@@ -103,6 +103,7 @@ export default {
     .c-profile-playlist {
         font-size: 1.5rem;
         padding: 15px 200px;
+        min-height: 60vh;
     }
     .c-profile-wrapper-info {
         background: linear-gradient($primary-red 70%, transparent 30%) no-repeat;
