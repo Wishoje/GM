@@ -65,9 +65,15 @@
 		}
 	}
 
-	@media #{$mq-mobile-landscape} {
+	@media #{$mq-mobile} {
 		nav {
-			padding: 0.7rem 3rem;
+			padding: 0.7rem 2rem;
+		}
+	}
+
+	@media #{$mq-mobile-portrait} {
+		nav {
+			padding: 0.7rem 0.5rem;
 		}
 	}
 </style>

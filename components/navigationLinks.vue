@@ -105,7 +105,13 @@
 		color:black;
 		font-weight:bold;
 		text-decoration:underline;
-    }
+	}
+	
+	@media #{$mq-mobile-portrait} {
+		span {
+			font-size: 0.7rem;
+		}
+	}
 }
 // Desktop classes end
 
