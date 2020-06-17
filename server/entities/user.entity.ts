@@ -1,5 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import UserPosts from '../entities/user_posts.entity';
+import UserPostsLikes from '../entities/user_posts_likes.entity';
 
 @Entity()
 class User {
@@ -29,6 +30,9 @@ class User {
 
     @OneToMany(type => UserPosts, posts => posts.user)
     public posts: UserPosts[];
+
+    @OneToMany(type => UserPostsLikes, userPostsLikes => userPostsLikes.user)
+    public userPostsLikes: UserPostsLikes[];
 }
 
 export default User;

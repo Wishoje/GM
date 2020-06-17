@@ -1,3 +1,4 @@
+import { mapMutations } from 'vuex';
 export default {
     data() {
         return {
@@ -31,6 +32,7 @@ export default {
         installGoogleSdkScript(document, 'script', 'google-jssdk');
     },
     methods: {
+        ...mapMutations('modal', [`hideModal`]),
         async googleSubmit () {
             try {
                 if (!this.googleReady) {
@@ -46,6 +48,7 @@ export default {
                         this.$router.push('/account');
                     }
                 }
+                this.hideModal();
             } catch (err) {
                 console.log('auth-mixin / err: ', err);
                 this.error = 'Something went wrong please try again';

@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 import User from '../entities/user.entity';
 import UserPostsCategories from '../entities/user_posts_categories.entity';
+import UserPostsLikes from '../entities/user_posts_likes.entity';
 
 @Entity()
 class UserPosts {
@@ -36,6 +37,9 @@ class UserPosts {
 
     @OneToMany(type => UserPostsCategories, userPostsCategories => userPostsCategories.userpost)
     public userPostsCategories: UserPostsCategories[];
+
+    @OneToMany(type => UserPostsLikes, userPostLikes => userPostLikes.userpost)
+    public userPostLikes: UserPostsLikes[];
 }
 
 export default UserPosts;

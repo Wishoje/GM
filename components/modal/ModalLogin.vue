@@ -15,6 +15,7 @@
 					<label for="password">Password</label>
 					<input class="m-rounded" v-model="password" id="password" type="password" placeholder="******">
 				</div>
+				<div class="error" v-if="error">{{ error }}</div>
 				<div>
 					<div>
 						<button class="c-modalLogin__login m-rounded" @click="submitRegisterForm">
@@ -29,11 +30,10 @@
 							<span class="icon"></span>
 							<span class="buttonText">Log in with Google</span>
 						</div>
+						
 					</div>
-
 					Forgot your password? <a href="#">Reset it here.</a><br>
 				</div>
-				<div v-if="error">{{ error }}</div>
 			</form>
 		</div>
 
@@ -51,7 +51,7 @@
 					<label for="password">Password</label>
 					<input class="m-rounded" v-model="password"  id="password" type="password" placeholder="******">
 				</div>
-
+				<div class="error" v-if="error">{{ error }}</div>
 				<div>
 					<button class="c-modalLogin__login m-rounded" type="submit">
 						LOG IN
@@ -71,7 +71,6 @@
 					<br>
 					Forgot your password? <a href="#">Reset it here.</a><br>
 				</div>
-				<div v-if="error">{{ error }}</div>
 			</form>
 		</div>
 	</div>
@@ -135,17 +134,18 @@ export default {
 		},
 		async submitRegisterForm() {
 			try {
-			const result = await this.$store.dispatch('auth/register', {
-				email: this.email,
-				password: this.password,
-				name: this.name
-			});
+				const result = await this.$store.dispatch('auth/register', {
+					email: this.email,
+					password: this.password,
+					name: this.name
+				});
+				this.hideModal();
 			} catch(err) {
-			this.email = '';
-			this.password = '';
-			this.error = 'Something went wrong please try again';
+				this.email = '';
+				this.password = '';
+				this.error = 'Something went wrong please try again';
 			}
-			this.hideModal();
+			
 		}
 	},
 };
@@ -202,6 +202,10 @@ export default {
 			text-align: center;
 			font-size: 0.9rem;
 		}
+	}
+
+	.error {
+		color: $primary-red;
 	}
 
 	#c-customGoogleBtn {

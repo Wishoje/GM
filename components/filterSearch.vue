@@ -26,8 +26,8 @@
 						<div>
 							<span class="c-profile-playlist-user">Uploaded By:</span><span> {{ iframe.userName }}</span>
 						</div>
-						<div class="c-profile-playlist-icon">
-							<img src="https://img.icons8.com/ios-filled/40/000000/like.png"/> <span class="c-profile-icon">{{ iframe.likes }}</span>
+						<div @click="likePlaylist(iframe.playlistId)" class="c-profile-playlist-icon">
+							<img :src="likeImage"/> <span class="c-profile-icon">{{ iframe.likes }}</span>
 						</div>
 					</div>
 				</div>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
 	name: 'filterSearch',
 	data() {
@@ -46,7 +47,9 @@ export default {
 			categoryQueryName: [],
 			categoriesPosts: null,
 			searchQuery: '',
-			categoriesToRender: []
+			categoriesToRender: [],
+			likedPosts: [],
+			likeImage: 'https://img.icons8.com/ios-filled/40/000000/like.png'
         }
     },
     created() {
@@ -66,6 +69,7 @@ export default {
         getPlaylistIframe() {
             return this.categoriesPosts.map(categoryPost => {
                 return {
+					playlistId: categoryPost.id,
                     playlist: categoryPost.playlist,
 					likes: categoryPost.likes,
 					userName: categoryPost.userName
@@ -78,8 +82,10 @@ export default {
     },
 	mounted() {
 		this.getSelectedCategories();
+		this.getAlreadyLikedPlaylists()
 	},
 	methods: {
+		...mapMutations('modal', ['showModal']),
 		searchFilter() {
 			if (this.searchQuery.length > 1) {
 				const result = this.allCategories.filter( category => {
@@ -119,6 +125,27 @@ export default {
 					}
 				);
 				return this.categoriesPosts = result.data;
+			} catch(error) {
+				console.log('Error :', error);
+			}
+		},
+		async getAlreadyLikedPlaylists() {
+			try {
+				const result = await this.$axios.get('/api/usersPosts/liked');
+				return this.likedPosts = result.data;
+			} catch(error) {
+				console.log('Error :', error);
+			}
+		},
+		async likePlaylist(id) {
+			try {
+				const foundPost = this.likedPosts.filter(likedPost => likedPost.id === id);
+				if (foundPost.length > 0) {
+					this.showModal({modalName: 'LikedAlreadyPost', modalType:'LikedAlreadyPost'});
+				} else {
+					const result = await this.$axios.post('/api/usersPosts/like', { playlistId: id });
+					this.getSelectedCategories(); // nonon
+				}
 			} catch(error) {
 				console.log('Error :', error);
 			}
@@ -202,7 +229,7 @@ export default {
     }
 
 	@media #{$mq-mobile} {
-        .c-profile-playlist-iframe {
+        .c-profile-playlist-iframe, .c-profile-playlist {
             width: 100%;
         }
     }
