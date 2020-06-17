@@ -1,4 +1,10 @@
+import UserPostsLikes from '../entities/user_posts_likes.entity';
+import UserPostsLikeDto from '../models/User/UserPostsLikeDto';
+import { getRepository, createQueryBuilder } from 'typeorm';
+
 class FiltersService {
+    private userPostsLikesRepository = getRepository(UserPostsLikes);
+
     public getIframe(playlist: string, type: string): string {
         const iframeWidth = type === 'profile' ? 650 : 400;
         if (playlist.indexOf('soundcloud') > -1) {
@@ -20,6 +26,20 @@ class FiltersService {
             return '';
         }
     }
+
+    public getPostLikeCount = async (postId: number) => {
+        try {
+			const likedPostCount = await this.userPostsLikesRepository.createQueryBuilder("user_posts_likes")
+				.innerJoin("user_posts_likes.user", "User")
+				.innerJoinAndSelect("user_posts_likes.userpost", "UserPosts")
+				.where("UserPosts.id = :id", { id: postId })
+                .getCount();
+
+                return likedPostCount;
+		} catch (err) {
+			throw new Error(err);
+		} 
+	}
 }
 
 export default FiltersService;

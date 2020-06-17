@@ -3,7 +3,7 @@
         <div class="c-profile-wrapper-info m-flex-display">
             <div class="c-profile-image">
                 <img v-if="user.image" :src="user.image" :title="user.name"/>
-                <img v-else src="../../assets/Kajce.jpg">
+                <img v-else src="../../assets/9f812d4cf313e887ef99d8722229eee1.jpg">
             </div>
             <div class="c-profile-info">
                 <span class="c-profile-info-name">{{ user.name }}</span><br>
@@ -73,10 +73,8 @@ export default {
             if (!store.state.auth.user) {
                 return redirect('/registration');
             }
-
             const result = await $axios.get('/api/usersPosts');
-            const util = require('util');
-		    console.log('STORE ' + util.inspect(result.data, false, null, true /* enable colors */));
+
             return {
                 userPosts: result.data
             }

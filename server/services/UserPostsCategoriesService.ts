@@ -4,7 +4,7 @@ import UserPostsCategories from '../entities/user_posts_categories.entity';
 import UserPlatformDto from '../models/UserPlatformDto';
 
 class UserPostsCategoriesService {
-	private userPostCategoriesRepository = getRepository(UserPostsCategories);
+    private userPostCategoriesRepository = getRepository(UserPostsCategories); 
 
 	public insertGamePostCategories = async (game: any, userPostId: any) => {
         try {
@@ -45,7 +45,6 @@ class UserPostsCategoriesService {
 
     public insertGenrePostCategories = async (genre: any, userPostId: any) => {
         try {
-
             await Promise.all(genre.map(genres => {
                 return this.userPostCategoriesRepository
                     .createQueryBuilder()
