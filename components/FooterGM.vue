@@ -2,7 +2,7 @@
   <footer>
     <div class="footer-container">
       <div class="footer-heading">
-        <h3>Gamers Music</h3>
+        <img src="../assets/images/gamersmusiclogo.svg" alt="Gamers Music Logo">
       </div>
       <div class="social-container">
         <p>Follow Us</p>
