@@ -25,6 +25,15 @@ services:
     - docker.env
     networks:
     - postgres
+
+  nuxt:
+    build: ./
+    container_name: gamersmusic
+    restart: always
+    ports:
+      - "3000:3000"
+    command:
+      "npm run dev"
  
 networks:
   postgres:
