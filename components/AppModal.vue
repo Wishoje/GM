@@ -14,6 +14,10 @@
 	>
 		<div v-if="visible" class="c-appModal__content" @click.self="hideModal">
 			<div class="c-appModal__innerContent">
+				<div class="c-appModal__closeModal" @click="hideModal" role="button" aria-label="Close Modal" tabindex="0">
+					<span></span>
+					<span></span>
+				</div>
 				<component :is="component" :modalTypeProps="type"/>
 			</div>
 		</div>
@@ -101,6 +105,36 @@ export default {
 		&__innerContent {
 			padding: 2em;
 			background: #fff;
+		}
+
+		&__closeModal {
+			position: absolute;
+			right: 1em;
+			width: 30px;
+			height: 30px;
+
+			span {
+				width: 30px;
+				height: 5px;
+				display: block;
+				position: absolute;
+				background-color: #777;
+				border-radius: 2px;
+			}
+
+			span:first-child {
+				transform: rotate(45deg) translate(10px, 10px);
+			}
+
+			span:last-child {
+				transform: rotate(-45deg) translate(-10px, 10px);
+			}
+
+			&:hover {
+				span {
+					background-color: #ddd;
+				}
+			}
 		}
 	}
 
