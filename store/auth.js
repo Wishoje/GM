@@ -14,6 +14,9 @@ export const mutations = {
 	RESET_USER(store) {
 		state.user = null;
 		state.isLoggedIn = false;
+	},
+	SET_DEFAULT_COOKIE(store) {
+		cookies.set('cross-site-cookie', 'gamersMusic', { sameSite: "None",  secure: true });
 	}
 }
 
@@ -21,7 +24,7 @@ export const actions = {
 	async fetch ({commit}) {
 		const result = await this.$axios.$get('/api/me');
 		if (result) {
-			commit('SET_USER', result.user);
+			commit('SET_USER', result.user);			
 		} else {
 			commit('RESET_USER');
 			resetAuthToken();

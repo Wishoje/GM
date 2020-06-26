@@ -6,19 +6,20 @@ export const state = () => ({})
 export const mutations = {}
 
 export const actions = {
-	nuxtServerInit ({dispatch}, context) {
+	async nuxtServerInit ({dispatch, commit}, context) {
 		return new Promise((resolve, reject) => {
-			cookies.set(' cross-site-cookie', 'gamersMusic', { sameSite: "None",  secure: true });
 			const cookies = cookie.parse(context.req.headers.cookie || '');
+			commit('auth/SET_DEFAULT_COOKIE');
 			if (cookies.hasOwnProperty('x-access-token')) {
-				setAuthToken(cookies['x-access-token']);
-				dispatch('auth/fetch').then(result => {
+				try {
+					setAuthToken(cookies['x-access-token']);
+					await dispatch('auth/fetch');
 					resolve(true);
-				}).catch(error => {
-					console.log('Provided token is invalid:', error)  ;                    
+				} catch(err) {
+					console.log('Provided token is invalid:', err)  ;                    
 					resetAuthToken();
 					resolve(false);
-				})
+				}
 			} else {
 				resetAuthToken();
 				resolve(false);
