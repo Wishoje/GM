@@ -8,6 +8,7 @@ export const mutations = {}
 export const actions = {
 	nuxtServerInit ({dispatch, commit}, context) {
 		return new Promise((resolve, reject) => {
+			console.log('TEST');
 			const cookies = cookie.parse(context.req.headers.cookie || '');
 			commit('auth/SET_DEFAULT_COOKIE');
 			if (cookies.hasOwnProperty('x-access-token')) {
@@ -15,7 +16,7 @@ export const actions = {
 				dispatch('auth/fetch').then(result => {
 					resolve(true);
 				}).catch(error => {
-					console.log('Provided token is invalid:', error)  ;                    
+					console.log('Provided token is invalid:', error);
 					resetAuthToken();
 					resolve(false);
 				})

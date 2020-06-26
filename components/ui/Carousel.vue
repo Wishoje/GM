@@ -5,8 +5,7 @@
         <VueSlickCarousel v-bind="settings">
             <div class="c-carousel-wrapper">
                 <iframe 
-                    allow="autoplay *;
-                    encrypted-media *;"
+                    allow="autoplay *; encrypted-media *;"
                     frameborder="0"
                     height="400"
                     width="100%"
@@ -24,8 +23,7 @@
                     height="400"
                     src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG"
                     frameborder="0"
-                    allow="autoplay;
-                    encrypted-media"
+                    allow="autoplay; encrypted-media"
                     allowfullscreen>
                 </iframe>
                 <div class="c-upload-mid-space">
