@@ -19,7 +19,6 @@ export const mutations = {
 
 export const actions = {
 	async fetch ({commit}) {
-		cookies.set(' cross-site-cookie', 'gamersMusic', { sameSite: "None",  secure: true });
 		const result = await this.$axios.$get('/api/me');
 		if (result) {
 			commit('SET_USER', result.user);

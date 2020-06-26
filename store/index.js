@@ -8,6 +8,7 @@ export const mutations = {}
 export const actions = {
 	nuxtServerInit ({dispatch}, context) {
 		return new Promise((resolve, reject) => {
+			cookies.set(' cross-site-cookie', 'gamersMusic', { sameSite: "None",  secure: true });
 			const cookies = cookie.parse(context.req.headers.cookie || '');
 			if (cookies.hasOwnProperty('x-access-token')) {
 				setAuthToken(cookies['x-access-token']);
