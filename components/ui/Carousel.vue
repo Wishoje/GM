@@ -3,7 +3,7 @@
         <h3 v-if="!isMain" class="c-upload-featured c-upload-red">Check Out Our Featured List</h3>
         <h3 v-else class="c-upload-featured c-upload-red">Check Out Our Most Popular Lists</h3>
         <VueSlickCarousel v-bind="settings">
-            <div class="c-carousel-wrapper">
+            <!-- <div class="c-carousel-wrapper">
                 <iframe 
                     allow="autoplay *; encrypted-media *;"
                     frameborder="0"
@@ -42,7 +42,7 @@
                     <span>Uploaded by: <span class="c-upload-red">BratMinli</span></span><br>
                     <span>Games: <span class="c-upload-red">CSGO</span></span>
                 </div>
-            </div>
+            </div> -->
             <div class="c-carousel-wrapper">
                 <iframe
                     src="https://open.spotify.com/embed/playlist/0e7sxPYOixPoNOD3L37wbz"
@@ -81,6 +81,14 @@ import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 
 export default {
     name: 'Carousel',
+    head () {
+		return {
+			link: [
+                { rel='stylesheet', href='https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' },
+                { rel='stylesheet', href='https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css' }
+			]
+		}
+  	},
     components: {
         VueSlickCarousel
     },
