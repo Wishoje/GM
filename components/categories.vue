@@ -1,7 +1,7 @@
 <template>
 	<article class="c-categories">
 		<div v-if="!isCategoryPage">
-			<h2>MOST POPULAR <br />CATEGORIES</h2>
+			<h2>MOST POPULAR <br />CATEGORIES1</h2>
 			<h3>Listen, share and connect with the musical world. Go explore the most popular tags.</h3>
 		</div>
 		<section>
