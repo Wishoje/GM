@@ -30,7 +30,7 @@
                     <span>Uploaded by: <span class="c-upload-red">Crash</span></span><br>
                     <span>Games: <span class="c-upload-red">Starcraft</span></span>
                 </div>
-            </div>
+            </div> -->
             <div class="c-carousel-wrapper">
                 <iframe id='AmazonMusicEmbedB088BK6ZG4' scrolling="no"
                     src='https://music.amazon.com/embed/B088BK6ZG4/?id=IbCYiN8K07&marketplaceId=ATVPDKIKX0DER&musicTerritory=US'
@@ -42,7 +42,7 @@
                     <span>Uploaded by: <span class="c-upload-red">BratMinli</span></span><br>
                     <span>Games: <span class="c-upload-red">CSGO</span></span>
                 </div>
-            </div> -->
+            </div>
             <div class="c-carousel-wrapper">
                 <iframe
                     src="https://open.spotify.com/embed/playlist/0e7sxPYOixPoNOD3L37wbz"
