@@ -16,7 +16,6 @@ export const mutations = {
 		state.isLoggedIn = false;
 	},
 	SET_DEFAULT_COOKIE(store) {
-		console.log('HERE');
 		cookies.set('cross-site-cookie', 'gamersMusic', { sameSite: "None",  secure: true });
 	}
 }

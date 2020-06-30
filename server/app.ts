@@ -35,8 +35,10 @@ class App {
 	}
 
 	private async initializeNuxtBuilder() {
-		const builder = new Builder(this.nuxt);
-		await builder.build();
+		if (this.config.dev) {
+			const builder = new Builder(this.nuxt);
+			await builder.build();
+		}
 	}
 
 	// after nuxt
