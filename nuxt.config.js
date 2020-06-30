@@ -90,5 +90,8 @@ module.exports = {
     */
     extend (config, ctx) {
     }
+  },
+  server: {
+    port: process.env.PORT || 3000
   }
 }
