@@ -88,8 +88,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
-    }
+    baseURL: process.env.BASE_URL || 'http://localhost:3000',
   },
   server: {
     port: process.env.PORT || 3000
