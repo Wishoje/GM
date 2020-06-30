@@ -4,7 +4,6 @@ const config: ConnectionOptions = {
 	url: process.env.DATABASE_URL,
 	type: 'postgres',
 	synchronize: true,
-	ssl: true,
 	entities: [
 		__dirname + '/../**/*.entity{.ts,.js}',
 	],
