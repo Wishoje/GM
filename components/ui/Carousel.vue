@@ -3,7 +3,7 @@
         <h3 v-if="!isMain" class="c-upload-featured c-upload-red">Check Out Our Featured List</h3>
         <h3 v-else class="c-upload-featured c-upload-red">Check Out Our Most Popular Lists</h3>
         <VueSlickCarousel v-bind="settings">
-            <!-- <div class="c-carousel-wrapper">
+            <div class="c-carousel-wrapper">
                 <iframe 
                     allow="autoplay *; encrypted-media *;"
                     frameborder="0"
@@ -16,7 +16,7 @@
                     <span>Uploaded by: <span class="c-upload-red">GodMan</span></span><br>
                     <span>Games: <span class="c-upload-red">Dota 2, LoL</span></span>
                 </div>
-            </div> -->
+            </div>
             <div class="c-carousel-wrapper">
                 <iframe
                     width="100%"
