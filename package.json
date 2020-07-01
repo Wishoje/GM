@@ -10,7 +10,7 @@
     "start": "cross-env NODE_ENV=development nodemon server/index.ts --watch server",
     "generate": "nuxt generate",
     "test": "jest",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm start"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
