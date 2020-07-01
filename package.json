@@ -12,6 +12,14 @@
     "test": "jest",
     "heroku-postbuild": "npm start"
   },
+  "type": "module",
+  "keywords": [
+    "ES",
+    "MODULES",
+    "NODE",
+    "MODULES",
+    "JS"
+  ],
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/device": "^1.2.7",
