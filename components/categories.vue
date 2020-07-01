@@ -57,7 +57,7 @@
 		methods: {
 			async getCategories() {
 				try {
-					const result = await this.$axios.$get(this.categoriesURL);
+					const result = await this.$axios.$get(`deploy-gamersmusic-test.herokuapp.com/${this.categoriesURL}`);
 					return this.categories = result;
 				} catch(error) {
 					console.log('Error :', error);
