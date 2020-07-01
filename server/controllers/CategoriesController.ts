@@ -22,6 +22,7 @@ class CategoriesController implements ControllerInterface {
 
 	private getCategories = async (request: express.Request, response: express.Response) => {
 		try {
+			console.log('CATEGORIES CATEGORIES');
 			const checkData = await this.categoriesRepository.find();
 			let categoryType = null;
 			if (!checkData || !checkData.length) {
