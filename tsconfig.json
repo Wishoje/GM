@@ -1,6 +1,7 @@
 // tsconfig.json
 {
   "compilerOptions": {
+    "module": "commonjs",
     "sourceMap": true,
     "target": "es2017",
     "outDir": "./dist",
