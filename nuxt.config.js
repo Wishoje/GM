@@ -82,10 +82,11 @@ module.exports = {
   axios: {
     baseURL: process.env.BASE_URL || 'http://localhost:3000',
     proxy: true,
+    https: true,
   },
 
   proxy: {
-    '/api/': 'https://deploy-gamersmusic-test.herokuapp.com'
+    '/api/': process.env.BASE_URL || 'http://localhost:3000',
   },
   /*
   ** Build configuration
