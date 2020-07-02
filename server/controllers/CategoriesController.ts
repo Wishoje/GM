@@ -4,6 +4,7 @@ import ControllerInterface from '../interfaces/ControllerInterface';
 import Categories from '../entities/categories.entity';
 import CategoriesServices from '../services/CategoriesServices';
 import CategoriesTypeServices from '../services/CategoriesTypeServices';
+import { resolveNs } from 'dns';
 
 class CategoriesController implements ControllerInterface {
 	public path = '/api/categories';
@@ -18,6 +19,11 @@ class CategoriesController implements ControllerInterface {
 
 	public intializeRoutes() {
 		this.router.get([`${this.path}`, `${this.path}/games`, `${this.path}/platform`, `${this.path}/genre` ,`${this.path}/streamer` ], this.getCategories);
+		this.router.get(`${this.path}/test`, this.getTest);
+	}
+
+	private getTest = async (request: express.Request, response: express.Response) => {
+		response.send('HERE TESTING API');
 	}
 
 	private getCategories = async (request: express.Request, response: express.Response) => {
