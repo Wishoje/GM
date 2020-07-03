@@ -83,10 +83,6 @@ module.exports = {
     proxy: true,
     prefix: process.env.BASE_URL || 'http://localhost:3000',
   },
-
-  proxy: { 
-    '/api/': {target: process.env.BASE_URL, pathRewrite: {'^/api/': ''}, changeOrigin: true },
-  },
   /*
   ** Build configuration
   */
