@@ -80,7 +80,8 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    proxt: true,
+    proxy: true,
+    prefix: process.env.BASE_URL || 'http://localhost:3000',
   },
 
   proxy: { 
@@ -98,6 +99,5 @@ module.exports = {
   },
   server: {
     port: process.env.PORT || 3000,
-    host: process.env.HOST || '0.0.0.0',
   }
 }
