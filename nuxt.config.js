@@ -83,6 +83,9 @@ module.exports = {
     proxy: true,
     prefix: process.env.BASE_URL || 'http://localhost:3000',
   },
+  server: {
+    port: process.env.PORT,
+  },
   /*
   ** Build configuration
   */
