@@ -7,12 +7,13 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.ts --watch server",
     "build": "nuxt build",
-    "start": "cross-env NODE_ENV=development nodemon server/index.ts --watch server",
+    "start": "cross-env NODE_ENV=production node server/index.ts",
     "generate": "nuxt generate",
     "test": "jest",
-    "heroku-postbuild": "npm start"
+    "heroku-postbuild": "npm run start"
   },
   "dependencies": {
+    "@nuxt/typescript-build": "^0.6.1",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/device": "^1.2.7",
     "@nuxtjs/pwa": "^3.0.0-0",
