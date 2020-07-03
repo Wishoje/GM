@@ -17,10 +17,13 @@ class App {
 		this.app = express();
 		this.config = nuxtConfig;
 		this.initializeDevConfig();
-
+		console.log('HERE');
 		this.nuxt = new Nuxt(this.config);
+		console.log('PORT : ' + this.port);
+		console.log('HOST : ' + this.host);
 		this.port = this.nuxt.options.server.port;
 		this.host = this.nuxt.options.server.host;
+		console.log('HOST 2: ' + this.host);
 
 		this.initializeMiddlewares();
 		this.initializeControllers(controllers);
