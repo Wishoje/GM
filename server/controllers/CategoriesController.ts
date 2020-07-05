@@ -4,7 +4,6 @@ import ControllerInterface from '../interfaces/ControllerInterface';
 import Categories from '../entities/categories.entity';
 import CategoriesServices from '../services/CategoriesServices';
 import CategoriesTypeServices from '../services/CategoriesTypeServices';
-import { resolveNs } from 'dns';
 
 class CategoriesController implements ControllerInterface {
 	public path = '/api/categories';
@@ -28,7 +27,6 @@ class CategoriesController implements ControllerInterface {
 
 	private getCategories = async (request: express.Request, response: express.Response) => {
 		try {
-			console.log('CATEGORIES CATEGORIES');
 			const checkData = await this.categoriesRepository.find();
 			let categoryType = null;
 			if (!checkData || !checkData.length) {
