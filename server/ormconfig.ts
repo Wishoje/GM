@@ -1,14 +1,9 @@
 import { ConnectionOptions } from 'typeorm';
 
 const config: ConnectionOptions = {
+	url: process.env.DATABASE_URL,
 	type: 'postgres',
-	host: 'localhost',
-	port: 5432,
-	username: 'admin',
-	password: 'admin',
-	database: 'GM',
 	synchronize: true,
-	logging: true,
 	entities: [
 		__dirname + '/../**/*.entity{.ts,.js}',
 	],
