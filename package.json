@@ -10,7 +10,7 @@
     "start": "cross-env node dist/index.js",
     "generate": "nuxt generate",
     "test": "jest",
-    "heroku-postbuild": "tsc"
+    "heroku-postbuild": "tsc && npm run build"
   },
   "dependencies": {
     "@nuxt/typescript-build": "^0.6.1",
