@@ -1,15 +1,18 @@
-// tsconfig.json
 {
   "compilerOptions": {
     "sourceMap": true,
+    "module": "commonjs",
     "target": "es2017",
     "outDir": "./dist",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "paths": {
+      "@/*": ["server/*"]
+    },
   },
   "include": [
-    "src/**/*.ts"
+    "server/**/*.ts"
   ],
   "exclude": [
     "node_modules"
@@ -17,8 +20,5 @@
   "types": [
     "@types/node",
     "@nuxt/types"
-  ],
-  "@/*": [
-    "./*"
   ]
 }
