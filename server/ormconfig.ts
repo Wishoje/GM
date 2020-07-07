@@ -1,18 +1,36 @@
 import { ConnectionOptions } from 'typeorm';
 
-const config: ConnectionOptions = {
-	url: process.env.DATABASE_URL,
-	type: 'postgres',
+const EMC = {
 	synchronize: true,
 	entities: [
-		__dirname + '/../**/*.entity{.ts,.js}',
+		__dirname + '/entities/*.entity{.ts,.js}',
 	],
 	migrations: [
-		'src/migrations/*{.ts,.js}',
+		'/migrations/*{.ts,.js}',
 	],
 	cli: {
-		migrationsDir: 'src/migrations',
+		migrationsDir: '/migrations',
 	},
+}
+
+const config: Record<string, ConnectionOptions> = {
+	development: {
+		type: 'postgres',
+		host: 'localhost',
+		port: 5432,
+		username: 'admin',
+		password: 'admin',
+		database: 'GM',
+		logging: true,
+		...EMC
+	},
+	production: {
+		url: process.env.DATABASE_URL,
+		type: 'postgres',
+		...EMC
+	}
 };
 
-export = config;
+const envConfig = config[process.env.NODE_ENV || 'development']
+
+export default envConfig;
