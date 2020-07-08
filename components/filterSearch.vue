@@ -75,11 +75,16 @@ export default {
 					userName: categoryPost.userName
                 }
             })
+		},
+		user() { 
+			return this.$store.state.auth.user;
 		}
     },
 	mounted() {
 		this.getSelectedCategories();
-		this.getAlreadyLikedPlaylists()
+		if (this.user) {
+			this.getAlreadyLikedPlaylists();
+		}
 	},
 	methods: {
 		...mapMutations('modal', ['showModal']),
