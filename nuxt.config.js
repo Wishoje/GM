@@ -82,7 +82,7 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseUrl: isDev ? 'http://localhost:3000/' : 'https://www.gamersmusic.com/'
+    baseURL: isDev ? 'http://localhost:3000/' : 'https://www.gamersmusic.com/'
   },
   /*
   ** Build configuration
