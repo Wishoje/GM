@@ -27,7 +27,7 @@ class UsersPostsContollers implements ControllerInterface {
 	public intializeRoutes() {
 		this.router.get(this.path, AuthMiddleware, this.getUserPosts);
 		this.router.get(`${this.path}/categories`, this.getCategoriesPosts);
-		this.router.get(`${this.path}/liked`, this.getUserPostLikes);
+		this.router.get(`${this.path}/liked`, AuthMiddleware, this.getUserPostLikes);
 		this.router.post(this.path, [AuthMiddleware, ValidationMiddleware(UserPostsDto)], this.uploadPost);
 		this.router.post(`${this.path}/like`, [AuthMiddleware, ValidationMiddleware(UserPostsLikeDto)], this.uploadPostLike);
 		this.router.delete(`${this.path}/:id`, AuthMiddleware, this.deleteUser);
