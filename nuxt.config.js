@@ -1,4 +1,6 @@
 
+const isProd = process.env.NODE_ENV === 'production'
+
 module.exports = {
   mode: 'universal',
   /*
@@ -80,6 +82,7 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseUrl: isProd ? 'https://www.gamersmusic.com/' : 'http://localhost:3000/'
   },
   /*
   ** Build configuration
