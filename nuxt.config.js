@@ -80,11 +80,7 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    proxy: true,
-    prefix: process.env.BASE_URL || 'http://localhost:3000',
-  },
-  server: {
-    port: process.env.PORT,
+
   },
   /*
   ** Build configuration

@@ -6,10 +6,9 @@ export const state = () => ({})
 export const mutations = {}
 
 export const actions = {
-	nuxtServerInit ({dispatch, commit}, context) {
+	nuxtServerInit ({dispatch}, context) {
 		return new Promise((resolve, reject) => {
 			const cookies = cookie.parse(context.req.headers.cookie || '');
-			commit('auth/SET_DEFAULT_COOKIE');
 			if (cookies.hasOwnProperty('x-access-token')) {
 				setAuthToken(cookies['x-access-token']);
 				dispatch('auth/fetch').then(result => {

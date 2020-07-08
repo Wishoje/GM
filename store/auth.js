@@ -11,12 +11,9 @@ export const mutations = {
 		state.user = data;
 		state.isLoggedIn = true;
 	},
-	RESET_USER(state) {
+	RESET_USER(store) {
 		state.user = null;
 		state.isLoggedIn = false;
-	},
-	SET_DEFAULT_COOKIE(store) {
-		cookies.set('cross-site-cookie', 'gamersMusic', { sameSite: "None",  secure: true });
 	}
 }
 

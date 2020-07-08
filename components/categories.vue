@@ -51,7 +51,7 @@
 				categories: []
 			};
 		},
-		mounted() {
+		created() {
 			this.getCategories();
 		},
 		methods: {
