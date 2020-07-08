@@ -7,12 +7,13 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.ts --watch server",
     "build": "nuxt build",
-    "start": "cross-env NODE_ENV=development nodemon server/index.ts --watch server",
+    "start": "cross-env NODE_ENV=production node dist/index.js",
     "generate": "nuxt generate",
     "test": "jest",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "tsc && npm run build"
   },
   "dependencies": {
+    "@nuxt/typescript-build": "^0.6.1",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/device": "^1.2.7",
     "@nuxtjs/pwa": "^3.0.0-0",
@@ -46,6 +47,7 @@
     "tailwindcss": "^1.2.0",
     "ts-node": "^8.8.1",
     "typeorm": "^0.2.24",
+    "typescript": "^3.9.6",
     "v-tooltip": "^2.0.3",
     "vue-multiselect": "^2.1.6",
     "vue-slick": "^1.1.15",

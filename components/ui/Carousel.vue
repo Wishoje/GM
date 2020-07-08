@@ -5,8 +5,7 @@
         <VueSlickCarousel v-bind="settings">
             <div class="c-carousel-wrapper">
                 <iframe 
-                    allow="autoplay *;
-                    encrypted-media *;"
+                    allow="autoplay *; encrypted-media *;"
                     frameborder="0"
                     height="400"
                     width="100%"
@@ -24,8 +23,7 @@
                     height="400"
                     src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG"
                     frameborder="0"
-                    allow="autoplay;
-                    encrypted-media"
+                    allow="autoplay; encrypted-media"
                     allowfullscreen>
                 </iframe>
                 <div class="c-upload-mid-space">
@@ -83,6 +81,14 @@ import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 
 export default {
     name: 'Carousel',
+    head () {
+		return {
+			link: [
+                { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' },
+                { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css' }
+			]
+		}
+  	},
     components: {
         VueSlickCarousel
     },

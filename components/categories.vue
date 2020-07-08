@@ -2,7 +2,7 @@
 	<article class="c-categories">
 		<div v-if="!isCategoryPage">
 			<h2>MOST POPULAR <br />CATEGORIES</h2>
-			<h3>Listen, share and connect wtih the musical world. Go explore the most popular tags.</h3>
+			<h3>Listen, share and connect with the musical world. Go explore the most popular tags.</h3>
 		</div>
 		<section>
 			<ul>
@@ -51,14 +51,13 @@
 				categories: []
 			};
 		},
-		mounted() {
+		created() {
 			this.getCategories();
 		},
 		methods: {
 			async getCategories() {
 				try {
-					const result = await this.$axios.$get(this.categoriesURL);
-					return this.categories = result;
+					this.categories = await this.$axios.$get(this.categoriesURL);
 				} catch(error) {
 					console.log('Error :', error);
 				}

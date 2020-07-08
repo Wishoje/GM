@@ -18,6 +18,11 @@ class CategoriesController implements ControllerInterface {
 
 	public intializeRoutes() {
 		this.router.get([`${this.path}`, `${this.path}/games`, `${this.path}/platform`, `${this.path}/genre` ,`${this.path}/streamer` ], this.getCategories);
+		this.router.get(`${this.path}/test`, this.getTest);
+	}
+
+	private getTest = async (request: express.Request, response: express.Response) => {
+		response.send('HERE TESTING API');
 	}
 
 	private getCategories = async (request: express.Request, response: express.Response) => {

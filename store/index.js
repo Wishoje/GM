@@ -14,7 +14,7 @@ export const actions = {
 				dispatch('auth/fetch').then(result => {
 					resolve(true);
 				}).catch(error => {
-					console.log('Provided token is invalid:', error)  ;                    
+					console.log('Provided token is invalid:', error);
 					resetAuthToken();
 					resolve(false);
 				})

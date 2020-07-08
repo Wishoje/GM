@@ -62,7 +62,7 @@ class AuthenticationController implements ControllerInterface {
 	private googleAuth = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
 		try {
 			const OAuth2 = google.auth.OAuth2;
-			const oauth2Client = new OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_SECRET_ID, 'http://localhost:3000/account');
+			const oauth2Client = new OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_SECRET_ID, `${process.env.BASE_URL}/account`);
 			const getPeople = google.people('v1');
 
 			oauth2Client.setCredentials({

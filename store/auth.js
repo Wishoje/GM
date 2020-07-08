@@ -21,7 +21,7 @@ export const actions = {
 	async fetch ({commit}) {
 		const result = await this.$axios.$get('/api/me');
 		if (result) {
-			commit('SET_USER', result.user);
+			commit('SET_USER', result.user);			
 		} else {
 			commit('RESET_USER');
 			resetAuthToken();
