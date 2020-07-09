@@ -76,16 +76,14 @@
 
 <script>
 import VueSlickCarousel from 'vue-slick-carousel';
-import 'vue-slick-carousel/dist/vue-slick-carousel.css';
-import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 
 export default {
     name: 'Carousel',
     head () {
 		return {
 			link: [
-                { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' },
-                { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css' }
+				{ rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' },
+				{ rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css' }
 			]
 		}
   	},
@@ -100,43 +98,44 @@ export default {
     },
     data() {
         return {
-			settings: {
-				dots: true,
-				speed: 500,
-				slidesToShow: 4,
-				infinite: true,
-				slidesToScroll: 4,
-				touchThreshold: 5,
-				focusOnSelect: true,
-                arrows: true,
-                initialSlide: 0,
-                responsive: [{
-                    breakpoint: 1279,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                        infinite: true,
-                        dots: true
-                    }
-                    },
-                    {
-                    breakpoint: 1025,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                        initialSlide: 2
-                    }
-                    },
-                    {
-                    breakpoint: 760,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        initialSlide: 1
-                    }
-                    }
-                ]
-			}
+					settings: {
+						dots: true,
+						speed: 500,
+						slidesToShow: 4,
+						infinite: true,
+						slidesToScroll: 4,
+						touchThreshold: 5,
+						focusOnSelect: true,
+						arrows: true,
+						initialSlide: 0,
+						swipeToSlide: true,
+						responsive: [{
+								breakpoint: 1279,
+								settings: {
+										slidesToShow: 3,
+										slidesToScroll: 3,
+										infinite: true,
+										dots: true
+								}
+								},
+								{
+								breakpoint: 1025,
+								settings: {
+										slidesToShow: 2,
+										slidesToScroll: 2,
+										initialSlide: 2
+								}
+								},
+								{
+								breakpoint: 760,
+								settings: {
+										slidesToShow: 1,
+										slidesToScroll: 1,
+										initialSlide: 1
+								}
+								}
+						]
+					}
         }
     }
 }
@@ -145,15 +144,18 @@ export default {
 <style lang="scss">
     .c-upload-carousel {
         width: 80%;
-        margin: 40px auto;
-    }
-    .slick-prev:before,
-    .slick-next:before {
-        color: $primary-red;
+				margin: 40px auto;
+				
+			.slick-prev:before,
+			.slick-next:before {
+				color: $primary-red;
+				opacity: 100%;
+				font-size: 25px;
+			}
     }
     .c-upload-featured {
-        text-align: center;
-        padding: 20px 0;
+			text-align: center;
+			padding: 20px 0;
     }
     .c-upload-red {
         color: $primary-red;
