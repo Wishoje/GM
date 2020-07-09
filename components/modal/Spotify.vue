@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <h3>Spotify Share Playlist</h3>
+            <h2>Spotify Share Playlist</h2>
         </div>
         <ol>
             <li>Select playlist you want to share</li>

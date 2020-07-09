@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <h3>AppleMusic Share Playlist</h3>
+            <h2>AppleMusic Share Playlist</h2>
         </div>
         <ol>
             <li>Select playlist you want to share</li>

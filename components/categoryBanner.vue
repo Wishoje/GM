@@ -1,6 +1,6 @@
 <template>
 	<article class="m-banner">
-		<h2>Find Your Favorite Playlist From Gamers Like You</h2>
+		<h1>Find Your Favorite Playlist From Gamers Like You</h1>
 	</article>
 </template>
 

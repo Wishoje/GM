@@ -157,7 +157,6 @@ export default {
     }
     .c-upload-red {
         color: $primary-red;
-        font-weight: normal;
     }
     .c-upload-mid-space {
         font-size: 10px;

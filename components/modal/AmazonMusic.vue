@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <h3>AmazonMusic Share Playlist</h3>
+            <h2>AmazonMusic Share Playlist</h2>
         </div>
         <ol>
             <li>Select playlist you want to share</li>

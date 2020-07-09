@@ -1,12 +1,12 @@
 <template>
 	<article class="c-categories">
 		<div v-if="!isCategoryPage">
-			<h2>MOST POPULAR <br />CATEGORIES</h2>
+			<h2>MOST POPULAR CATEGORIES</h2>
 			<h3>Listen, share and connect with the musical world. Go explore the most popular tags.</h3>
 		</div>
 		<section>
 			<ul>
-				<li v-for="category in computedLimit" :key="category.id" v-bind:style="{ 'background-image': `url('${category.image}')` }">
+				<li v-for="category in computedLimit" :key="category.id" v-bind:style="{ 'background-image': `url('${category.image}')`, 'background-size': 'cover' }">
 					<a :href="`/search?categoryId=${category.id}&categoryName=${category.name}`">{{ category.name }}</a>
 				</li>
 			</ul>
@@ -136,4 +136,5 @@
 			}
 		}
 	}
+	
 </style>
