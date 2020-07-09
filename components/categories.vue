@@ -96,7 +96,7 @@
 					width: 100%;
 					height: 100%;
 					line-height: 10.5rem;
-					font-size: 1.8rem;
+					font-size: 24px;
 					color: $primary-white;
 					&:hover {
 						background-color: rgba($color: $primary-black, $alpha: 0.8);
