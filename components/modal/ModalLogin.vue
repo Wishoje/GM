@@ -2,7 +2,7 @@
 	<div>
 		<div class="c-modalRegister" v-if="modalTypeProps === 'modalRegister'">
 			<form @submit.prevent="submitForm">
-				<h3>Create Account</h3>
+				<h2>Create Account</h2>
 				<div>
 					<label for="name">Nickname</label>
 					<input class="m-rounded" v-model="name" id="name" type="text"	placeholder="name">
@@ -39,9 +39,7 @@
 
 		<div class="c-modalLogin" v-if="modalTypeProps === 'modalLogin'">
 			<form v-if="!user" @submit.prevent="submitForm">
-				<h3>
-					Login
-				</h3>
+				<h2>Login</h2>
 				<div>
 					<label for="name">Email</label>
 					<input class="m-rounded" v-model="email" id="email" type="text" placeholder="Email">
@@ -172,7 +170,7 @@ export default {
 		}
 
 		form {
-			h3 {
+			h3, h2 {
 				color: $primary-grey;
 				margin-top: 0;
 			}

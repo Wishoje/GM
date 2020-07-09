@@ -1,7 +1,7 @@
 <template>
 	<main>
 		<banner/>
-		<categories :categoriesURL="'/api/categories/games'" />
+		<categories class="c-main-wrapper" :categoriesURL="'/api/categories/games'" />
 		<!-- <explore/> -->
 		<lovedLists/>
 	</main>
@@ -25,5 +25,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+	@media #{$mq-mobile} {
+		.c-main-wrapper {
+			padding: 0 10px;
+		}
+	}
 </style>

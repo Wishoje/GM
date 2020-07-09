@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <h3>YouTube Share Playlist</h3>
+            <h2>YouTube Share Playlist</h2>
         </div>
         <ol>
             <li>Select playlist you want to share</li>

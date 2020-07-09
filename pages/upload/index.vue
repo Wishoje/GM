@@ -3,14 +3,14 @@
 		<div class="c-upload-wrapper m-flex-display">
 			<div class="c-options c-upload-header">
                 <div class="c-upload-join" v-if="!user">.
-                    <h3>Upload</h3>
+                    <h2>Upload</h2>
 				    <h2>Join Our Gamers Community To Explore New Awesome Music While You Are Playing Your Favorite Game</h2>
                     <div class="c-upload-login">
                         <commonButton v-if="!$store.state.auth.user" @click.native="showModal({modalName: 'ModalLogin', modalType:'modalRegister'})" text="UPLOAD A PLAYLIST" />
                     </div>
                 </div>
                 <div v-else>
-				    <h3>Upload Your Playlist From Your Favorite Music App</h3>
+				    <h2>Upload Your Playlist From Your Favorite Music App</h2>
                 </div>
 			</div>
 			<div class="c-upload-form" v-if="user">
@@ -18,6 +18,7 @@
 					<form-inputs type="text" field="playlist" :required="true" v-model="playlist">
 						Playlist Link:
 					</form-inputs>
+                    <span class="m-error" v-if="playlistError">{{ playlistError }}</span>
 
 					<div class="c-options">
 						<multiselect v-model="game" tag-placeholder="Add this as a New Game" placeholder="Search For Your Favorite Games" label="name" track-by="id" :options="gameList" :multiple="true" :taggable="true" @tag="addGameTag"></multiselect>
@@ -39,16 +40,16 @@
 						Mixer Account:
 					</form-inputs>
 
-					<checkbox field="streamer" v-model="streamer">Streamer</checkbox>
+					<checkbox field="streamer" class="m-cursor-pointer" v-model="streamer">Streamer</checkbox>
 
 					<div class="c-options">
 						<commonButton buttonType="submit" class="c-button-modify" text="Upload" />
 					</div>
-                    <span class="error" v-if="error">{{ error }}</span>
+                    <span class="m-error" v-if="error">{{ error }}</span>
 				</form>
 			</div>
 			<div v-if="user" class="c-upload-how-to">
-				<div class="c-upload-playlist-link">How To Find The Playlist Link From Your Favorite Music App:</div>
+				<h3 class="c-upload-playlist-link">How To Find The Playlist Link From Your Favorite Music App:</h3>
 				<div v-for="platform in platformList" :key="platform.id">
 					<commonButton @click.native="showModal({modalName:`${platform.name}`, modalType:`${platform.name}`})" class="c-upload-ul c-button-white" :text="`${platform.name}`"></commonButton>
 				</div>
@@ -96,7 +97,9 @@ export default {
             gameList: null,
             platformList: null,
             genreList: null,
-            error: ''
+            error: '',
+            playlistError: '',
+            playlistChecks: [ 'soundcloud', 'open.spotify', 'music.apple', 'youtu', 'music.amazon']
         }
     },
     computed: {
@@ -144,11 +147,20 @@ export default {
             }
         },
         errorHandling() {
+            let result = true;
+            
             if (!this.playlist || !this.game || !this.musicApp || !this.genre) {
                 this.error = 'Please Enter Your Playlist, Game, Music App and Genre';
-                return false
+                result = false;
             }
-            return true
+            if (!this.playlistChecks.some(p => this.playlist.toLowerCase().includes(p))) {
+                this.playlistError = 'Sorry but playlists form Soundcloud, Spotify, Apple Music, Youtube, Amazon Music only allowed';
+                result = false;
+            } else {
+                this.playlistError = '';
+            }
+
+            return result;
         },
         resetForm() {
             this.playlist = '',
@@ -158,7 +170,8 @@ export default {
             this.streamer = false,
 			this.twitch = '',
             this.mixer = '',
-            this.error = ''
+            this.error = '',
+            this.playlistError = ''
         }
     },
     async asyncData({$axios, error}) {
@@ -191,6 +204,7 @@ export default {
         padding-top: 20px;
         flex-wrap: wrap;
         justify-content: space-between;
+        min-height: 450px;
     }
     .c-upload-form {
         margin: 20px 0;
@@ -233,15 +247,11 @@ export default {
         margin-top: 50px;
     }
     .c-upload-join {
-        width: 65%;
         margin: 0 auto;
         line-height: 50px;
         h2 {
             line-height: 50px
         }
-    }
-    .error {
-        color: $primary-red;
     }
     @media #{$mq-tablet} {
         .c-upload-wrapper {

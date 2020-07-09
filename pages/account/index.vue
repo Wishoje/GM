@@ -135,6 +135,7 @@ export default {
         margin-top: auto;
         margin-left: 10px;
         img {
+            width: 50%;
             display: inline;
         }
     }

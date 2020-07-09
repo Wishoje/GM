@@ -1,8 +1,8 @@
 <template>
   <article>
 	<div class="m-banner c-banner">
-		<h2>Explore Playlists</h2>
-		<h3>Combine and add more tags to show more playlists</h3>
+		<h1>Explore Playlists</h1>
+		<h2>Combine and add more tags to show more playlists</h2>
 		<div class="m-search-box">
 			<input type="text" id="searchQuery" class="m-search-text" v-model="searchQuery" @keyup="searchFilter()" placeholder="Search by Game Genre Platform">
 		</div>
@@ -24,7 +24,7 @@
 					<div class="c-profile-playlist-wrapper" v-html="iframe.playlist"></div> 
 					<div class="c-profile-playlist-likes">
 						<div>
-							<span class="c-profile-playlist-user">Uploaded By:</span><span> {{ iframe.userName }}</span>
+							<span class="c-profile-playlist-user">Uploaded By:</span><span class="c-profile-name"> {{ iframe.userName }}</span>
 						</div>
 						<div @click="likePlaylist(iframe.playlistId)" class="c-profile-playlist-icon">
 							<img :src="likeImage"/> <span class="c-profile-icon">{{ iframe.likes }}</span>
@@ -216,29 +216,30 @@ export default {
     }
 	.c-profile-playlist-user {
 		color: $primary-red;
-		font-size: 20px;
+		font-size: 16px;
+	}
+	.c-profile-name {
+		font-size: 18px;
 	}
 	.c-profile-playlist-icon {
 		cursor: pointer;
+		img {
+			width: 50%;
+		}
 	}
 	.c-profile-lists {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 	}
-	@media #{$mq-tablet} {
-        .c-profile-wrapper {
-            width: 100%;
-        }
-    }
-
-	@media #{$mq-mobile} {
-        .c-profile-playlist-iframe, .c-profile-playlist {
-            width: 100%;
-        }
-    }
+	.c-profile-icon {
+		font-size: 19px;
+	}
 
 	@media #{$mq-tablet} {
+		.c-profile-playlist-iframe, .c-profile-playlist {
+            width: 100%;
+		}
 		.c-banner {
 			.m-search-box {
 				width: 50%;
@@ -247,10 +248,15 @@ export default {
 				}
 			}
 		}
+		.c-profile-wrapper {
+            width: 100%;
+        }
 	}
-	
 
 	@media #{$mq-mobile} {
+        .c-profile-playlist-iframe, .c-profile-playlist {
+            width: 100%;
+		}
 		.c-banner {
 			.m-search-box {
 				width: 60%;
@@ -259,7 +265,7 @@ export default {
 				}
 			}
 		}
-	}
+    }
 
 	@media #{$mq-mobile-portrait} {
 		.c-banner {
