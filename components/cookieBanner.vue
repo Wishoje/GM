@@ -1,7 +1,7 @@
 <template>
 	<div class="c-cookie-banner m-hidden" ref="cookieBanner" v-if="!cookie">
 			<p>
-					By using our website, you agree to our cookie policy.
+				By using our website, you agree to our cookie policy.
 			</p>
 			<button class="c-close-banner" @click="allowCookies">&times;</button>
     </div>
@@ -41,31 +41,45 @@ export default {
 <style lang="scss" scoped>
 
 .c-cookie-banner {
-  position: fixed;
-  bottom: 40px;
-  left: 10%;
-  right: 10%;
-  width: 80%;
-  padding: 2rem 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #eee;
-  border-radius: 5px;
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+	position: fixed;
+	bottom: 40px;
+	left: 35%;
+	right: 35%;
+	width: 30%;
+	padding: 2rem 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #eee;
+	opacity: 0.95;
 }
 
 .c-close-banner {
-	width: 28px;
-	padding: 2px;
-  background-color: $primary-red;
-  border: none;
-  color: $primary-white;
-  border-radius: 2px;
-  cursor: pointer;
+	padding: 3px 10px;
+  	background-color: $primary-red;
+  	border: none;
+  	color: $primary-white;
+  	border-radius: 2px;
+  	cursor: pointer;
 
 	&:hover {
 		color: $primary-black;
+	}
+}
+
+@media #{$mq-tablet} {
+	.c-cookie-banner {
+		left: 25%;
+		right: 25%;
+		width: 50%;
+	}
+}
+
+@media #{$mq-mobile} {
+	.c-cookie-banner {
+		left: 15%;
+		right: 15%;
+		width: 70%;
 	}
 }
 </style>
