@@ -5,6 +5,7 @@
     <navigation v-else />
     <nuxt class="main"/>
     <FooterGM />
+    <cookieBanner />
   </div>
 </template>
 
@@ -13,13 +14,15 @@ import AppModal from "../components/AppModal";
 import navigation from "../components/navigation";
 import navigationMobile from "../components/navigationMobile";
 import FooterGM from "../components/FooterGM";
+import cookieBanner from "../components/cookieBanner";
 
 export default {
   components: {
     AppModal,
     navigationMobile,
     navigation,
-    FooterGM
+    FooterGM,
+    cookieBanner
   },
   computed: {
     isMobile() {

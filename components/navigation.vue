@@ -9,13 +9,11 @@
 
 <script>
 	import { mapMutations } from 'vuex';
-	import commonButton from './commonButton';
 	import navigationLinks from './navigationLinks';
 
 	export default {
 		name: 'navigation',
 		components: {
-			commonButton,
 			navigationLinks
 		},
 		props: {
