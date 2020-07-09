@@ -1,7 +1,9 @@
 <template>
 	<article class="c-banner">
-		<h1>SHARE YOUR FAVORITE PLAYLISTS!</h1>
-		<h3>Join The Gamers Community Where The Music Leads You To Another Level</h3>
+		<div class="c-banner-header">
+			<h1>SHARE YOUR FAVORITE PLAYLISTS!</h1>
+			<h3>Join The Gamers Community Where The Music Leads You To Another Level</h3>
+		</div>
 		<commonButton v-if="!$store.state.auth.user" @click.native="showModal({modalName: 'ModalLogin', modalType:'modalRegister'})" text="JOIN" />
 	</article>
 </template>
@@ -34,7 +36,7 @@
 		color: #fff;
 		text-align: center;
 		padding: 70px 10px;
-		min-height: 300px;
+		min-height: 350px;
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position-y: 22%;
@@ -42,6 +44,10 @@
 	c-heading {
 		margin: 0;
 		margin-top:0.4rem;
+	}
+
+	.c-banner-header {
+		margin-bottom: 50px;
 	}
 
 	@media #{$mq-mobile} {
