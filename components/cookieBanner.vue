@@ -77,9 +77,9 @@ export default {
 
 @media #{$mq-mobile} {
 	.c-cookie-banner {
-		left: 15%;
-		right: 15%;
-		width: 70%;
+		left: 5%;
+		right: 5%;
+		width: 90%;
 	}
 }
 </style>
