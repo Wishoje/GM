@@ -1,5 +1,5 @@
 <template>
-    <div class="c-upload-carousel">
+    <div class="c-upload-carousel" id="c-carousel">
         <h3 v-if="!isMain" class="c-upload-featured c-upload-red">Check Out Our Featured List</h3>
         <h3 v-else class="c-upload-featured c-upload-red">Check Out Our Most Popular Lists</h3>
         <VueSlickCarousel v-bind="settings">
@@ -141,13 +141,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.c-upload-carousel {
 		width: 80%;
 		margin: 40px auto;
 	
-		button.slick-arrow.slick-prev:before,
-		button.slick-arrow.slick-next:before {
+		&/deep/.slick-prev::before,
+		/deep/.slick-next::before {
 			color: $primary-red;
 			opacity: 100%;
 			font-size: 25px;
