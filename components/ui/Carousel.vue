@@ -98,73 +98,74 @@ export default {
     },
     data() {
         return {
-					settings: {
-						dots: true,
-						speed: 500,
-						slidesToShow: 4,
-						infinite: true,
-						slidesToScroll: 4,
-						touchThreshold: 5,
-						focusOnSelect: true,
-						arrows: true,
-						initialSlide: 0,
-						swipeToSlide: true,
-						responsive: [{
-								breakpoint: 1279,
-								settings: {
-										slidesToShow: 3,
-										slidesToScroll: 3,
-										infinite: true,
-										dots: true
-								}
-								},
-								{
-								breakpoint: 1025,
-								settings: {
-										slidesToShow: 2,
-										slidesToScroll: 2,
-										initialSlide: 2
-								}
-								},
-								{
-								breakpoint: 760,
-								settings: {
-										slidesToShow: 1,
-										slidesToScroll: 1,
-										initialSlide: 1
-								}
-								}
-						]
-					}
+            settings: {
+                dots: true,
+                speed: 500,
+                slidesToShow: 4,
+                infinite: true,
+                slidesToScroll: 4,
+                touchThreshold: 5,
+                focusOnSelect: true,
+                arrows: true,
+                initialSlide: 0,
+                swipeToSlide: true,
+                responsive: [{
+                        breakpoint: 1279,
+                        settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 3,
+                                infinite: true,
+                                dots: true
+                        }
+                        },
+                        {
+                        breakpoint: 1025,
+                        settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2,
+                                initialSlide: 2
+                        }
+                        },
+                        {
+                        breakpoint: 760,
+                        settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
+                                initialSlide: 1
+                        }
+                        }
+                ]
+            }
         }
     }
 }
 </script>
 
 <style lang="scss">
-    .c-upload-carousel {
-        width: 80%;
-				margin: 40px auto;
-				
-			.slick-prev:before,
-			.slick-next:before {
-				color: $primary-red;
-				opacity: 100%;
-				font-size: 25px;
-			}
-    }
-    .c-upload-featured {
-			text-align: center;
-			padding: 20px 0;
-    }
-    .c-upload-red {
-        color: $primary-red;
-    }
-    .c-upload-mid-space {
-        font-size: 10px;
-        padding-top: 10px
-    }
-    .c-carousel-wrapper {
-        padding: 0 20px;
-    }
+	.c-upload-carousel {
+		width: 80%;
+		margin: 40px auto;
+	
+		button.slick-arrow.slick-prev:before,
+		button.slick-arrow.slick-next:before {
+			color: $primary-red;
+			opacity: 100%;
+			font-size: 25px;
+		}
+	}
+
+	.c-upload-featured {
+		text-align: center;
+		padding: 20px 0;
+	}
+	.c-upload-red {
+			color: $primary-red;
+	}
+	.c-upload-mid-space {
+			font-size: 10px;
+			padding-top: 10px
+	}
+	.c-carousel-wrapper {
+			padding: 0 20px;
+	}
 </style>
