@@ -1,24 +1,24 @@
 <template>
 	<div>
 		<div class="c-modalRegister" v-if="modalTypeProps === 'modalRegister'">
-			<form @submit.prevent="submitForm">
+			<form @submit.prevent>
 				<h2>Create Account</h2>
 				<div>
 					<label for="name">Nickname</label>
-					<input class="m-rounded" v-model="name" id="name" type="text"	placeholder="name">
+					<input class="m-rounded" v-model="name" id="name" type="text"	placeholder="Name" required>
 				</div>
 				<div>
 					<label for="email">Email</label>
-					<input class="m-rounded" v-model="email" id="email" type="text"	placeholder="Email">
+					<input class="m-rounded" v-model="email" id="email" type="text"	placeholder="Email" required>
 				</div>
 				<div>
 					<label for="password">Password</label>
-					<input class="m-rounded" v-model="password" id="password" type="password" placeholder="******">
+					<input class="m-rounded" v-model="password" id="password" type="password" placeholder="******" required>
 				</div>
 				<div class="error" v-if="error">{{ error }}</div>
 				<div>
 					<div>
-						<button class="c-modalLogin__login m-rounded" @click="submitRegisterForm">
+						<button class="c-modalLogin__login m-rounded" @click="errorHandling('register')">
 							Create Account
 						</button>
 						<div id="c-customGoogleBtn"
@@ -38,20 +38,20 @@
 		</div>
 
 		<div class="c-modalLogin" v-if="modalTypeProps === 'modalLogin'">
-			<form v-if="!user" @submit.prevent="submitForm">
+			<form v-if="!user" @submit.prevent>
 				<h2>Login</h2>
 				<div>
 					<label for="name">Email</label>
-					<input class="m-rounded" v-model="email" id="email" type="text" placeholder="Email">
+					<input class="m-rounded" v-model="email" id="email" type="text" placeholder="Email" required>
 				</div>
 
 				<div>
 					<label for="password">Password</label>
-					<input class="m-rounded" v-model="password"  id="password" type="password" placeholder="******">
+					<input class="m-rounded" v-model="password"  id="password" type="password" placeholder="******" required>
 				</div>
 				<div class="error" v-if="error">{{ error }}</div>
 				<div>
-					<button class="c-modalLogin__login m-rounded" type="submit">
+					<button class="c-modalLogin__login m-rounded" @click="errorHandling('login')">
 						LOG IN
 					</button>
 					<div id="c-customGoogleBtn"
@@ -116,6 +116,28 @@ export default {
 	},
 	methods: {
 		...mapMutations('modal', [`hideModal`]),
+		errorHandling(type) {
+			if (type === 'register') {
+				if (this.name.length < 3) {
+					return this.error = 'Nickname should be at least 3 characters long.';
+				} else {
+					this.error = '';
+				}
+			}
+			if (!/\S+@\S+\.\S+/.test(this.email)) {
+				return this.error = 'This is not a valid email.';
+			} else {
+				this.error = '';
+			}
+			if (this.password.length < 6) {
+				return this.error = 'Password needs to be at least 6 characters long.';
+			} else {
+				this.error = '';
+			}
+			if (this.error === '') {
+				type === 'register' ? this.submitRegisterForm() : this.submitForm();
+			}
+		},
 		async submitForm() {
 			try {
 				const result = await this.$store.dispatch('auth/login', {
@@ -156,12 +178,13 @@ export default {
 		}
 
 		&__login {
-			background-color: $primary-blue;
+			background-color: $primary-red;
 			width: 100%;
 			margin-bottom: 2rem;
 
 			&:hover {
-				background-color: $primary-blue-dark;
+				box-shadow: 0px 0px 7px 1px rgba(189,189,189,1);
+				// background-color: $primary-blue-dark;
 			}
 		}
 
@@ -171,7 +194,7 @@ export default {
 
 		form {
 			h3, h2 {
-				color: $primary-grey;
+				color: $primary-red;
 				margin-top: 0;
 			}
 		
@@ -192,7 +215,7 @@ export default {
 			a {
 				margin-top: 1rem;
 				font-weight: bold;
-				color: $primary-blue;
+				color: $primary-red;
 			}
 		}
 
