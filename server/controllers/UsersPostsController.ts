@@ -36,23 +36,13 @@ class UsersPostsContollers implements ControllerInterface {
 
 	private getUserPosts = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
 		try {
-			let result = null
 			const userPosts = await this.userPostRepository.createQueryBuilder("user_posts")
 				.innerJoinAndSelect("user_posts.user", "User")
 				.innerJoinAndSelect("user_posts.userPostsCategories", "UserPostsCategories")
 				.where("user_posts.user = :id", { id: response.locals.user.id })
 				.getMany();
 
-			if (userPosts) {
-				result = userPosts.map(userPost => {
-					return {
-						playlist: this.filtersService.getIframe(userPost.playlist, 'profile'),
-						likes: userPost.likes,
-						shares: userPost.shares,
-						UserPostsCategories: userPost.userPostsCategories
-					} as UserPostsInterface
-				});
-			}
+			const result = await this.filtersService.iframeDataHelper(userPosts);
 
 			response.send(result);
 		} catch (error) {
