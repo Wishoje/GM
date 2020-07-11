@@ -28,6 +28,7 @@ class UsersPostsContollers implements ControllerInterface {
 		this.router.get(this.path, AuthMiddleware, this.getUserPosts);
 		this.router.get(`${this.path}/categories`, this.getCategoriesPosts);
 		this.router.get(`${this.path}/liked`, AuthMiddleware, this.getUserPostLikes);
+		this.router.get(`${this.path}/favorites`, AuthMiddleware, this.getUserFavorites);
 		this.router.post(this.path, [AuthMiddleware, ValidationMiddleware(UserPostsDto)], this.uploadPost);
 		this.router.post(`${this.path}/like`, [AuthMiddleware, ValidationMiddleware(UserPostsLikeDto)], this.uploadPostLike);
 		this.router.delete(`${this.path}/:id`, AuthMiddleware, this.deleteUser);
@@ -62,7 +63,6 @@ class UsersPostsContollers implements ControllerInterface {
 	private getCategoriesPosts = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
 		try {
 			const categoryData = request.query.categoriesData;
-			let result = null;
 			
 			const categoriesPosts = await this.userPostRepository.createQueryBuilder("user_posts")
 				.innerJoinAndSelect("user_posts.user", "User")
@@ -71,18 +71,8 @@ class UsersPostsContollers implements ControllerInterface {
 				.limit(20)
 				.getMany();
 			
-			if (categoriesPosts) {
-				result = await Promise.all(categoriesPosts.map(async (categoryPost) => {
-					return {
-						id: categoryPost.id,
-						playlist: this.filtersService.getIframe(categoryPost.playlist, 'search'),
-						likes: await this.filtersService.getPostLikeCount(categoryPost.id),
-						shares: categoryPost.shares,
-						UserPostsCategories: categoryPost.userPostsCategories,
-						userName: categoryPost.user.name
-					} as UserPostsInterface
-				}));
-			}
+			const result = await this.filtersService.iframeDataHelper(categoriesPosts);
+
 			result.sort((a, b) => parseInt(b.likes) - parseInt(a.likes));
 
 			response.send(result);
@@ -147,6 +137,26 @@ class UsersPostsContollers implements ControllerInterface {
 				.getMany();
 
 			response.send(userLikedPosts);
+		} catch (error) {
+			next(error);
+		} 
+	}
+
+	private getUserFavorites = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+		try {
+			const userId = response.locals.user.id;
+
+			const userLikedPosts = await this.userPostRepository.createQueryBuilder("user_posts")
+				.innerJoin("user_posts.user", "User")
+				.innerJoinAndSelect("user_posts.userPostLikes", "UserPostsLikes")
+				.where("UserPostsLikes.user = :id", { id: userId })
+				.getMany();
+
+			console.log(userLikedPosts);
+
+			const result = await this.filtersService.iframeDataHelper(userLikedPosts);
+
+			response.send(result);
 		} catch (error) {
 			next(error);
 		} 

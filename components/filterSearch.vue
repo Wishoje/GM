@@ -126,7 +126,7 @@ export default {
 						}
 					}
 				);
-				return this.categoriesPosts = result.data;
+				this.categoriesPosts = result.data;
 			} catch(error) {
 				console.log('Error :', error);
 			}
@@ -134,14 +134,14 @@ export default {
 		async getAlreadyLikedPlaylists() {
 			try {
 				const result = await this.$axios.get('/api/usersPosts/liked');
-				return this.likedPosts = result.data;
+				this.likedPosts = result.data;
 			} catch(error) {
 				console.log('Error :', error);
 			}
 		},
 		async likePlaylist(id) {
 			try {
-				const foundPost = this.likedPosts.filter(likedPost => likedPost.userpost.id === id);
+				const foundPost = this.likedPosts.filter(likedPost => likedPost.userPosts.id === id);
 				if (foundPost && foundPost.length > 0) {
 					this.showModal({modalName: 'LikedAlreadyPost', modalType:'LikedAlreadyPost'});
 				} else {

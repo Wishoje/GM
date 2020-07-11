@@ -12,60 +12,44 @@
         </div>
         <ul class="c-profile-links m-flex-display">
             <li>
-                <nuxt-link class="c-cat-link" to=""><span>uploads</span></nuxt-link>
+                <nuxt-link class="c-cat-link" to="">
+                    <span :class="{'m-underline': currentComponent === 'Uploads'}" @click="changeComponent('Uploads')">Uploads</span>
+                </nuxt-link>
             </li>
             <li>
-                <nuxt-link class="c-login-link" to=""><span>favorites</span></nuxt-link>
+                <nuxt-link class="c-login-link" to="">
+                    <span :class="{'m-underline': currentComponent === 'Favorites' }" @click="changeComponent('Favorites')">Favorites</span>
+                </nuxt-link>
             </li>
         </ul>
-        <div class="c-profile-playlist">
-            <span>Your Uploads</span>
-            <div v-if="!userPosts">
-                <div>Go to our<a href="/upload">Upload</a> Page to add your favorite playlist</div>
-            </div>
-            <div v-else>
-                <div class="c-profile-playlist-section" v-for="iframe in getPlaylistIframe" :key="iframe.id">
-                    <div class="c-profile-playlist-tags">
-                        <div v-for="postDetail in iframe.postDetails" :key="postDetail.id"> 
-                            #{{ postDetail.category_name }}&nbsp;&nbsp;
-                        </div>
-                    </div>
-                    <div class="c-profile-playlist-iframe">
-                        <div class="c-profile-playlist-wrapper" v-html="iframe.playlist"></div> 
-                        <div class="c-profile-playlist-likes">
-                            <img src="https://img.icons8.com/ios-filled/40/000000/like.png"/> <span class="c-profile-icon">{{ iframe.likes }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <component :is="currentComponent" :userPosts="userPosts"></component>
     </div>
 </template>
 
 <script>
+import Uploads from '../../components/profile/Uploads';
+import Favorites from '../../components/profile/Favorites';
+
 export default {
     name: 'account',
+    components: {
+        Uploads,
+        Favorites
+    },
     data() {
 		return {
-			userPosts: null,
+            userPosts: null,
+            currentComponent: 'Uploads'
 		};
 	},
     computed: {
         user() {
             return this.$store.state.auth.user;
-        },
-        getPlaylistIframe() {
-            return this.userPosts.map(userPost => {
-                return {
-                    playlist: userPost.playlist,
-                    likes: userPost.likes,
-                    postDetails: userPost.UserPostsCategories.map(userPostCategory => {
-                        return {
-                            category_name: userPostCategory.category_name
-                        }
-                    })
-                }
-            })
+        }
+    },
+    methods: {
+        changeComponent(activeComp) {
+            this.currentComponent = activeComp;
         }
     },
     async asyncData({$axios, store, redirect, error}) {
@@ -79,7 +63,7 @@ export default {
                 userPosts: result.data
             }
         } catch(error) {
-            error({ statusCode: 404, message: 'Page Not Found!' })
+            console.log({ statusCode: 404, message: 'Page Not Found!' })
         }
     }
 }
@@ -100,11 +84,6 @@ export default {
         font-size: 2rem;
         font-weight: 600;
     }
-    .c-profile-playlist {
-        font-size: 1.5rem;
-        padding: 15px 200px;
-        min-height: 60vh;
-    }
     .c-profile-wrapper-info {
         background: linear-gradient($primary-red 70%, transparent 30%) no-repeat;
         min-height: 270px;
@@ -120,33 +99,6 @@ export default {
             padding-right: 10px;
             color: $primary-red;
         }
-    }
-    .c-profile-playlist-iframe {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
-    .c-profile-playlist-section {
-        font-size: 16px;
-        display: flex;
-        flex-direction: column;
-    }
-    .c-profile-playlist-likes {
-        margin-top: auto;
-        margin-left: 10px;
-        img {
-            width: 50%;
-            display: inline;
-        }
-    }
-    .c-profile-playlist-tags {
-        display: flex;
-        margin-top: 20px;
-        flex-wrap: wrap;
-        color: $primary-red;
-    }
-    .c-profile-playlist-wrapper {
-        width: 80%;
     }
     .c-profile-icon {
         font-size: 24px;

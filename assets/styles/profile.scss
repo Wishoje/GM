@@ -1,0 +1,45 @@
+.c-profile-playlist {
+	font-size: 1.5rem;
+	padding: 20px 200px;
+	min-height: 60vh;
+}
+.c-profile-playlist-section {
+	font-size: 16px;
+	display: flex;
+	flex-direction: column;
+}
+
+.c-profile-playlist-tags {
+	display: flex;
+	margin-top: 20px;
+	flex-wrap: wrap;
+	color: $primary-red;
+}
+.c-profile-playlist-iframe {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+.c-profile-playlist-likes {
+	margin-top: auto;
+	margin-left: 10px;
+	img {
+		width: 50%;
+		display: inline;
+	}
+}
+.c-profile-playlist-wrapper {
+	width: 80%;
+}
+.c-profile-fav {
+	margin: 30px 0;
+}
+@media #{$mq-mobile} {
+	.c-profile-links {
+		padding: 5px 20px;
+	}
+
+	.c-profile-playlist-wrapper {
+		width: 100%;
+	}
+}
