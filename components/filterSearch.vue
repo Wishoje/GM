@@ -26,7 +26,7 @@
 						<div>
 							<span class="c-profile-playlist-user">Uploaded By:</span><span class="c-profile-name"> {{ iframe.userName }}</span>
 						</div>
-						<div @click="likePlaylist(iframe.playlistId)" class="c-profile-playlist-icon">
+						<div @click="submitLike(iframe.playlistId)" class="c-profile-playlist-icon">
 							<img :src="likeImage"/> <span class="c-profile-icon">{{ iframe.likes }}</span>
 						</div>
 					</div>
@@ -139,9 +139,9 @@ export default {
 				console.log('Error :', error);
 			}
 		},
-		async likePlaylist(id) {
+		async likePlaylist() {
 			try {
-				const foundPost = this.likedPosts.filter(likedPost => likedPost.userPosts.id === id);
+				const foundPost = this.likedPosts.filter(likedPost => likedPost.userpost.id === id);
 				if (foundPost && foundPost.length > 0) {
 					this.showModal({modalName: 'LikedAlreadyPost', modalType:'LikedAlreadyPost'});
 				} else {
@@ -152,6 +152,9 @@ export default {
 			} catch(error) {
 				console.log('Error :', error);
 			}
+		},
+		submitLike(id) {
+			this.user ? this.likePlaylist(id) : this.showModal({modalName: 'ModalLogin', modalType:'modalRegister'});
 		}
 	}
 }
