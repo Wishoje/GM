@@ -139,7 +139,7 @@ export default {
 				console.log('Error :', error);
 			}
 		},
-		async likePlaylist() {
+		async likePlaylist(id) {
 			try {
 				const foundPost = this.likedPosts.filter(likedPost => likedPost.userpost.id === id);
 				if (foundPost && foundPost.length > 0) {
