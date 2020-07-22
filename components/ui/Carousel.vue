@@ -141,7 +141,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	.c-upload-carousel {
 		width: 80%;
 		margin: 40px auto;
@@ -159,13 +159,13 @@ export default {
 		padding: 20px 0;
 	}
 	.c-upload-red {
-			color: $primary-red;
+        color: $primary-red;
 	}
 	.c-upload-mid-space {
-			font-size: 10px;
-			padding-top: 10px
+        font-size: 10px;
+        padding-top: 10px
 	}
 	.c-carousel-wrapper {
-			padding: 0 20px;
+        padding: 0 20px;
 	}
 </style>
