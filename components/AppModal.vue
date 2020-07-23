@@ -108,10 +108,9 @@ export default {
 		}
 
 		&__closeModal {
-			position: absolute;
-			right: 1em;
 			width: 30px;
 			height: 30px;
+			margin-left: auto;
 
 			span {
 				width: 30px;

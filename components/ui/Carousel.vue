@@ -1,7 +1,7 @@
 <template>
     <div class="c-upload-carousel" id="c-carousel">
-        <h3 v-if="!isMain" class="c-upload-featured c-upload-red">Check Out Our Featured List</h3>
-        <h3 v-else class="c-upload-featured c-upload-red">Check Out Our Most Popular Lists</h3>
+        <h3 v-if="!isMain" class="c-upload-featured c-upload-white">Check Out Our Featured List</h3>
+        <h3 v-else class="c-upload-featured c-upload-white">Check Out Our Most Popular Lists</h3>
         <VueSlickCarousel v-bind="settings">
             <div class="c-carousel-wrapper">
                 <iframe 
@@ -13,8 +13,8 @@
                     sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/playlist/chill-house/pl.bd55c25265aa4de8b3fc3e0960751846?app=music">
                 </iframe>
                 <div class="c-upload-mid-space">
-                    <span>Uploaded by: <span class="c-upload-red">GodMan</span></span><br>
-                    <span>Games: <span class="c-upload-red">Dota 2, LoL</span></span>
+                    <span class="c-upload-orange">Uploaded by: </span> <span class="c-upload-white">GodMan</span><br>
+                    <span class="c-upload-orange">Games: </span> <span class="c-upload-white">Dota 2, LoL</span>
                 </div>
             </div>
             <div class="c-carousel-wrapper">
@@ -27,8 +27,8 @@
                     allowfullscreen>
                 </iframe>
                 <div class="c-upload-mid-space">
-                    <span>Uploaded by: <span class="c-upload-red">Crash</span></span><br>
-                    <span>Games: <span class="c-upload-red">Starcraft</span></span>
+                    <span class="c-upload-orange">Uploaded by: </span> <span class="c-upload-white">Crash</span><br>
+                    <span class="c-upload-orange">Games: </span> <span class="c-upload-white">Starcraft</span>
                 </div>
             </div>
             <div class="c-carousel-wrapper">
@@ -39,8 +39,8 @@
                     style='border:1px solid rgba(0, 0, 0, 0.12);max-width:400px;overflow-x:hidden;'>
                 </iframe>
                 <div class="c-upload-mid-space">
-                    <span>Uploaded by: <span class="c-upload-red">BratMinli</span></span><br>
-                    <span>Games: <span class="c-upload-red">CSGO</span></span>
+                    <span class="c-upload-orange">Uploaded by: </span> <span class="c-upload-white">BratMinli</span><br>
+                    <span class="c-upload-orange">Games: </span> <span class="c-upload-white">CSGO</span>
                 </div>
             </div>
             <div class="c-carousel-wrapper">
@@ -53,8 +53,8 @@
                     allow="encrypted-media">
                 </iframe>
                 <div class="c-upload-mid-space">
-                    <span>Uploaded by: <span class="c-upload-red">Sususam</span></span><br>
-                    <span>Games: <span class="c-upload-red">Poker</span></span>
+                    <span class="c-upload-orange">Uploaded by: </span> <span class="c-upload-white">Sususam</span><br>
+                    <span class="c-upload-orange">Games: </span> <span class="c-upload-white">Poker</span>
                 </div>
             </div>
             <div class="c-carousel-wrapper">
@@ -66,8 +66,8 @@
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/637658580&color=%23ff5500&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
                 </iframe>
                 <div class="c-upload-mid-space">
-                    <span>Uploaded by: <span class="c-upload-red">Bombina</span></span><br>
-                    <span>Games: <span class="c-upload-red">Dota 2</span></span>
+                    <span class="c-upload-orange">Uploaded by: </span> <span class="c-upload-white">Bombina</span><br>
+                    <span class="c-upload-orange">Games: </span> <span class="c-upload-white">Dota 2</span>
                 </div>
             </div>
         </VueSlickCarousel>
@@ -144,28 +144,24 @@ export default {
 <style lang="scss" scoped>
 	.c-upload-carousel {
 		width: 80%;
-		margin: 40px auto;
-	
-		/deep/.slick-prev::before,
-		/deep/.slick-next::before {
-			color: $primary-red;
-			opacity: 100%;
-			font-size: 25px;
-		}
+		margin: 70px auto;
 	}
 
 	.c-upload-featured {
 		text-align: center;
-		padding: 20px 0;
+		padding: 65px 0 30px 0;
 	}
-	.c-upload-red {
-			color: $primary-red;
+	.c-upload-white {
+        color: $primary-white;
+    }
+    .c-upload-orange {
+        color: $primary-orange;
 	}
 	.c-upload-mid-space {
-			font-size: 10px;
-			padding-top: 10px
+        font-size: 10px;
+        padding-top: 10px
 	}
 	.c-carousel-wrapper {
-			padding: 0 20px;
+        padding: 0 20px;
 	}
 </style>

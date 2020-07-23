@@ -1,5 +1,6 @@
 <template>
     <div class="c-profile-wrapper">
+        aaa {{ id }}
         <div class="c-profile-wrapper-info m-flex-display">
             <div class="c-profile-image">
                 <img v-if="user.image" :src="user.image" :title="user.name"/>
@@ -39,9 +40,10 @@ export default {
     data() {
 		return {
             userPosts: null,
-            currentComponent: 'Uploads'
+            currentComponent: 'Uploads',
+            id: this.$route.params.id
 		};
-	},
+    },
     computed: {
         user() {
             return this.$store.state.auth.user;
