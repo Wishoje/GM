@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="c-modalRegister" v-if="modalTypeProps === 'modalRegister'">
-			<form @submit.prevent>
+			<form @submit.prevent="submitForm">
 				<h2>Create Account</h2>
 				<div>
 					<label for="name">Nickname</label>
@@ -18,7 +18,7 @@
 				<div class="error" v-if="error">{{ error }}</div>
 				<div>
 					<div>
-						<button class="c-modalLogin__login m-rounded" @click="errorHandling('register')">
+						<button class="c-modalLogin__login m-rounded" type="submit">
 							Create Account
 						</button>
 						<div id="c-customGoogleBtn"
@@ -51,7 +51,7 @@
 				</div>
 				<div class="error" v-if="error">{{ error }}</div>
 				<div>
-					<button class="c-modalLogin__login m-rounded" @click="errorHandling('login')">
+					<button class="c-modalLogin__login m-rounded" type="submit">
 						LOG IN
 					</button>
 					<div id="c-customGoogleBtn"
@@ -116,56 +116,43 @@ export default {
 	},
 	methods: {
 		...mapMutations('modal', [`hideModal`]),
-		errorHandling(type) {
-			if (type === 'register') {
+		errorHandling() {
+			let result = true;
+			if (this.modalTypeProps === 'modalRegister') {
 				if (this.name.length < 3) {
-					return this.error = 'Nickname should be at least 3 characters long.';
-				} else {
-					this.error = '';
+					this.error = 'Nickname should be at least 3 characters long.';
 				}
 			}
 			if (!/\S+@\S+\.\S+/.test(this.email)) {
-				return this.error = 'This is not a valid email.';
-			} else {
-				this.error = '';
+				this.error = 'This is not a valid email.';
 			}
 			if (this.password.length < 6) {
-				return this.error = 'Password needs to be at least 6 characters long.';
-			} else {
-				this.error = '';
+				this.error = 'Password needs to be at least 6 characters long.';
 			}
-			if (this.error === '') {
-				type === 'register' ? this.submitRegisterForm() : this.submitForm();
-			}
+			if (this.error) {
+				result = false;
+			}		
+			return result;
 		},
 		async submitForm() {
 			try {
-				const result = await this.$store.dispatch('auth/login', {
-					email: this.email,
-					password: this.password
-				});
-				this.hideModal();
-				this.router.push('/account');
+				if (this.errorHandling()) {
+					const result = this.modalTypeProps === 'modalRegister' ? await this.$store.dispatch('auth/login', {
+						email: this.email,
+						password: this.password
+					})
+					: await this.$store.dispatch('auth/register', {
+						email: this.email,
+						password: this.password,
+						name: this.name
+					});
+					this.hideModal();
+				}
 			} catch(err) {
 				this.email = '';
 				this.password = '';
 				this.error = 'Username Or Password is incorrect';
 			}
-		},
-		async submitRegisterForm() {
-			try {
-				const result = await this.$store.dispatch('auth/register', {
-					email: this.email,
-					password: this.password,
-					name: this.name
-				});
-				this.hideModal();
-			} catch(err) {
-				this.email = '';
-				this.password = '';
-				this.error = 'Something went wrong please try again';
-			}
-			
 		}
 	},
 };
