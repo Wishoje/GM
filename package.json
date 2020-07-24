@@ -49,6 +49,7 @@
     "typeorm": "^0.2.24",
     "typescript": "^3.9.6",
     "v-tooltip": "^2.0.3",
+    "vue-loading-overlay": "^3.3.2",
     "vue-multiselect": "^2.1.6",
     "vue-slick": "^1.1.15",
     "vue-slick-carousel": "^1.0.5"

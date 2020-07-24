@@ -252,7 +252,7 @@ export default {
     }
     .c-loved-lists {
         background-color: $primary-purple;
-        min-height: 680px;
+        padding-bottom: 75px;
     }
     @media #{$mq-tablet} {
         .c-upload-wrapper {
