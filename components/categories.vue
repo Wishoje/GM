@@ -80,6 +80,7 @@
 
 		.c-button-wrapper {
 			margin-top: 50px;
+			margin-bottom: 64px;
 		}
 
 		ul {
