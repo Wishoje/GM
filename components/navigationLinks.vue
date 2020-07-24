@@ -9,15 +9,15 @@
         <li>
             <nuxt-link class="c-login-link" to="/upload"><span>Upload</span></nuxt-link>
         </li>
-        <li v-if="!$store.state.auth.user">
+        <li v-if="!user">
             <button class="c-login-link" @click="showModal({modalName: 'ModalLogin', modalType:'modalLogin'})">Login</button>
         </li>
-        <li v-if="!$store.state.auth.user">
+        <li v-if="!user">
             <commonButton class="c-join-link" @click.native="showModal({modalName: 'ModalLogin', modalType:'modalRegister'})" text="JOIN" />
-        <li v-if="$store.state.auth.user">
-            <nuxt-link class="c-login-link" to="/account"><span>Profile</span></nuxt-link>
+        <li v-if="user">
+            <nuxt-link class="c-login-link" :to="`/account/${user.id}`"><span>Profile</span></nuxt-link>
         </li>
-        <li v-if="$store.state.auth.user">
+        <li v-if="user">
             <a @click="logout" class="c-login-link"><span>Logout</span></a>
         </li>
     </ul>
@@ -38,7 +38,10 @@
 		computed: {
 			isMobile() {
 				return this.$device.isMobile;
-			}
+			},
+			user() {
+            	return this.$store.state.auth.user;
+       	 	}
 		},
 		methods: {
             ...mapMutations('modal', ['showModal']),

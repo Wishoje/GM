@@ -1,5 +1,5 @@
 <template>
-	<div class="c-cookie-banner m-hidden" ref="cookieBanner" v-if="!cookie">
+	<div class="c-cookie-banner c-hidden" ref="cookieBanner" v-if="!cookie">
 			<p>
 				By using our website, you agree to our cookie policy.
 			</p>
@@ -20,7 +20,7 @@ export default {
 		allowCookies() {
 			// this.cookieBanner = this.$refs.cookieBanner;
 			localStorage.setItem('cookieSeen','shown');
-			this.cookieBanner.className = 'c-cookie-banner m-hidden';
+			this.cookieBanner.className = 'c-cookie-banner c-hidden';
 		},
 		cookieSeen() {
 			console.log('this.cookieBanner: ', this.cookieBanner);
@@ -52,6 +52,10 @@ export default {
 	justify-content: space-between;
 	background-color: #eee;
 	opacity: 0.95;
+}
+
+.c-hidden {
+	display: none;
 }
 
 .c-close-banner {

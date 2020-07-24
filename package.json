@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.ts --watch server",
     "build": "nuxt build",
-    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "start": "cross-env node dist/index.js",
     "generate": "nuxt generate",
     "test": "jest",
     "heroku-postbuild": "tsc && npm run build"
@@ -49,6 +49,7 @@
     "typeorm": "^0.2.24",
     "typescript": "^3.9.6",
     "v-tooltip": "^2.0.3",
+    "vue-loading-overlay": "^3.3.2",
     "vue-multiselect": "^2.1.6",
     "vue-slick": "^1.1.15",
     "vue-slick-carousel": "^1.0.5"

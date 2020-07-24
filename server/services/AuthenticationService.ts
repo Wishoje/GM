@@ -75,7 +75,18 @@ class AuthenticationService {
 	public async getUserByEmail(email: string) {
 		try {
 			const user = await this.userRepository.createQueryBuilder("user")
-				.addSelect('name').addSelect('email').addSelect('followers').addSelect('playlists')
+				.select(['user.id', 'user.name', 'user.email', 'user.followers', 'user.playlists', 'user.password'])
+				.where("user.email = :email", {email: email}).getOne();
+			return user;
+        } catch(err) {
+            throw new Error(err);
+        } 
+	}
+
+	public async getUser(email: string) {
+		try {
+			const user = await this.userRepository.createQueryBuilder("user")
+				.select(['user.id', 'user.name', 'user.email'])
 				.where("user.email = :email", {email: email}).getOne();
 			return user;
         } catch(err) {

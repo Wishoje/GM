@@ -10,7 +10,7 @@
 					<a :href="`/search?categoryId=${category.id}&categoryName=${category.name}`">{{ category.name }}</a>
 				</li>
 			</ul>
-			<div v-if="!isCategoryPage">
+			<div class="c-button-wrapper" v-if="!isCategoryPage">
 				<commonButton @click.native="limit = null" text="SEE MORE" v-if="limit" />
 				<commonButton @click.native="limit = 10" text="SEE LESS" v-else />
 			</div>
@@ -78,10 +78,15 @@
 	.c-categories {
 		text-align: center;
 
+		.c-button-wrapper {
+			margin-top: 50px;
+			margin-bottom: 64px;
+		}
+
 		ul {
 			align-content: flex-start;
 			width: 80%;
-			margin: 3rem auto;
+			margin: 50px auto 0 auto;
 			justify-content: center;
 			display: flex;
 			flex-wrap: wrap;
@@ -104,10 +109,6 @@
 					}
 				}
 			}
-		}
-
-		section {
-			margin-bottom: 3rem;
 		}
 	}
 

@@ -14,20 +14,23 @@
 			</ul>
 		</section>
 	</div>
-	<div>
+	<div class="vld-parent">
 		<div class="c-profile-playlist">
-			<div v-if="!categoriesPosts || categoriesPosts.length == 0">
-				<div>No Results</div>
-			</div>
-			<div class="c-profile-lists" v-else>
-				<div class="c-profile-playlist-iframe" v-for="iframe in getPlaylistIframe" :key="iframe.id">
-					<div class="c-profile-playlist-wrapper" v-html="iframe.playlist"></div> 
-					<div class="c-profile-playlist-likes">
-						<div>
-							<span class="c-profile-playlist-user">Uploaded By:</span><span class="c-profile-name"> {{ iframe.userName }}</span>
-						</div>
-						<div @click="likePlaylist(iframe.playlistId)" class="c-profile-playlist-icon">
-							<img :src="likeImage"/> <span class="c-profile-icon">{{ iframe.likes }}</span>
+			<spinner :isLoading="isLoading" />
+			<div v-if="!isLoading">
+				<div class="c-no-results" v-if="!categoriesPosts || categoriesPosts.length == 0">
+					<div>No Results</div>
+				</div>
+				<div class="c-profile-lists" v-else>
+					<div class="c-profile-playlist-iframe" v-for="iframe in getPlaylistIframe" :key="iframe.id">
+						<div class="c-profile-playlist-wrapper" v-html="iframe.playlist"></div> 
+						<div class="c-profile-playlist-likes">
+							<div>
+								<span class="c-profile-playlist-user">Uploaded By:</span><span class="c-profile-name"> {{ iframe.userName }}</span>
+							</div>
+							<div @click="submitLike(iframe.playlistId)" class="c-profile-playlist-icon">
+								<img :src="likeImage"/> <span class="c-profile-icon">{{ iframe.likes }}</span>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -39,6 +42,9 @@
 
 <script>
 import { mapMutations } from 'vuex';
+import Spinner from '../components/ui/Spinner';
+
+
 export default {
 	name: 'filterSearch',
 	data() {
@@ -49,9 +55,13 @@ export default {
 			searchQuery: '',
 			categoriesToRender: [],
 			likedPosts: [],
-			likeImage: 'https://img.icons8.com/ios-filled/40/000000/like.png'
+			likeImage: 'https://img.icons8.com/ios-filled/40/000000/like.png',
+			isLoading: false
         }
-    },
+	},
+	components: {
+		Spinner
+	},
     created() {
 		this.getAllCategoriesFromProps();
         if (this.$route.query.categoryId && this.$route.query.categoryName) {
@@ -120,13 +130,19 @@ export default {
 		},
 		async getSelectedCategories() {
 			try {
+				this.isLoading = true;
 				const result = await this.$axios.get('/api/usersPosts/categories', { 
 					params: { 
 						categoriesData: this.categoryQueryId 
 						}
 					}
 				);
-				return this.categoriesPosts = result.data;
+				if (result && result.data) {
+					this.categoriesPosts = result.data;
+					setTimeout(() => {
+						this.isLoading = false;
+                	}, 500);
+				}
 			} catch(error) {
 				console.log('Error :', error);
 			}
@@ -134,7 +150,7 @@ export default {
 		async getAlreadyLikedPlaylists() {
 			try {
 				const result = await this.$axios.get('/api/usersPosts/liked');
-				return this.likedPosts = result.data;
+				this.likedPosts = result.data;
 			} catch(error) {
 				console.log('Error :', error);
 			}
@@ -152,6 +168,9 @@ export default {
 			} catch(error) {
 				console.log('Error :', error);
 			}
+		},
+		submitLike(id) {
+			this.user ? this.likePlaylist(id) : this.showModal({modalName: 'ModalLogin', modalType:'modalRegister'});
 		}
 	}
 }
@@ -234,6 +253,9 @@ export default {
 	}
 	.c-profile-icon {
 		font-size: 19px;
+	}
+	.c-no-results {
+		text-align: center;
 	}
 
 	@media #{$mq-tablet} {

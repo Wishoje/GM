@@ -52,7 +52,7 @@ class AuthenticationController implements ControllerInterface {
 
 	private getMe = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
 		try {
-			const user = await this.authenticationService.getUserByEmail(response.locals.user.email);
+			const user = await this.authenticationService.getUser(response.locals.user.email);
 			response.send({ user });
 		} catch (error) {
 			next(error);

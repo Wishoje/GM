@@ -3,7 +3,7 @@
 		<div class="c-upload-wrapper m-flex-display">
 			<div class="c-options c-upload-header">
                 <div class="c-upload-join" v-if="!user">.
-                    <h2>Upload</h2>
+                    <h1>Upload</h1>
 				    <h2>Join Our Gamers Community To Explore New Awesome Music While You Are Playing Your Favorite Game</h2>
                     <div class="c-upload-login">
                         <commonButton v-if="!$store.state.auth.user" @click.native="showModal({modalName: 'ModalLogin', modalType:'modalRegister'})" text="UPLOAD A PLAYLIST" />
@@ -55,8 +55,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="c-upload-divider"></div>
-		<carousel/>
+        <div class="c-loved-lists">
+		    <carousel/>
+        </div>
 	</div>
 </template>
 
@@ -238,13 +239,9 @@ export default {
     .c-button-white {
         color: $primary-white;
     }
-	.c-upload-divider {
-		padding: 20px 0;
-		border-bottom: 1px solid $primary-border;
-	}
     .c-upload-login {
         text-align: center;
-        margin-top: 50px;
+        margin-top: 30px;
     }
     .c-upload-join {
         margin: 0 auto;
@@ -252,6 +249,10 @@ export default {
         h2 {
             line-height: 50px
         }
+    }
+    .c-loved-lists {
+        background-color: $primary-purple;
+        padding-bottom: 75px;
     }
     @media #{$mq-tablet} {
         .c-upload-wrapper {

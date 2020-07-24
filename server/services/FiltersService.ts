@@ -1,12 +1,13 @@
 import UserPostsLikes from '../entities/user_posts_likes.entity';
-import UserPostsLikeDto from '../models/User/UserPostsLikeDto';
 import { getRepository, createQueryBuilder } from 'typeorm';
+import UserPostsInterface from '../interfaces/UserPostsInterface';
+
 
 class FiltersService {
     private userPostsLikesRepository = getRepository(UserPostsLikes);
 
     public getIframe(playlist: string, type: string): string {
-        const iframeWidth = type === 'profile' ? 650 : 400;
+        // const iframeWidth = type === 'profile' ? 650 : 400;
         if (playlist.indexOf('soundcloud') > -1) {
             const soundcloudLink = playlist.split('src=')[1];
             return soundcloudLink ? `<iframe width="100%" height="400" scrolling="no" frameborder="no" allow="autoplay" src=${soundcloudLink}` : '';
@@ -39,7 +40,29 @@ class FiltersService {
 		} catch (err) {
 			throw new Error(err);
 		} 
-	}
+    }
+    
+    public async iframeDataHelper(categoriesPosts: Array<any>): Promise<Array<any>> {
+        try {
+            let result = [];
+            if (categoriesPosts) {
+                result = await Promise.all(categoriesPosts.map(async (categoryPost) => {
+                    return {
+                        id: categoryPost.id,
+                        playlist: this.getIframe(categoryPost.playlist, 'search'),
+                        likes: await this.getPostLikeCount(categoryPost.id),
+                        shares: categoryPost.shares,
+                        UserPostsCategories: categoryPost.userPostsCategories,
+                        userName: categoryPost.user && categoryPost.user.name ? categoryPost.user.name : ''
+                    } as UserPostsInterface
+                }));
+            }
+            
+            return result;
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
 }
 
 export default FiltersService;
