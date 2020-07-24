@@ -1,12 +1,16 @@
 <template>
     <div>
-        <loading :active.sync="isLoading" :can-cancel="canCancel" :is-full-page="isFullPage" :color="color"></loading>
+        <loading :active.sync="isLoading"
+                :can-cancel="canCancel" 
+                :is-full-page="isFullPage" 
+                :color="color">
+        </loading>
     </div>
 </template>
 
 <script>
 import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
+
 export default {
     name: 'Spinner',
     components: {
@@ -32,3 +36,6 @@ export default {
     }
 };
 </script>
+<style lang='scss' scoped>
+    @import 'vue-loading-overlay/dist/vue-loading.css';
+</style>

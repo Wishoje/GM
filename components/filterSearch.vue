@@ -17,18 +17,20 @@
 	<div class="vld-parent">
 		<div class="c-profile-playlist">
 			<spinner :isLoading="isLoading" />
-			<div class="c-no-results" v-if="!categoriesPosts || categoriesPosts.length == 0">
-				<div>No Results</div>
-			</div>
-			<div class="c-profile-lists" v-else>
-				<div class="c-profile-playlist-iframe" v-for="iframe in getPlaylistIframe" :key="iframe.id">
-					<div class="c-profile-playlist-wrapper" v-html="iframe.playlist"></div> 
-					<div class="c-profile-playlist-likes">
-						<div>
-							<span class="c-profile-playlist-user">Uploaded By:</span><span class="c-profile-name"> {{ iframe.userName }}</span>
-						</div>
-						<div @click="submitLike(iframe.playlistId)" class="c-profile-playlist-icon">
-							<img :src="likeImage"/> <span class="c-profile-icon">{{ iframe.likes }}</span>
+			<div v-if="!isLoading">
+				<div class="c-no-results" v-if="!categoriesPosts || categoriesPosts.length == 0">
+					<div>No Results</div>
+				</div>
+				<div class="c-profile-lists" v-else>
+					<div class="c-profile-playlist-iframe" v-for="iframe in getPlaylistIframe" :key="iframe.id">
+						<div class="c-profile-playlist-wrapper" v-html="iframe.playlist"></div> 
+						<div class="c-profile-playlist-likes">
+							<div>
+								<span class="c-profile-playlist-user">Uploaded By:</span><span class="c-profile-name"> {{ iframe.userName }}</span>
+							</div>
+							<div @click="submitLike(iframe.playlistId)" class="c-profile-playlist-icon">
+								<img :src="likeImage"/> <span class="c-profile-icon">{{ iframe.likes }}</span>
+							</div>
 						</div>
 					</div>
 				</div>
