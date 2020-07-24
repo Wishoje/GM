@@ -35,7 +35,8 @@ export default {
         }
     }
 };
+
 </script>
-<style lang='scss' scoped>
-    @import 'vue-loading-overlay/dist/vue-loading.css';
+<style>
+    @import 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css';
 </style>
