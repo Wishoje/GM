@@ -1,6 +1,5 @@
 <template>
     <div class="c-profile-wrapper">
-        aaa {{ id }}
         <div class="c-profile-wrapper-info m-flex-display">
             <div class="c-profile-image">
                 <img v-if="user.image" :src="user.image" :title="user.name"/>

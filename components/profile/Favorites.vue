@@ -1,5 +1,6 @@
 <template>
-    <div class="c-profile-playlist">
+    <div class="vld-parent c-profile-playlist">
+        <spinner :isLoading="isLoading" />
         <div class="c-profile-lists">
             <div class="m-font-size-m">Explore More Playlists <a class="m-error m-underline" href="/search">Here</a> </div>
             <div  v-if="userFavorites&& userFavorites.length > 0">
@@ -12,15 +13,29 @@
 </template>
 
 <script>
+import Spinner from '../../components/ui/Spinner';
+
 export default {
     name: 'Favorites',
-    created() {
-        this.getUserFavorites();
+    components: {
+		Spinner
     },
     data() {
         return {
-            userFavorites: null
+            userFavorites: null,
+            isLoading: true
         }
+    },
+    created() {
+        this.getUserFavorites();
+    },
+    mounted() {
+        this.$nextTick(() => {
+            // Code that will run only after the entire view has been rendered
+            setTimeout(() => {
+				this.isLoading = false;
+            }, 500);
+        });
     },
     computed: {
         getPlaylistIframe() {

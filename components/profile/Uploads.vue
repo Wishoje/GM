@@ -1,5 +1,6 @@
 <template>
-    <div class="c-profile-playlist">
+    <div class="vld-parent c-profile-playlist">
+        <spinner :isLoading="isLoading" />
         <div class="m-font-size-m">Add More Playlists <a class="m-error m-underline" href="/upload">Here</a></div>
         <div v-if="userPosts && userPosts.length > 0">
             <div class="c-profile-playlist-section" v-for="iframe in getPlaylistIframe" :key="iframe.id">
@@ -20,8 +21,25 @@
 </template>
 
 <script>
+import Spinner from '../../components/ui/Spinner';
 export default {
     name: 'Uploads',
+    data() {
+        return {
+			isLoading: true
+        }
+    },
+    components: {
+		Spinner
+	},
+    mounted() {
+        this.$nextTick(() => {
+            // Code that will run only after the entire view has been rendered
+            setTimeout(() => {
+				this.isLoading = false;
+            }, 500);
+        });
+    },
     props: {
         userPosts: {
             type: null,

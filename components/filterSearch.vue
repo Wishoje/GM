@@ -14,9 +14,10 @@
 			</ul>
 		</section>
 	</div>
-	<div>
+	<div class="vld-parent">
 		<div class="c-profile-playlist">
-			<div v-if="!categoriesPosts || categoriesPosts.length == 0">
+			<spinner :isLoading="isLoading" />
+			<div class="c-no-results" v-if="!categoriesPosts || categoriesPosts.length == 0">
 				<div>No Results</div>
 			</div>
 			<div class="c-profile-lists" v-else>
@@ -39,6 +40,9 @@
 
 <script>
 import { mapMutations } from 'vuex';
+import Spinner from '../components/ui/Spinner';
+
+
 export default {
 	name: 'filterSearch',
 	data() {
@@ -49,9 +53,13 @@ export default {
 			searchQuery: '',
 			categoriesToRender: [],
 			likedPosts: [],
-			likeImage: 'https://img.icons8.com/ios-filled/40/000000/like.png'
+			likeImage: 'https://img.icons8.com/ios-filled/40/000000/like.png',
+			isLoading: false
         }
-    },
+	},
+	components: {
+		Spinner
+	},
     created() {
 		this.getAllCategoriesFromProps();
         if (this.$route.query.categoryId && this.$route.query.categoryName) {
@@ -120,13 +128,19 @@ export default {
 		},
 		async getSelectedCategories() {
 			try {
+				this.isLoading = true;
 				const result = await this.$axios.get('/api/usersPosts/categories', { 
 					params: { 
 						categoriesData: this.categoryQueryId 
 						}
 					}
 				);
-				this.categoriesPosts = result.data;
+				if (result && result.data) {
+					this.categoriesPosts = result.data;
+					setTimeout(() => {
+						this.isLoading = false;
+                	}, 500);
+				}
 			} catch(error) {
 				console.log('Error :', error);
 			}
@@ -237,6 +251,9 @@ export default {
 	}
 	.c-profile-icon {
 		font-size: 19px;
+	}
+	.c-no-results {
+		text-align: center;
 	}
 
 	@media #{$mq-tablet} {

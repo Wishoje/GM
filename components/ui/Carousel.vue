@@ -70,6 +70,20 @@
                     <span class="c-upload-orange">Games: </span> <span class="c-upload-white">Dota 2</span>
                 </div>
             </div>
+             <div class="c-carousel-wrapper">
+                <iframe
+                    src="https://open.spotify.com/embed/playlist/34I0XfKpnMJtVsRZgr50JR"
+                    width="100%"
+                    height="400"
+                    frameborder="0"
+                    allowtransparency="true"
+                    allow="encrypted-media">
+                </iframe>
+                <div class="c-upload-mid-space">
+                    <span class="c-upload-orange">Uploaded by: </span> <span class="c-upload-white">Gangam</span><br>
+                    <span class="c-upload-orange">Games: </span> <span class="c-upload-white">LOL, Fortnite</span>
+                </div>
+            </div>
         </VueSlickCarousel>
     </div>
 </template>
@@ -144,7 +158,7 @@ export default {
 <style lang="scss" scoped>
 	.c-upload-carousel {
 		width: 80%;
-		margin: 70px auto;
+		margin: 0 auto;
 	}
 
 	.c-upload-featured {
