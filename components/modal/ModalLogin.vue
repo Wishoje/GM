@@ -65,7 +65,7 @@
 					</div>
 				</div>
 
-				<div class="c-modalLogin__smallPrint">New to GamersMusic? You can <a href="#">sign up here.</a>
+				<div class="c-modalLogin__smallPrint">New to GamersMusic? You can <a href="/registration">sign up here.</a>
 					<br>
 					Forgot your password? <a href="#">Reset it here.</a><br>
 				</div>
@@ -109,9 +109,6 @@ export default {
 	computed: {
 		user() { 
 			return this.$store.state.auth.user;
-		},
-		users() { 
-			return this.$store.state.user;
 		}
 	},
 	methods: {
@@ -137,7 +134,7 @@ export default {
 		async submitForm() {
 			try {
 				if (this.errorHandling()) {
-					const result = this.modalTypeProps === 'modalRegister' ? await this.$store.dispatch('auth/login', {
+					const result = this.modalTypeProps === 'modalLogin' ? await this.$store.dispatch('auth/login', {
 						email: this.email,
 						password: this.password
 					})

@@ -6,7 +6,7 @@ export default function ({store, redirect, route}) {
 		return redirect('/login')
 	}
 	if (userIsLoggedIn && urlRequiresNonAuth) {
-		return redirect('/account')
+		return redirect(`/account/${store.state.auth.user.id}`)
 	}
 	return Promise.resolve()
 }
