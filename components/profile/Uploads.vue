@@ -22,15 +22,16 @@
 
 <script>
 import Spinner from '../../components/ui/Spinner';
+
 export default {
     name: 'Uploads',
     data() {
         return {
-			isLoading: true
+            isLoading: true
         }
     },
     components: {
-		Spinner
+        Spinner
 	},
     mounted() {
         this.$nextTick(() => {

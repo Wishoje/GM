@@ -65,7 +65,8 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/device'
+    '@nuxtjs/device',
+    'vue-social-sharing/nuxt'
   ],
   styleResources: {
     scss: [

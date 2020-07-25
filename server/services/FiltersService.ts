@@ -53,7 +53,8 @@ class FiltersService {
                         likes: await this.getPostLikeCount(categoryPost.id),
                         shares: categoryPost.shares,
                         UserPostsCategories: categoryPost.userPostsCategories,
-                        userName: categoryPost.user && categoryPost.user.name ? categoryPost.user.name : ''
+                        userName: categoryPost.user && categoryPost.user.name ? categoryPost.user.name : '',
+                        userId: categoryPost.user && categoryPost.user.id ? categoryPost.user.id : ''
                     } as UserPostsInterface
                 }));
             }
