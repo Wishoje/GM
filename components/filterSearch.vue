@@ -26,7 +26,7 @@
 						<div class="c-profile-playlist-wrapper" v-html="iframe.playlist"></div> 
 						<div class="c-profile-playlist-likes">
 							<div>
-								<span class="c-profile-playlist-user">Uploaded By:</span><span class="c-profile-name"> {{ iframe.userName }}</span>
+								<span class="c-profile-playlist-user">Uploaded By:</span><span @click="checkProfile(iframe.userId)" class="c-profile-name m-cursor-pointer"> {{ iframe.userName }}</span>
 							</div>
 							<div @click="submitLike(iframe.playlistId)" class="c-profile-playlist-icon">
 								<img :src="likeImage"/> <span class="c-profile-icon">{{ iframe.likes }}</span>
@@ -82,7 +82,8 @@ export default {
 					playlistId: categoryPost.id,
                     playlist: categoryPost.playlist,
 					likes: categoryPost.likes,
-					userName: categoryPost.userName
+					userName: categoryPost.userName,
+					userId: categoryPost.userId
                 }
             })
 		},
@@ -171,7 +172,10 @@ export default {
 		},
 		submitLike(id) {
 			this.user ? this.likePlaylist(id) : this.showModal({modalName: 'ModalLogin', modalType:'modalRegister'});
-		}
+		},
+		checkProfile(id) {
+			this.user ? this.$router.push(`/account/${id}`) : this.showModal({modalName: 'ModalLogin', modalType:'modalRegister'});
+		} 
 	}
 }
 </script>
