@@ -4,7 +4,7 @@
 			<banner />
 		</transition>
 		<transition appear appear-class="custom-appear-class" appear-to-class="animated-2 fadeInLeft">
-			<categories :categoriesURL="'/api/categories/games'" />
+			<categories class="c-main-mobile" :categoriesURL="'/api/categories/games'" />
 		</transition>
 		<!-- <explore/> -->
 		<transition appear appear-class="custom-appear-class" appear-to-class="animated-3 fadeIn">
@@ -43,48 +43,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
-	.animated-1 {
-		animation-duration: 1s;
-		animation-fill-mode: both;
-	}
-	.animated-2 {
-		animation-duration: 1.5s;
-		animation-fill-mode: both;
-	}
-	.animated-3 {
-		animation-duration: 3s;
-		animation-fill-mode: both;
-	}
-
-	.fadeInLeft {
-		animation-name: fadeInLeft;
-
-		@keyframes fadeInLeft {
-			from {
-				opacity: 0;
-				transform: translate3d(80vw,0,0) translateX(-100%);
-			}
-
-			to {
-				opacity: 1;
-				transform: none;
-			}
-		}
-	}
-	.fadeIn {
-		animation-name: fadeIn;
-
-		@keyframes fadeIn {
-			from {
-				opacity: 0;
-			}
-
-			to {
-				opacity: 1;
-			}
-		}
-	}
+<style lang="scss" scoped>
 	.c-main-wrapper {
 		opacity: 0;
 	}
@@ -92,9 +51,8 @@ export default {
 		opacity: 1;
 	}
 	@media #{$mq-mobile} {
-		.c-main-wrapper {
+		.c-main-mobile {
 			padding: 0 10px;
-			display: none;
 		}
 	}
 </style>
