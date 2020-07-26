@@ -6,11 +6,12 @@
         <ol>
             <li>Select playlist you want to share</li>
             <li>Select Share</li>
+            <li>Navigate to Embed tab</li>
             <li>Copy Playlist Link</li>
             <li>Paste it into our upload form</li>
         </ol>
         <img src="../../assets/images/soundCloud-1.png" alt="SoundCloud">
-        <img src="../../assets/images/soundCloud-2.png" alt="SoundCloud">
+        <img src="../../assets/images/soundcloud_new.PNG" alt="SoundCloud">
     </div>
 </template>
 
