@@ -8,10 +8,9 @@ class FiltersService {
 
     public getIframe(playlist: string, type: string): string {
         // const iframeWidth = type === 'profile' ? 650 : 400;
-        
         if (playlist.indexOf('soundcloud') > -1) {
-            const soundcloudLink = playlist.split('</iframe>')[0];
-            return soundcloudLink ? soundcloudLink : '';
+            const soundcloudLink = playlist.split('src=')[1];
+            return soundcloudLink ? `<iframe width="100%" height="400" scrolling="no" frameborder="no" allow="autoplay" src=${soundcloudLink.split('</iframe>')[0]}` : '';
         } else if (playlist.indexOf('open.spotify') > -1) {
             const spotifyLink = playlist.split('/playlist/')[1];
             return spotifyLink ? `<iframe src="https://open.spotify.com/embed/playlist/${spotifyLink}" width="100%" height="400" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>` : '';
