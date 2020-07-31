@@ -42,7 +42,7 @@
             </div>
             </ShareNetwork>
         </div>
-        <component :is="currentComponent" :userPosts="userPosts"></component>
+        <component :is="currentComponent" :isLoading="isLoading" :userPosts="userPosts"></component>
     </div>
 </template>
 
@@ -60,6 +60,7 @@ export default {
 		return {
             userPosts: null,
             currentComponent: 'Uploads',
+            isLoading: true,
             isGuest: false,
               sharing: {
                 url: `https://www.gamersmusic.com${this.$route.path}`,
@@ -78,6 +79,14 @@ export default {
                 { network: 'whatsapp', name: 'Whatsapp', icon: 'fab fah fa-lg fa-whatsapp', color: '#25d366' }
             ]
 		};
+    },
+    mounted() {
+        this.$nextTick(() => {
+            // Code that will run only after the entire view has been rendered
+            setTimeout(() => {
+				this.isLoading = false;
+            }, 500);
+        });
     },
     computed: {
         user() {
@@ -107,7 +116,6 @@ export default {
                     }
                 }
             );
-
             return {
                 userPosts: result.data,
                 isGuest: userIdParam !== store.state.auth.user.id ? true : false
