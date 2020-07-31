@@ -3,6 +3,9 @@
 		<transition appear appear-class="custom-appear-class" appear-to-class="animated-1 fadeIn">
 			<banner />
 		</transition>
+		<transition appear appear-class="custom-appear-class" appear-to-class="animated-2 fadeIn">
+			<TwitchIndex />
+		</transition>
 		<transition appear appear-class="custom-appear-class" appear-to-class="animated-2 fadeInLeft">
 			<categories class="c-main-mobile" :categoriesURL="'/api/categories/games'" />
 		</transition>
@@ -18,6 +21,7 @@ import banner from '../components/banner';
 import explore from '../components/explore';
 import categories from '../components/categories';
 import lovedLists from '../components/lovedLists';
+import TwitchIndex from '../components/TwitchIndex';
 
 export default {
 	name: 'homePage',
@@ -25,7 +29,8 @@ export default {
 		banner,
 		explore,
 		categories,
-		lovedLists
+		lovedLists,
+		TwitchIndex
 	},
 	data() {
         return {

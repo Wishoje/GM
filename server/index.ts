@@ -7,6 +7,7 @@ import UsersController from './controllers/UsersController';
 import UsersPostsController from './controllers/UsersPostsController';
 import CategoriesCotroller from './controllers/CategoriesController';
 import AuthenticationController from './controllers/AuthenticationController';
+import TwitchController from './controllers/TwitchController';
 import validateEnv from './utils/validateEnv';
 
 (async () => {
@@ -25,7 +26,8 @@ import validateEnv from './utils/validateEnv';
 			new UsersController(),
 			new UsersPostsController(),
 			new CategoriesCotroller(),
-			new AuthenticationController()
+			new AuthenticationController(),
+			new TwitchController()
 		],
 	);
 	app.start();
