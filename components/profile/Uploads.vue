@@ -1,6 +1,5 @@
 <template>
     <div class="vld-parent c-profile-playlist">
-        <spinner :isLoading="isLoading" />
         <div class="m-font-size-m">Add More Playlists <a class="m-error m-underline" href="/upload">Here</a></div>
         <div v-if="userPosts && userPosts.length > 0">
             <div class="c-profile-playlist-section" v-for="iframe in getPlaylistIframe" :key="iframe.id">
