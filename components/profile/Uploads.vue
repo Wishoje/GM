@@ -28,15 +28,21 @@ export default {
     components: {
         Spinner
 	},
+    data() {
+        return {
+            isLoading: true
+        }
+    },
     props: {
         userPosts: {
             type: null,
             required: true
-        },
-        isLoading: {
-            type: Boolean,
-            default: true
         }
+    },
+    mounted() {
+        setTimeout(() => {
+            this.isLoading = false;
+        }, 700);
     },
     computed: {
         getPlaylistIframe() {
@@ -55,6 +61,6 @@ export default {
     }
 }
 </script>
-<style lang='scss' scoped>
+<style lang='scss'>
     @import './assets/styles/profile.scss';
 </style>
