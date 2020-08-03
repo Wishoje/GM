@@ -30,7 +30,7 @@ export default {
 	},
     data() {
         return {
-            isLoading: true
+            isLoading: false // change to true when ready
         }
     },
     props: {
@@ -39,11 +39,14 @@ export default {
             required: true
         }
     },
-    mounted() {
-        setTimeout(() => {
-            this.isLoading = false;
-        }, 700);
-    },
+    // mounted() {
+    //     this.$nextTick(() => {
+    //         // FOR SOME REASON NOT WORKING ON REFRESH PROD
+    //         setTimeout(() => {
+	// 			this.isLoading = false;
+    //         }, 500);
+    //     });
+    // },
     computed: {
         getPlaylistIframe() {
             return this.userPosts.map(userPost => {
@@ -61,6 +64,6 @@ export default {
     }
 }
 </script>
-<style lang='scss'>
+<style lang='scss' scoped>
     @import './assets/styles/profile.scss';
 </style>

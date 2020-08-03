@@ -118,7 +118,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .c-profile-image {
         padding: 120px 20px 0px 200px;
         img {
