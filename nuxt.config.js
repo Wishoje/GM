@@ -55,6 +55,9 @@ module.exports = {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-42492102-2'
+    }],
     '@nuxt/typescript-build',
     '@nuxtjs/style-resources'
   ],

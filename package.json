@@ -57,6 +57,7 @@
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^0.6.1",
+    "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/tailwindcss": "^1.4.0",
     "@types/bcrypt": "^3.0.0",
