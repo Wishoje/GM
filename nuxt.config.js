@@ -7,15 +7,16 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Gamers Music',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { hid: 'description', name: 'description', content: 'Gamers Music - music for gamers' },
       { name: 'google-signin-client_id', content: process.env.NUXT_ENV_GOOGLE_CLIENT_ID },
       { name: 'msapplication-TileColor', content: '#ffffff' },
       { name: 'msapplication-TileImage', content: '/ms-icon-144x144.png' },
-      { name: 'theme-color', content: '#ffffff' }
+      { name: 'theme-color', content: '#ffffff' },
+      { name: 'google-site-verification', content: 'oUCIRs5V26ImFquB9i9npNU6GuHzMHI4s3MlXZ8Upd0' }
     ],
     link: [
       { rel: 'apple-touch-icon', sizes: '57x57', href: '/apple-icon-57x57.png' },
@@ -54,6 +55,9 @@ module.exports = {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-42492102-2'
+    }],
     '@nuxt/typescript-build',
     '@nuxtjs/style-resources'
   ],
@@ -66,7 +70,8 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/device',
-    'vue-social-sharing/nuxt'
+    'vue-social-sharing/nuxt',
+    ['@nuxtjs/google-tag-manager', { id: 'GTM-PJ63WGD' }]
   ],
   styleResources: {
     scss: [

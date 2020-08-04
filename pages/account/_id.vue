@@ -107,7 +107,6 @@ export default {
                     }
                 }
             );
-
             return {
                 userPosts: result.data,
                 isGuest: userIdParam !== store.state.auth.user.id ? true : false
