@@ -70,7 +70,8 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/device',
-    'vue-social-sharing/nuxt'
+    'vue-social-sharing/nuxt',
+    ['@nuxtjs/google-tag-manager', { id: 'GTM-PJ63WGD' }]
   ],
   styleResources: {
     scss: [

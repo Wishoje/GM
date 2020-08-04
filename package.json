@@ -16,6 +16,7 @@
     "@nuxt/typescript-build": "^0.6.1",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/device": "^1.2.7",
+    "@nuxtjs/google-tag-manager": "^2.3.2",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@types/bluebird": "^3.5.30",
     "@types/js-cookie": "^2.2.6",
