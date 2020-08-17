@@ -3,7 +3,7 @@
 		<transition appear appear-class="custom-appear-class" appear-to-class="animated-1 fadeIn">
 			<banner />
 		</transition>
-		<transition appear appear-class="custom-appear-class" appear-to-class="animated-1 fadeIn">
+		<transition v-if="!isMobile" appear appear-class="custom-appear-class" appear-to-class="animated-1 fadeIn">
 			<TwitchIndex />
 		</transition>
 		<transition appear appear-class="custom-appear-class" appear-to-class="animated-2 fadeIn">
@@ -31,6 +31,11 @@ export default {
 		categories,
 		lovedLists,
 		TwitchIndex
+	},
+	computed: {
+		isMobile() {
+			return this.$device.isMobile;
+		}
 	},
 	data() {
         return {
