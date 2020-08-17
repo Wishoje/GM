@@ -143,7 +143,8 @@ export default {
                         margin: 0 auto;
                     }
                     .c-twitch-button {
-                        margin-top: 40px;
+                        display: block;
+                        margin: 40px auto;
                         background-color: $primary-red;
                         color: $primary-white;
                         text-align: center;
