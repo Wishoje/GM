@@ -1,6 +1,40 @@
 <template>
     <VueSlickCarousel class="c-twitch" v-bind="settings">
         <div>
+            <div class="c-twitch-second">
+                <div class="c-twitch-second-boxes color-1">
+                    <article @click="showModal({modalName: 'ModalLogin', modalType:'modalRegister'})">
+                        <img src="../assets/images/upload.svg" alt="Upload">
+                        <h2>
+                            Upload playlists from your favorite music platform
+                        </h2>
+                    </article>
+                    <article class="c-twitch-article">
+                        Share your music profile with other gamers,
+                        search playlists by genre, platform or games and many more!
+                        <button @click="showModal({modalName: 'ModalLogin', modalType:'modalRegister'})" type="button" class="c-twitch-button m-font-bold">
+                            UPLOAD
+                        </button>
+                    </article>
+                </div>
+                <div class="c-twitch-second-boxes color-2">
+                    <article @click="showModal({modalName: 'ModalLogin', modalType:'modalRegister'})">
+                        <img src="../assets/images/connect.svg" alt="Connect">
+                        <h2>
+                            Connect with your fans by sharing your favorite playlist
+                        </h2>
+                        <article class="c-twitch-article">
+                            Now you have the power to connect with your fans 
+                            through the music you love!
+                            <button @click="showModal({modalName: 'ModalLogin', modalType:'modalRegister'})" type="button" class="c-twitch-button-two m-font-bold">
+                                STREAMER 
+                            </button>
+                        </article>
+                    </article>
+                </div>
+            </div>
+        </div>
+        <div>
             <h2>Live Twitch Streamers</h2>
             <ul>
                 <li v-for="item in twitchData" :key="item.id">
@@ -13,58 +47,12 @@
                 </li>
             </ul>
         </div>
-        <div>
-            <div class="c-twitch-second">
-                <div class="c-twitch-second-boxes color-1">
-                    <article>
-                        <img src="../assets/images/upload.svg" alt="Upload">
-                        <h2>
-                            Upload playlists from your favorite music platform
-                        </h2>
-                    </article>
-                    <article class="c-twitch-article">
-                        Share your music profile with other gamers,
-                        search playlists by genre, platform or games and many more!
-                        <button type="button" class="c-twitch-button m-font-bold">
-                            UPLOAD
-                        </button>
-                    </article>
-                </div>
-                <div class="c-twitch-second-boxes color-2">
-                    <article>
-                        <img src="../assets/images/connect.svg" alt="Connect">
-                        <h2>
-                            Connect with your fans by sharing your music
-                        </h2>
-                         <article class="c-twitch-article">
-                            Share your music profile with other gamers,
-                            search playlists by genre, platform or games and many more!
-                            <button type="button" class="c-twitch-button-two m-font-bold">
-                                STREAMER
-                            </button>
-                        </article>
-                    </article>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="c-twitch-second">
-                <div>
-                    TEST
-                </div>
-                <div>
-                    TEST
-                </div>
-                <div>
-                    TEST
-                </div>
-            </div>
-        </div>
     </VueSlickCarousel>
 </template>
 
 <script>
 import VueSlickCarousel from 'vue-slick-carousel';
+import { mapMutations } from 'vuex';
 
 export default {
     name: 'TwitchIndex',
@@ -104,6 +92,7 @@ export default {
         this.getTwitchData();
     },
     methods: {
+        ...mapMutations('modal', ['showModal']),
         async getTwitchData() {
             try {
                 const result = await this.$axios.get('/api/twitch');
@@ -162,12 +151,13 @@ export default {
                         border-radius: 0.2rem;
                     }
                     .c-twitch-button-two {
-                        margin-top: 40px;
                         background-color: $primary-white;
                         color: $primary-red;
                         text-align: center;
                         padding: 0.7rem 5rem;
                         border-radius: 0.2rem;
+                        display: block;
+                        margin: 40px auto;
                     }
                 }
                 .c-twitch-article {

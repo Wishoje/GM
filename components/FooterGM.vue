@@ -22,13 +22,7 @@
       <div class="footer-nav">
         <ul class="footer-nav-list">
           <li>
-            <a href="#">Faq</a>
-          </li>
-          <li>
-            <a href="#">About</a>
-          </li>
-          <li>
-            <a href="#">Help</a>
+            <a href="mailto:help@gamersmusic.com">Email: help@gamersmusic.com</a>
           </li>
         </ul>
       </div>
