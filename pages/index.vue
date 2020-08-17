@@ -3,9 +3,9 @@
 		<transition appear appear-class="custom-appear-class" appear-to-class="animated-1 fadeIn">
 			<banner />
 		</transition>
-		<transition v-if="!isMobile" appear appear-class="custom-appear-class" appear-to-class="animated-1 fadeIn">
+		<!-- <transition v-if="!isMobile" appear appear-class="custom-appear-class" appear-to-class="animated-1 fadeIn">
 			<TwitchIndex />
-		</transition>
+		</transition> -->
 		<transition appear appear-class="custom-appear-class" appear-to-class="animated-2 fadeIn">
 			<categories class="c-main-mobile" :categoriesURL="'/api/categories/games'" />
 		</transition>
