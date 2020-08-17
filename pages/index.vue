@@ -4,7 +4,7 @@
 			<banner />
 		</transition>
 		<transition appear appear-class="custom-appear-class" appear-to-class="animated-1 fadeIn">
-			<TwitchIndex class="c-desktop"/>
+			<TwitchIndex />
 		</transition>
 		<transition appear appear-class="custom-appear-class" appear-to-class="animated-2 fadeIn">
 			<categories class="c-main-mobile" :categoriesURL="'/api/categories/games'" />
