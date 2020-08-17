@@ -1,7 +1,7 @@
 <template>
     <div class="c-upload-carousel" id="c-carousel">
-        <h3 v-if="!isMain" class="c-upload-featured c-upload-white">Check Out Our Featured List</h3>
-        <h3 v-else class="c-upload-featured c-upload-white">Check Out Our Most Popular Lists</h3>
+        <h2 v-if="!isMain" class="c-upload-featured c-upload-white">Check Out Our Featured List</h2>
+        <h2 v-else class="c-upload-featured c-upload-white">Check Out Our Featured List</h2>
         <VueSlickCarousel v-bind="settings">
             <div class="c-carousel-wrapper">
                 <iframe 
@@ -113,7 +113,7 @@ export default {
     data() {
         return {
             settings: {
-                dots: true,
+                dots: false,
                 speed: 500,
                 slidesToShow: 4,
                 infinite: true,
@@ -163,7 +163,7 @@ export default {
 
 	.c-upload-featured {
 		text-align: center;
-		padding: 65px 0 30px 0;
+		padding: 80px 0 30px 0;
 	}
 	.c-upload-white {
         color: $primary-white;

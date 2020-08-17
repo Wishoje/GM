@@ -4,7 +4,7 @@
             <h1>{{ loginType }}</h1>
             <h2>Join Our Gamers Community To Explore New Awesome Music</h2>
             <h3>
-                Upload playlists from from your favorite music platform,
+                Upload playlists from your favorite music platform,
                 Share your music profile with other gamers,
                 Search playlists by genre, platform or games and many more!
             </h3>
