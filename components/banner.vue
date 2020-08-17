@@ -4,8 +4,8 @@
 			<h1>SHARE YOUR FAVORITE PLAYLISTS!</h1>
 			<h3>Join The Gamers Community Where The Music Leads You To Another Level</h3>
 		</div>
-		<div @click.native="showModal({modalName: 'ModalLogin', modalType:'modalRegister'})" class="c-button-wrapper">
-			<commonButton v-if="!$store.state.auth.user"  text="JOIN" />
+		<div class="c-button-wrapper">
+			<commonButton v-if="!$store.state.auth.user" @click.native="showModal({modalName: 'ModalLogin', modalType:'modalRegister'})" text="JOIN" />
 		</div>
 	</article>
 </template>
