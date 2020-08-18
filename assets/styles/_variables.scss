@@ -30,6 +30,19 @@ $mq-not-desktop-large: 'screen and (max-width: 1440px)';
 // only target Internet Explorer 10+
 $mq-ie-only: 'all and (-ms-high-contrast: none), (-ms-high-contrast: active)';
 
+$mq-custom-categories-xxl: 'screen and (min-width: 2510px)'; 
+$mq-custom-categories-xl: 'screen and (min-width: 2093px) and (max-width: 2509px))'; 
+$mq-custom-categories-l: 'screen and (min-width: 1744px) and (max-width: 2092px))';
+$mq-custom-categories-m: 'screen and (min-width: 1432px) and (max-width: 1699px))';
+$mq-custom-categories-s: 'screen and (max-width: 1431px)';
+
+$mq-custom-twitch-xxl: 'screen and (min-width: 2200px)';
+$mq-custom-twitch-xl: 'screen and (min-width: 2030px) and (max-width: 2199px))';
+$mq-custom-twitch-l: 'screen and (min-width: 1760px) and (max-width: 2029px))';
+$mq-custom-twitch-m: 'screen and (min-width: 1320px) and (max-width: 1516px))';
+
+
+
 /* how to use them? put the desired style inside media query like:
 @media #{$mq-desktop} { 
     .c-test: width: 80% 

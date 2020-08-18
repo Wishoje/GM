@@ -129,11 +129,38 @@
 			}
 		}
 	}
-	
-	@media #{$mq-desktop-large} {
+	@media #{$mq-custom-categories-xxl} {
 		.c-categories {
 			ul {
 				width: 60%;
+			}
+		}
+	}
+	@media #{$mq-custom-categories-xl} {
+		.c-categories {
+			ul {
+				width: 65%;
+			}
+		}
+	}
+	@media #{$mq-custom-categories-l} {
+		.c-categories {
+			ul {
+				width: 78%;
+			}
+		}
+	}
+	@media #{$mq-custom-categories-m} {
+		.c-categories {
+			ul {
+				width: 95%;
+			}
+		}
+	}
+	@media #{$mq-custom-categories-s} {
+		.c-categories {
+			ul {
+				width: 100%;
 			}
 		}
 	}

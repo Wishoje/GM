@@ -4,7 +4,7 @@
 			<banner />
 		</transition>
 		<transition v-if="!isMobile" appear appear-class="custom-appear-class" appear-to-class="animated-1 fadeIn">
-			<TwitchIndex class="c-desktop"/>
+			<TwitchIndex />
 		</transition>
 		<transition appear appear-class="custom-appear-class" appear-to-class="animated-2 fadeIn">
 			<categories class="c-main-mobile" :categoriesURL="'/api/categories/games'" />
@@ -60,22 +60,9 @@ export default {
 	.c-main-wrapper-show {
 		opacity: 1;
 	}
-	@media #{$mq-desktop} {
-		.c-desktop {
-			display: block;
-		}
-	}
-	@media #{$mq-tablet} {
-		.c-desktop {
-			display: none
-		}
-	}
 	@media #{$mq-mobile} {
 		.c-main-mobile {
 			padding: 0 10px;
-		}
-		.c-desktop {
-			display: none
 		}
 	}
 </style>

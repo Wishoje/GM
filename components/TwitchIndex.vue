@@ -109,7 +109,7 @@ export default {
 <style lang="scss" scoped>
     .c-twitch {
         align-content: flex-start;
-        width: 80%;
+        width: 87%;
         margin: 0px auto 20px auto;
         display: flex;
         flex-wrap: wrap;
@@ -218,7 +218,26 @@ export default {
         transform: translate(-50%, -50%);
         text-align: center;
     }
-
+    @media #{$mq-custom-twitch-xxl} {
+        .c-twitch {
+            width: 60%;
+		}
+    }
+    @media #{$mq-custom-twitch-xl} {
+		.c-twitch {
+            width: 65%;
+		}
+    }
+    @media #{$mq-custom-twitch-l} {
+		.c-twitch {
+            width: 75%;
+		}
+    }
+    @media #{$mq-custom-twitch-m} {
+		.c-twitch {
+            width: 100%;
+		}
+    }
     @media #{$mq-mobile-portrait} {
 		.c-twitch {
             width: 100%;
@@ -236,11 +255,5 @@ export default {
             width: 120px;
             height: 120px;
         }
-	}
-	
-	@media #{$mq-desktop-large} {
-		.c-twitch {
-            width: 60%;
-		}
 	}
 </style>
