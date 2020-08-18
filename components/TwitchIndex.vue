@@ -117,7 +117,7 @@ export default {
             display: flex;
             border: none;
             justify-content: center;
-            margin-top: 90px;
+            margin-top: 60px;
             .color-1 {
                 background-color: $primary-white;
                 color: $primary-red;
@@ -129,10 +129,10 @@ export default {
             .c-twitch-second-boxes {
                 display: flex;
                 flex-direction: column;
-                width: 45%;
+                width: 42%;
                 align-items: center;
                 border: 1px solid #ccc;
-                padding: 80px;
+                padding: 60px;
                 border-radius: 18px;
                 box-shadow: 5px 5px 15px #999;
                 transition: 0.5s ease;
@@ -175,6 +175,7 @@ export default {
         }
         h2 {
             padding-bottom: 10px;
+            padding-top: 25px;  
         }
         ul {
             display: flex;
@@ -187,7 +188,7 @@ export default {
                 cursor: pointer;
                 img {
                     width: 200px;
-                    height: 200px;
+                    height: 190px;
                 }
             }
             li:hover .c-twitch-overlay {
@@ -201,7 +202,7 @@ export default {
         bottom: 0;
         left: 0;
         right: 0;
-        height: 200px;
+        height: 190px;
         width: 200px;
         opacity: 0;
         transition: .5s ease;
