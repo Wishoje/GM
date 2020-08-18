@@ -257,4 +257,19 @@ export default {
             height: 120px;
         }
 	}
+    @media #{$mq-tablet} {
+        .c-twitch {
+            display: none;
+        }
+    }
+    @media #{$mq-mobile} {
+        .c-twitch {
+            display: none;
+        }
+    }
+    @media #{$mq-desktop} {
+        .c-twitch {
+            display: block;
+        }
+    }
 </style>
