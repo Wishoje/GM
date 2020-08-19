@@ -2,9 +2,11 @@
 	<main class="c-main-wrapper" :class="{'c-main-wrapper-show': !isLoading}">
 		<banner />
 		<TwitchIndex v-if="!isMobile" />
-		<categories class="c-main-mobile" :categoriesURL="'/api/categories/games'" />
+		<categories id="c-loved-lists" class="c-main-mobile" :categoriesURL="'/api/categories/games'" />
 		<!-- <explore/> -->
-		<lovedLists />
+		<div v-if="isLazy">
+			<lovedLists />
+		</div>
 	</main>
 </template>
 
@@ -12,7 +14,6 @@
 import banner from '../components/banner';
 import explore from '../components/explore';
 import categories from '../components/categories';
-import lovedLists from '../components/lovedLists';
 import TwitchIndex from '../components/TwitchIndex';
 
 export default {
@@ -21,7 +22,7 @@ export default {
 		banner,
 		explore,
 		categories,
-		lovedLists,
+		lovedLists: () => import('../components/lovedLists'),
 		TwitchIndex
 	},
 	computed: {
@@ -29,12 +30,24 @@ export default {
 			return this.$device.isMobile;
 		}
 	},
+	methods: {
+		scroll() {
+			window.onscroll = () => {
+				const element = document.getElementById('c-loved-lists');
+				if (window.scrollY > element.offsetHeight) {
+					this.isLazy = true;
+				}
+			};
+		}
+	},
 	data() {
         return {
-            isLoading: true
+			isLoading: true,
+			isLazy: false
         }
     },
 	mounted() {
+		this.scroll();
         this.$nextTick(() => {
 			// Code that will run only after the entire view has been rendered
 			setTimeout(() => {

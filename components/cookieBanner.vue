@@ -23,7 +23,6 @@ export default {
 			this.cookieBanner.className = 'c-cookie-banner c-hidden';
 		},
 		cookieSeen() {
-			console.log('this.cookieBanner: ', this.cookieBanner);
 			if (localStorage.getItem('cookieSeen') === 'shown') {
 				
 				this.cookie = true;
