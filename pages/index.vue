@@ -1,18 +1,10 @@
 <template>
 	<main class="c-main-wrapper" :class="{'c-main-wrapper-show': !isLoading}">
-		<transition appear appear-class="custom-appear-class" appear-to-class="animated-1 fadeIn">
-			<banner />
-		</transition>
-		<transition v-if="!isMobile" appear appear-class="custom-appear-class" appear-to-class="animated-1 fadeIn">
-			<TwitchIndex />
-		</transition>
-		<transition appear appear-class="custom-appear-class" appear-to-class="animated-2 fadeIn">
-			<categories class="c-main-mobile" :categoriesURL="'/api/categories/games'" />
-		</transition>
+		<banner />
+		<TwitchIndex v-if="!isMobile" />
+		<categories class="c-main-mobile" :categoriesURL="'/api/categories/games'" />
 		<!-- <explore/> -->
-		<transition appear appear-class="custom-appear-class" appear-to-class="animated-1 fadeIn">
-			<lovedLists />
-		</transition>
+		<lovedLists />
 	</main>
 </template>
 
