@@ -38,7 +38,7 @@
 		</div>
 
 		<div class="c-modalLogin" v-if="modalTypeProps === 'modalLogin'">
-			<form v-if="!user" @submit.prevent>
+			<form v-if="!user" @submit.prevent="submitForm">
 				<h2>Login</h2>
 				<div>
 					<label for="name">Email</label>
@@ -133,6 +133,7 @@ export default {
 		},
 		async submitForm() {
 			try {
+				this.error = '';
 				if (this.errorHandling()) {
 					const result = this.modalTypeProps === 'modalLogin' ? await this.$store.dispatch('auth/login', {
 						email: this.email,
@@ -180,6 +181,7 @@ export default {
 			h3, h2 {
 				color: $primary-red;
 				margin-top: 0;
+				padding-top: 10px;
 			}
 		
 			input {

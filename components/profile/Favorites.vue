@@ -2,7 +2,7 @@
     <div class="vld-parent c-profile-playlist">
         <spinner :isLoading="isLoading" />
         <div class="c-profile-lists">
-            <div class="m-font-size-m">Explore More Playlists <a class="m-error m-underline" href="/search">Here</a> </div>
+            <div class="m-font-size-m">Explore More Playlists <a class="m-error m-underline" href="/search?categoryId=2&categoryName=Dota%202">Here</a> </div>
             <div  v-if="userFavorites&& userFavorites.length > 0">
                 <div class="c-profile-playlist-iframe c-profile-fav" v-for="iframe in getPlaylistIframe" :key="iframe.id">
                     <div class="c-profile-playlist-wrapper" v-html="iframe.playlist"></div> 
