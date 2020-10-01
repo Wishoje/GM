@@ -4,6 +4,7 @@ import * as bodyParser from 'body-parser';
 import errorMiddleware from './middleware/ErrorMiddleware';
 import ControllerInteface from './interfaces/ControllerInterface';
 import * as cookieParser from 'cookie-parser';
+import sslRedirect from 'heroku-ssl-redirect';
 const nuxtConfig = require('../nuxt.config.js');
 
 class App {
@@ -15,6 +16,8 @@ class App {
  
 	constructor(controllers: ControllerInteface[]) {
 		this.app = express();
+		this.app.use(sslRedirect());
+
 		this.config = nuxtConfig;
 		this.initializeDevConfig();
 
